@@ -23,19 +23,11 @@ extension Coordinator {
     
     public func presentChild(_ child: Coordinator, animated: Bool, onDismissed: (()->Void)? = nil, passData: (()->AnyObject?)?) {
         children.append(child)
-//        child.present(animated: animated, onDismissed: { [weak self, weak child] in
-//            guard let self = self, let child = child else { return }
-//            self.removeChild(child)
-//            onDismissed?()
-//        }, passData: passData)
         child.present(animated: animated, onDismissed: { [weak self, weak child] in
             guard let self = self, let child = child else { return }
             self.removeChild(child)
             onDismissed?()
         }, data: passData)
-
-        
-
     }
     
     private func removeChild(_ child: Coordinator) {

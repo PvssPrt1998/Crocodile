@@ -10,10 +10,6 @@ import UIKit
 //MARK: - AddPlayerTableViewCell
 class AddPlayerTableViewCell: UITableViewCell {
     
-    deinit {
-        print("deinitedCELL")
-    }
-    
     //Добавлен ли игрок
     var isPlayerAdded: Bool = false
     //Outlets

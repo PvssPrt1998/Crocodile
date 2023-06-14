@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK: - CoordinatorDelegate
 public protocol CategoryViewControllerDelegate: AnyObject {
     func categoryViewControllerDidPressNext(_ viewController: CategoryViewController)
 }

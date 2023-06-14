@@ -19,7 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        //let router = SceneDelegateRouter(window: window!)
         let router = NavigationRouter(window: window!)
         coordinator = CategoryCoordinator(router: router)
         coordinator!.present(animated: true, onDismissed: nil, data: nil)

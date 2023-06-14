@@ -69,11 +69,14 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="RSO-h2-F6I"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UmD-tH-4c4">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UmD-tH-4c4">
                                 <rect key="frame" x="59" y="737" width="275" height="59.666666666666629"/>
                                 <color key="backgroundColor" red="0.85098039219999999" green="0.61176470589999998" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="NextButton"/>
+                                <connections>
+                                    <action selector="nextButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="0tL-uF-Hjz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -92,6 +95,7 @@
                     <navigationItem key="navigationItem" title="Введите имена игроков" id="jQ9-CG-hSj"/>
                     <connections>
                         <outlet property="addPlayersTableView" destination="nKj-wG-6in" id="ntT-NI-Lvo"/>
+                        <outlet property="nextButton" destination="UmD-tH-4c4" id="ZyX-cp-t8l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
