@@ -30,11 +30,13 @@ public class CategoryViewController: UIViewController {
         gameManager?.loadWords()
     }
     
-    
+    //NextButtonAction
     @IBAction func nextButtonAction(_ sender: UIButton) {
+        //Передает делегату (делегатом является координатор) себя в качестве параметра
         delegate?.categoryViewControllerDidPressNext(self)
     }
     
+    //анимация появления кнопки
     private func animateNextButton(opacity: Float) {
         UIView.animate(withDuration: 0.2) {  [] in
             self.nextButton.layer.opacity = opacity
@@ -44,11 +46,16 @@ public class CategoryViewController: UIViewController {
 
 //MARK: - collectionViewDelegateExtension
 extension CategoryViewController: UICollectionViewDelegate {
+    
+    //didSelectItemAt indexPath
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //получаем ячейку если можем
         guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return }
-        gameManager?.selectToggle(by: indexPath.row)
+        //меняем категорию на выбранную или наоборот
+        gameManager?.didSelectCategory(by: indexPath.row)
+        
         cell.checkmarkToggleHiddenFlag()
-        if gameManager?.isAnySelected() == true {
+        if gameManager?.isAnyCategorySelected() == true {
             animateNextButton(opacity: 1.0)
         } else { animateNextButton(opacity: 0.0) }
     }
@@ -66,15 +73,15 @@ extension CategoryViewController: UICollectionViewDelegate {
 //MARK: - collectionViewDataSourceExtension
 extension CategoryViewController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return gameManager?.categories.count ?? 0
+        return gameManager?.categoriesCount() ?? 0
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
-        cell.categoryLabel.text = gameManager?.categories[indexPath.row].title
+        let categoryTitle = gameManager?.getCategoryTitle(by: indexPath.row)
+        cell.categoryLabel.text = categoryTitle
         return cell
     }
 }

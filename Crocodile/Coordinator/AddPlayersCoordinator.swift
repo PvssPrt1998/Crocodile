@@ -19,10 +19,6 @@ public class AddPlayersCoordinator: Coordinator {
         self.router = router
     }
     
-    deinit{
-        print("addplayersCoordinatorDeinit")
-    }
-    
     //present
     public func present(animated: Bool, onDismissed: (() -> Void)?, data: (()->AnyObject?)?) {
         let viewController = AddPlayersViewController.instantiate(delegate: self)

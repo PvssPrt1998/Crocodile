@@ -34,6 +34,8 @@
 		99BB890C29FA7E2600C65EE1 /* AddPlayersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB890B29FA7E2600C65EE1 /* AddPlayersCoordinator.swift */; };
 		99BB890E2A023A7100C65EE1 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB890D2A023A7100C65EE1 /* Category.swift */; };
 		99DFCB652A39772D00481714 /* GameScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCB642A39772D00481714 /* GameScreenCoordinator.swift */; };
+		99DFCB962A40974200481714 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCB952A40974200481714 /* PlayerManager.swift */; };
+		99DFCB982A40975A00481714 /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCB972A40975A00481714 /* CategoryManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		99BB890B29FA7E2600C65EE1 /* AddPlayersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayersCoordinator.swift; sourceTree = "<group>"; };
 		99BB890D2A023A7100C65EE1 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		99DFCB642A39772D00481714 /* GameScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenCoordinator.swift; sourceTree = "<group>"; };
+		99DFCB952A40974200481714 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
+		99DFCB972A40975A00481714 /* CategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,8 @@
 				9988F3E629EE4A7C003D7FF3 /* Player.swift */,
 				9988F3FB29EE8BDA003D7FF3 /* GameManager.swift */,
 				99BB890D2A023A7100C65EE1 /* Category.swift */,
+				99DFCB952A40974200481714 /* PlayerManager.swift */,
+				99DFCB972A40975A00481714 /* CategoryManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -282,6 +288,7 @@
 				99BB890429FA3E1100C65EE1 /* CategoryCoordinator.swift in Sources */,
 				9988F3FC29EE8BDA003D7FF3 /* GameManager.swift in Sources */,
 				9988F3CF29EE4A5A003D7FF3 /* AppDelegate.swift in Sources */,
+				99DFCB962A40974200481714 /* PlayerManager.swift in Sources */,
 				99BB890229FA3D5B00C65EE1 /* StoryboardInstantiable.swift in Sources */,
 				99BB88FF29FA3C5500C65EE1 /* GameScreenViewController.swift in Sources */,
 				99BB890A29FA739800C65EE1 /* NavigationSceneDelegateRouter.swift in Sources */,
@@ -289,6 +296,7 @@
 				9988F3E729EE4A7C003D7FF3 /* Player.swift in Sources */,
 				99BB890E2A023A7100C65EE1 /* Category.swift in Sources */,
 				9988F3EB29EE66EF003D7FF3 /* Router.swift in Sources */,
+				99DFCB982A40975A00481714 /* CategoryManager.swift in Sources */,
 				99BB890C29FA7E2600C65EE1 /* AddPlayersCoordinator.swift in Sources */,
 				9988F3D129EE4A5A003D7FF3 /* SceneDelegate.swift in Sources */,
 				9988F3ED29EE6705003D7FF3 /* Coordinator.swift in Sources */,

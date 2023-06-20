@@ -18,10 +18,6 @@ public class GameScreenCoordinator: Coordinator {
         self.router = router
     }
     
-    deinit{
-        print("GameScreenCoordinatorDeinit")
-    }
-    
     //present
     public func present(animated: Bool, onDismissed: (() -> Void)?, data: (()->AnyObject?)?) {
         //Инициализируем viewController и назначаем делегатом себя чтобы вызывался метод didPressNext конкретно этого класса

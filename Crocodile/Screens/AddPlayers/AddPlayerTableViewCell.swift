@@ -41,10 +41,10 @@ class AddPlayerTableViewCell: UITableViewCell {
     //Меняет картинку галочка или крестик. Также меняет isPlayerAdded, что влияет на логику
     private func toggleImageOnPlayerButton() {
         switch isPlayerAdded {
-        case false: playerButtonSetImage(checkmarkImageArray[0])
-            playerNameTextField.isUserInteractionEnabled = true
         case true: playerButtonSetImage(checkmarkImageArray[1])
             playerNameTextField.isUserInteractionEnabled = false
+        case false: playerButtonSetImage(checkmarkImageArray[0])
+            playerNameTextField.isUserInteractionEnabled = true
         }
     }
     
@@ -78,8 +78,9 @@ class AddPlayerTableViewCell: UITableViewCell {
     //сбросить сell до значений по умолчанию.
     public func resetCell() {
         super.prepareForReuse()
-        isPlayerAdded = false
         playerNameTextField.text = ""
-        playerButtonSetImage(checkmarkImageArray[0])
+        makePlayerButtonInactive()
+        isPlayerAdded = false
+        toggleImageOnPlayerButton()
     }
 }
