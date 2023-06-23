@@ -55,7 +55,8 @@ public class AddPlayersViewController: UIViewController {
     private func insertRow() {
         guard let gameManager = gameManager else { return }
         //Инициализируем indexPath по нужному значению
-        let indexPath = IndexPath(row: gameManager.playersCount(), section: 0)
+        let playersCount = gameManager.playerManager.playersCount()
+        let indexPath = IndexPath(row: playersCount, section: 0)
         //
         addPlayersTableView.beginUpdates()
         addPlayersTableView.insertRows(at: [indexPath], with: .automatic)
@@ -68,7 +69,9 @@ public class AddPlayersViewController: UIViewController {
     private func nextButtonCheck() {
         guard let gameManager = gameManager else { return }
         //Если игроки не введены
-        if gameManager.playersCount() == 0 {
+        let playersCount = gameManager.playerManager.playersCount()
+        //TODO: - add method players.isEmpty -------------------------------------------------------------------------------------------------------------------------
+        if playersCount == 0 {
             animateNextButton(opacity: 0)
             //Выключаем кнопку
             nextButton.isEnabled = false
@@ -115,18 +118,19 @@ extension AddPlayersViewController: playerButtonActionDelegate {
     //метод который вызывается при нажатии на кнопку в целл классе
     public func changeDescription(sender: UIButton) {
         //проверяем cell и indexPath на nil
-        guard let cell = getCellByUIView(sender), let indexPath = getIndexPathBy(cell: cell) else { return }
+        guard let gameManager = gameManager, let cell = getCellByUIView(sender), let indexPath = getIndexPathBy(cell: cell) else { return }
         
         //Если игрок не добавлен, то добавляем
         if cell.isPlayerAdded == false {
-            //добавляем игрока
+            //force unwrap потому что текст точно есть в текстфилде. Если бы текста не было, кнопка бы не нажалась и метод бы не сработал
             let playerName = cell.playerNameTextField.text!
-            gameManager?.addPlayer(playerName)
+            //добавляем игрока
+            gameManager.playerManager.addPlayer(playerName)
             //создаем пустую строку в конце таблицы для ввода имени нового игрока
             insertRow()
         } else { //Если игрок добавлен и мы нажимаем крестик
             //удаляем игрока в по индекс пасс. В таблице и в массиве игрок на одном и том же индексе.
-            gameManager?.removePlayer(by: indexPath.row)
+            gameManager.playerManager.removePlayer(by: indexPath.row)
             //Удаляем строку по индекс пассу
             deleteRow(by: indexPath)
         }
@@ -146,7 +150,7 @@ extension AddPlayersViewController: UITableViewDataSource {
     //Количество строк в секции таблицы (равно количеству игроков). В этой таблице только одна секция с игроками.
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let gameManager = gameManager else { return 0 }
-        return gameManager.playersCount() + 1
+        return gameManager.playerManager.playersCount() + 1
     }
     //Инициализируем строку здесь
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
