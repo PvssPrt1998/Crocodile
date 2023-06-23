@@ -77,6 +77,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ym3-wf-1yc"/>
                     <connections>
+                        <outlet property="giveUpButton" destination="KUW-jy-k5A" id="Ly0-hM-jQ1"/>
                         <outlet property="readyButton" destination="aL9-Og-PVi" id="AaF-Wh-8r9"/>
                         <outlet property="wordLabel" destination="2Hb-8m-iah" id="ZnU-xC-bvE"/>
                     </connections>

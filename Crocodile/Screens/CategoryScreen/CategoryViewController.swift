@@ -45,12 +45,13 @@ public class CategoryViewController: UIViewController {
     }()
 
     //GameManager
-    var gameManager: GameManager?
+    var gameManager: GameManager? = GameManager()
     
     //MARK: - ViewControllerLifeCycle
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        //performFetch
         do {
           try fetchedResultsController.performFetch()
         } catch let error as NSError {
@@ -77,6 +78,26 @@ public class CategoryViewController: UIViewController {
     
     //NextButtonAction
     @IBAction func nextButtonAction(_ sender: UIButton) {
+        guard let gameManager = gameManager else { return }
+        //Добавляем в gameManager words сеты категорий, названия которых содержатся в ChosenCategories.categories
+        //получаем количество ячеек коллекшн вью (= количеству отображенных категорий)
+        let cellsCount = categoryCollectionView.numberOfItems(inSection: 0)
+        //проходим по всем объектам коллекшн вью
+        for index in 0..<cellsCount {
+            let indexPath = IndexPath(item: index, section: 0)
+            guard let cell = categoryCollectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return }
+            //если галочка отображается значит ячейка выделена, а это значит что надо добавлять слова в массив гейм менеджер
+            if !cell.checkmark.isHidden {
+                //получаем set и проверяем на nil
+                guard let set = fetchedResultsController.object(at: indexPath).words else { return }
+                //проходим по каждому объекту сета и проверяем можем ли мы привести к типу Word и если можем, то получаем слово
+                set.forEach { item in
+                    guard let item = item as? Word, let word = item.word else { return }
+                    gameManager.addWordToSet(word)
+                    print(word)
+                }
+            }
+        }
         //Передает делегату (делегатом является координатор) себя в качестве параметра
         delegate?.categoryViewControllerDidPressNext(self)
     }
@@ -94,16 +115,29 @@ extension CategoryViewController: UICollectionViewDelegate {
     
     //didSelectItemAt indexPath
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       
         //получаем ячейку если можем
         guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return }
-        //меняем категорию на выбранную или наоборот
-        guard let title = cell.categoryLabel.text, let gameManager = gameManager else { return }
-        gameManager.chosenCategories.didSelectCategory(title: title)
         //TODO: - ПРОВЕРИТЬ НА СБРОС добавить в cell класс функцию prepare for reuse ЯЧЕЕК!---------------------------------------------------------------------------------------------------------------------------
         cell.checkmarkToggleHiddenFlag()
-        if gameManager.chosenCategories.isAnyCategorySelected() {
+        if isAnyCategorySelected() {
             animateNextButton(opacity: 1.0)
         } else { animateNextButton(opacity: 0.0) }
+    }
+    
+    //isAnyCategorySelected Есть ли выбранные категории
+    private func isAnyCategorySelected() -> Bool {
+        let cellsCount = categoryCollectionView.numberOfItems(inSection: 0)
+        for index in 0..<cellsCount {
+            let indexPath = IndexPath(item: index, section: 0)
+            //получаем cell
+            guard let cell = categoryCollectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return false }
+            //Если есть выбранная категория (cell с галочкой)
+            if !cell.checkmark.isHidden {
+                return true
+            }
+        }
+        return false
     }
     
     //Исчезновение кнопки когда начинаем скроллить
@@ -147,7 +181,7 @@ extension CategoryViewController: UICollectionViewDataSource {
         guard let cell = cell as? CategoryCollectionViewCell else { return }
         let category = fetchedResultsController.object(at: indexPath)
         cell.categoryLabel.text = category.title
-        guard let image = UIImage(data: category.image) else { return }
+        guard let imageData = category.image, let image = UIImage(data: imageData) else { return }
         cell.categoryImageView.image = image
     }
 }

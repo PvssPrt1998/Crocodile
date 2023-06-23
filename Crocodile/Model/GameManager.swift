@@ -16,31 +16,29 @@ public class GameManager {
     //MARK: - Properties
     //PlayerManager
     public var playerManager: PlayerManager = PlayerManager()
-    //CategoryManager
-    public var chosenCategories: ChosenCategories = ChosenCategories()
+    
+    //текущее слово
+    public var currentWord: String?
     
     //выбранные слова из категорий
     public var chosenWords: Set<String> = []
+    public var removedWords: Set<String> = []
     
     //Берет сеты слов из хранилища кор даты и объединяет их в массив chosen words
-    public func splitSets() {
-        
+    public func addWordToSet(_ word: String) {
+        chosenWords.insert(word)
     }
     
-    //MARK: - Методы playerManager
-    //Добавить игрока
-//    public func addPlayer(_ playerName: String) {
-//        playerManager.addPlayer(playerName)
-//    }
+    //Игрок нажал кнопку сдаться
+    public func giveUpButtonPressed() {
+        playerManager.decrementCurrentPlayerScore()
+        playerManager.makeNextPlayerCurrent()
+    }
     
-    //Удалить игрока
-//    public func removePlayer(by index: Int) {
-//        playerManager.removePlayer(by: index)
-//    }
-    
-    
-    //Вернуть количество игроков
-//    public func playersCount() -> Int {
-//        playerManager.playersCount()
-//    }
+    public func setCurrentWord() -> String {
+        let word = chosenWords.removeFirst()
+        removedWords.insert(word)
+        currentWord = word
+        return word
+    }
 }

@@ -32,7 +32,6 @@
 		99BB890829FA68B400C65EE1 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB890729FA68B400C65EE1 /* NavigationRouter.swift */; };
 		99BB890A29FA739800C65EE1 /* NavigationSceneDelegateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB890929FA739800C65EE1 /* NavigationSceneDelegateRouter.swift */; };
 		99BB890C29FA7E2600C65EE1 /* AddPlayersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB890B29FA7E2600C65EE1 /* AddPlayersCoordinator.swift */; };
-		99BB890E2A023A7100C65EE1 /* ChosenCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB890D2A023A7100C65EE1 /* ChosenCategories.swift */; };
 		99DFCB652A39772D00481714 /* GameScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCB642A39772D00481714 /* GameScreenCoordinator.swift */; };
 		99DFCB962A40974200481714 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCB952A40974200481714 /* PlayerManager.swift */; };
 		99DFCB9B2A43FD2B00481714 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCB9A2A43FD2B00481714 /* CoreDataStack.swift */; };
@@ -72,7 +71,6 @@
 		99BB890729FA68B400C65EE1 /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
 		99BB890929FA739800C65EE1 /* NavigationSceneDelegateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSceneDelegateRouter.swift; sourceTree = "<group>"; };
 		99BB890B29FA7E2600C65EE1 /* AddPlayersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayersCoordinator.swift; sourceTree = "<group>"; };
-		99BB890D2A023A7100C65EE1 /* ChosenCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenCategories.swift; sourceTree = "<group>"; };
 		99DFCB642A39772D00481714 /* GameScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenCoordinator.swift; sourceTree = "<group>"; };
 		99DFCB952A40974200481714 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		99DFCB9A2A43FD2B00481714 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 				99DFCB992A43FCD600481714 /* CoreData */,
 				9988F3E629EE4A7C003D7FF3 /* Player.swift */,
 				9988F3FB29EE8BDA003D7FF3 /* GameManager.swift */,
-				99BB890D2A023A7100C65EE1 /* ChosenCategories.swift */,
 				99DFCB952A40974200481714 /* PlayerManager.swift */,
 				99DFCBA52A44037200481714 /* DELETETHIS.swift */,
 			);
@@ -332,7 +329,6 @@
 				99BB890A29FA739800C65EE1 /* NavigationSceneDelegateRouter.swift in Sources */,
 				9988F3D929EE4A5A003D7FF3 /* Crocodile.xcdatamodeld in Sources */,
 				9988F3E729EE4A7C003D7FF3 /* Player.swift in Sources */,
-				99BB890E2A023A7100C65EE1 /* ChosenCategories.swift in Sources */,
 				9988F3EB29EE66EF003D7FF3 /* Router.swift in Sources */,
 				99DFCB9B2A43FD2B00481714 /* CoreDataStack.swift in Sources */,
 				99BB890C29FA7E2600C65EE1 /* AddPlayersCoordinator.swift in Sources */,

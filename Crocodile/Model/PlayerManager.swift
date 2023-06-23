@@ -13,10 +13,40 @@ import Foundation
 //Может добавлять
 public class PlayerManager {
     //MARK: - Properties
+    //TODO: - Change to Struct
+    var currentPlayer: (Player,Int)?
     //Массив игроков
     private var players: [Player] = []
     
     //MARK: - Methods
+    //устанавливает текущим игроком первого игрока из массива игроков
+    public func setCurrentPlayerFirst() {
+        guard let player = players.first else { return }
+        currentPlayer?.0 = player
+        currentPlayer?.1 = 0
+    }
+    
+    //Cледующий игрок
+    public func makeNextPlayerCurrent() {
+        guard var currentPlayer = currentPlayer else { return }
+        //Если индекс меньше или равен индексу предпоследнего элемента массива, то плюс один. Иначе скидываем до нуля
+        if currentPlayer.1 < playersCount() - 1 {
+            //increment index of current player
+            currentPlayer.1 += 1
+        } else {
+            //assign currentPlayer index to 0
+            currentPlayer.1 = 1
+        }
+        //assign other player current by new index
+        currentPlayer.0 = players[currentPlayer.1]
+    }
+    
+    //Операция с очками игрока
+    public func setCurrentPlayerScore(to score: Int) {
+        guard let currentPlayer = currentPlayer else { return }
+        currentPlayer.0.score += score
+    }
+    
     //добавить игрока
     public func addPlayer(_ playerName: String) {
         //проверка сли такой игрок уже есть, то не добавляет
@@ -57,6 +87,11 @@ public class PlayerManager {
     //Забрать очко у игрока
     public func decrementPlayerScore() {
         
+    }
+    
+    //забрать очко у текущего игрока (сдался или не смог нормально показать слово)
+    public func decrementCurrentPlayerScore() {
+        setCurrentPlayerScore(to: -1)
     }
     
     
