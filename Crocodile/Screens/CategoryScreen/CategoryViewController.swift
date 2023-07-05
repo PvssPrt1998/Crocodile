@@ -94,7 +94,6 @@ public class CategoryViewController: UIViewController {
                 set.forEach { item in
                     guard let item = item as? Word, let word = item.word else { return }
                     gameManager.addWordToSet(word)
-                    print(word)
                 }
             }
         }

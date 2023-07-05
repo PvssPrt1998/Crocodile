@@ -94,5 +94,13 @@ public class PlayerManager {
         setCurrentPlayerScore(to: -1)
     }
     
+    public func getPlayerNameWithIndex(_ index: Int)-> String {
+        return players[index].name
+    }
+    
+    public func getPlayerScoreWithIndex(_ index: Int)-> Int {
+        return players[index].score
+    }
+    
     
 }
