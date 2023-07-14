@@ -9,7 +9,7 @@ import UIKit
 
 //MARK: - CoordinatorDelegate
 public protocol AddPlayersViewControllerDelegate: AnyObject {
-    func addPlayersViewControllerDidPressNext(_ viewController: AddPlayersViewController)
+    func addPlayersViewControllerDidPressNext(_ viewController: AddPlayersViewController, onDismissed: (()->Void)?)
 }
 
 //MARK: - PlayerButtonActionDelegate
@@ -27,6 +27,10 @@ public class AddPlayersViewController: UIViewController {
     //GameManager
     var gameManager: GameManager?
     
+    private lazy var onDismissed: ()->Void = {
+        self.gameManager?.resetGameManager()
+    }
+    
     //MARK: - Outlets
     @IBOutlet weak var addPlayersTableView: UITableView!
     @IBOutlet weak var nextButton: UIButton!
@@ -38,7 +42,7 @@ public class AddPlayersViewController: UIViewController {
     
     //Кнопка перехода к экрану игры
     @IBAction func nextButtonAction(_ sender: UIButton) {
-        delegate?.addPlayersViewControllerDidPressNext(self)
+        delegate?.addPlayersViewControllerDidPressNext(self, onDismissed: onDismissed)
     }
     
     

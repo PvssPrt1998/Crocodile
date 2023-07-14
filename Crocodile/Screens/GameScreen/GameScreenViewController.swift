@@ -9,7 +9,8 @@ import UIKit
 
 //MARK: - CoordinatorDelegate
 public protocol GameScreenViewControllerDelegate: AnyObject {
-    func GameViewControllerDidPressNext(_ viewController: GameScreenViewController)
+    func GameViewControllerDidPressRatingButton(_ viewController: GameScreenViewController)
+    func GameViewControllerDidPressGuessed(_ viewController: GameScreenViewController)
 }
 
 public final class GameScreenViewController: UIViewController {
@@ -18,7 +19,17 @@ public final class GameScreenViewController: UIViewController {
     var gameManager: GameManager?
     
     //Delegate
+    //Делегатом выступает координатор данного контроллера
     public weak var delegate: GameScreenViewControllerDelegate?
+    
+    //TODO: - вывести геймСтейт в геймменеджер
+    enum GameState {
+        case inProgress
+        case waiting
+    }
+    
+    //TODO: - свойство геймСтейт тоже вынести в геймменеджер
+    var gameState: GameState = .waiting
     
     //MARK: - Properties
     
@@ -31,6 +42,7 @@ public final class GameScreenViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         configMiddleBarButton()
+        print(navigationController?.navigationBar.frame.height ?? 0)
     }
     
     //MARK: - Configure views
@@ -54,8 +66,14 @@ public final class GameScreenViewController: UIViewController {
     //readyButtonAction
     //Кнопка готовности. При нажатии появляется слово и начинается таймер и кнопка меняется на кнопку "Угадано" и при нажатии появляется окно игроков
     @IBAction func readyButtonAction(_ sender: UIButton) {
-        presentNewWord()
+        if gameState == .waiting {
+            presentNewWord()
+        } else {
+            presentIncreaseScoreScreenViewController()
+        }
+        gameStateToggle()
     }
+    
     //Нажата кнопка сдаться
     @IBAction func giveUpButtonAction(_ sender: UIButton) {
         guard let gameManager = gameManager else { return }
@@ -67,12 +85,14 @@ public final class GameScreenViewController: UIViewController {
     
     @objc
     func scoreCenterBarButtonAction() {
-        delegate?.GameViewControllerDidPressNext(self)
+        delegate?.GameViewControllerDidPressRatingButton(self)
     }
     
     
     //Отобразить нвоое слово
     private func presentNewWord() {
+        //Проверяем остались ли вообще слова в сете. Если не остались, то все слова угаданы и надо вывести пользователю
+        //сообщение с предложением повторить или попробовать другие категории
         guard let gameManager = gameManager, !gameManager.chosenWords.isEmpty else { return }
         //берем слово из сета геймМенеджера и вставляем в лейбл
         let word = gameManager.setCurrentWord()
@@ -81,6 +101,22 @@ public final class GameScreenViewController: UIViewController {
         wordLabel.alpha = 1.0
         giveUpButton.alpha = 1.0
         readyButton.setTitle("Угадано!", for: .normal)
+    }
+    
+    //переключает состояние игры на ожидание когда игрок будет готов показывать, либо наоборот
+    private func gameStateToggle() {
+        if gameState == .inProgress {
+            gameState = .waiting
+        } else {
+            gameState = .inProgress
+        }
+    }
+    
+    //Срабатывает если кто-то угадал слово и показывающий игрок нажал на кнопку "Угадано!"
+    //Открывает IncreasePlayerScoreScreenViewController где показывающий выбирает отгадавшего
+    private func presentIncreaseScoreScreenViewController() {
+        delegate?.GameViewControllerDidPressGuessed(self)
+        print("presentIncreaseScoreScreenViewController end")
     }
 }
 

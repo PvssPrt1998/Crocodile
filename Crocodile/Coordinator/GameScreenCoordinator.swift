@@ -32,10 +32,19 @@ public class GameScreenCoordinator: Coordinator {
 //MARK: - GameViewControllerDelegate
 extension GameScreenCoordinator: GameScreenViewControllerDelegate {
     
-    public func GameViewControllerDidPressNext(_ viewController: GameScreenViewController) {
+    public func GameViewControllerDidPressRatingButton(_ viewController: GameScreenViewController) {
         let gameManager = viewController.gameManager
         let router = ModalNavigationRouter(parentViewController: viewController)
         let coordinator = ScoreScreenCoordinator(router: router)
+        presentChild(coordinator, animated: true) {
+            return gameManager
+        }
+    }
+    
+    public func GameViewControllerDidPressGuessed(_ viewController: GameScreenViewController) {
+        let gameManager = viewController.gameManager
+        let router = CustomPresentationRouter(parentViewController: viewController)
+        let coordinator = IncreasePlayerScoreScreenCoordinator(router: router)
         presentChild(coordinator, animated: true) {
             return gameManager
         }

@@ -41,4 +41,11 @@ public class GameManager {
         currentWord = word
         return word
     }
+    
+    public func resetGameManager() {
+        chosenWords = []
+        removedWords = []
+        currentWord = nil
+        playerManager = PlayerManager()
+    }
 }

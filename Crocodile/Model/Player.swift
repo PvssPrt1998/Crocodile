@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Player {
+public class Player {
     let name: String
     var score: Int = 0
     

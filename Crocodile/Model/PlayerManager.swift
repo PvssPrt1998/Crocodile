@@ -80,8 +80,9 @@ public class PlayerManager {
     }
     
     //Добавить очко игроку
-    public func incrementPlayerScore() {
-        
+    public func incrementPlayerScore(by name: String) {
+        guard let index = players.firstIndex(where: { $0.name == name }) else { return }
+        players[index].score += 1
     }
     
     //Забрать очко у игрока
@@ -101,6 +102,4 @@ public class PlayerManager {
     public func getPlayerScoreWithIndex(_ index: Int)-> Int {
         return players[index].score
     }
-    
-    
 }

@@ -15,17 +15,10 @@ public class NavigationRouter: NSObject {
     //если не назначить, то для первого контроллера не будет точки входа и будет черный экран
     public let window: UIWindow
     
-    //public unowned let parentViewController: UIViewController
-    
     private let navigationController = UINavigationController()
     private var onDismissForViewController: [UIViewController: (()->Void)] = [:]
     
     //MARK: - ObjectLifecycle
-//    public init(parentViewController: UIViewController) {
-//        self.parentViewController = parentViewController
-//        super.init()
-//        navigationController.delegate = self
-//    }
     
     public init(window: UIWindow){
         self.window = window
@@ -52,13 +45,9 @@ extension NavigationRouter: Router {
     //Метод который срабатывает при закрытии родительского вьюКонтроллера
     //Никогда не вызывается, так как первый контроллер в стеке navigationController является родительским
     public func dismiss(animated: Bool) {
-        guard let viewController = navigationController.topViewController,
-              navigationController.viewControllers.count != 1 else { return }
-        //navigationController.popViewController(animated: animated)
+        guard let viewController = navigationController.topViewController else { return }
         performOnDismissed(for: viewController)
-        navigationController.popViewController(animated: true)
-        //performOnDismissed(for: navigationController.viewControllers.first!)
-        //parentViewController?.dismiss(animated: animated, completion: nil)
+        navigationController.popToRootViewController(animated: true)
     }
     
     private func performOnDismissed(for viewController: UIViewController) {

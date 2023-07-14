@@ -28,11 +28,12 @@ public class CategoryCoordinator: Coordinator {
 }
 
 extension CategoryCoordinator: CategoryViewControllerDelegate {
-    public func categoryViewControllerDidPressNext(_ viewController: CategoryViewController) {
-        //let router = NavigationRouter(parentViewController: viewController)
+    public func categoryViewControllerDidPressNext(_ viewController: CategoryViewController, onDismissed: (()->Void)?) {
         let gameManager = viewController.gameManager
         let coordinator = AddPlayersCoordinator(router: router)
-        presentChild(coordinator, animated: true) {
+        presentChild(coordinator, animated: true, onDismissed: {
+            onDismissed?()
+        }) {
             return gameManager
         }
     }

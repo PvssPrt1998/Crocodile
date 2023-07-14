@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Выберите отгадавшего-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="IncreasePlayerScoreScreenViewController" id="Y6W-OH-hqX" customClass="IncreasePlayerScoreScreenViewController" customModule="Crocodile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6dy-Ta-4Qh">
+                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="playerNameCell" id="6k3-xc-gzx" customClass="PlayersTableViewCell" customModule="Crocodile" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="42.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6k3-xc-gzx" id="YBg-l9-Otv">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="42.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="playerNameLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIu-Rf-uyD">
+                                                    <rect key="frame" x="20" y="11.000000000000002" width="353" height="20.666666666666671"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="nIu-Rf-uyD" secondAttribute="bottom" id="LEb-vE-PT7"/>
+                                                <constraint firstItem="nIu-Rf-uyD" firstAttribute="top" secondItem="YBg-l9-Otv" secondAttribute="topMargin" id="TSZ-ln-vcu"/>
+                                                <constraint firstItem="nIu-Rf-uyD" firstAttribute="leading" secondItem="YBg-l9-Otv" secondAttribute="leadingMargin" id="XTp-U7-s7k"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="nIu-Rf-uyD" secondAttribute="trailing" id="xiW-og-zXg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="playerNameLabel" destination="nIu-Rf-uyD" id="MDX-7v-qjS"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="Ybd-Xg-fJY"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="l8E-8l-c9p"/>
+                                </connections>
+                            </tableView>
+                            <button hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xiN-Lf-7nV">
+                                <rect key="frame" x="59" y="737" width="275" height="59.666666666666629"/>
+                                <color key="backgroundColor" red="0.85098039219999999" green="0.61176470589999998" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Готово"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xiN-Lf-7nV" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="113-wf-QG9"/>
+                            <constraint firstItem="6dy-Ta-4Qh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="2oa-HP-3eJ"/>
+                            <constraint firstItem="xiN-Lf-7nV" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" multiplier="1.8" id="Am5-JF-gO2"/>
+                            <constraint firstAttribute="bottom" secondItem="6dy-Ta-4Qh" secondAttribute="bottom" id="C5I-7d-MRp"/>
+                            <constraint firstItem="xiN-Lf-7nV" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="aNq-a1-4nz"/>
+                            <constraint firstItem="6dy-Ta-4Qh" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="eDl-2d-oK0"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="6dy-Ta-4Qh" secondAttribute="trailing" id="lo7-Z9-0SS"/>
+                            <constraint firstItem="xiN-Lf-7nV" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.7" id="zyp-8e-Xfe"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Выберите отгадавшего" id="P9m-EX-ARQ"/>
+                    <connections>
+                        <outlet property="playersTableView" destination="6dy-Ta-4Qh" id="x3g-K3-fS8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1008.3969465648854" y="-27.464788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

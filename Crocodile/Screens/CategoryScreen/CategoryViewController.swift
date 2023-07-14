@@ -10,7 +10,7 @@ import CoreData
 
 //MARK: - CoordinatorDelegate
 public protocol CategoryViewControllerDelegate: AnyObject {
-    func categoryViewControllerDidPressNext(_ viewController: CategoryViewController)
+    func categoryViewControllerDidPressNext(_ viewController: CategoryViewController, onDismissed: (()->Void)?)
 }
 
 //MARK: - CategoryViewController
@@ -23,6 +23,10 @@ public class CategoryViewController: UIViewController {
     //IBOutlets
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var nextButton: UIButton!
+    
+    private lazy var onDismissed: ()->Void = {
+        self.gameManager?.resetGameManager()
+    }
     
     //CoreData properties
     //--CoreDataStack -importantString
@@ -50,7 +54,6 @@ public class CategoryViewController: UIViewController {
     //MARK: - ViewControllerLifeCycle
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
         //performFetch
         do {
           try fetchedResultsController.performFetch()
@@ -78,14 +81,17 @@ public class CategoryViewController: UIViewController {
     
     //NextButtonAction
     @IBAction func nextButtonAction(_ sender: UIButton) {
+        setupSetFromSelectedCategories()
+        defer {
+            resetAllElementsCollectionView()
+        }
+        delegate?.categoryViewControllerDidPressNext(self, onDismissed: onDismissed)
+    }
+    
+    private func setupSetFromSelectedCategories() {
         guard let gameManager = gameManager else { return }
         //Добавляем в gameManager words сеты категорий, названия которых содержатся в ChosenCategories.categories
-        //получаем количество ячеек коллекшн вью (= количеству отображенных категорий)
-        let cellsCount = categoryCollectionView.numberOfItems(inSection: 0)
-        //проходим по всем объектам коллекшн вью
-        for index in 0..<cellsCount {
-            let indexPath = IndexPath(item: index, section: 0)
-            guard let cell = categoryCollectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return }
+        loopThroughEachCellWith { cell, indexPath in
             //если галочка отображается значит ячейка выделена, а это значит что надо добавлять слова в массив гейм менеджер
             if !cell.checkmark.isHidden {
                 //получаем set и проверяем на nil
@@ -97,8 +103,26 @@ public class CategoryViewController: UIViewController {
                 }
             }
         }
-        //Передает делегату (делегатом является координатор) себя в качестве параметра
-        delegate?.categoryViewControllerDidPressNext(self)
+    }
+    
+    //сбрасывает элементы коллекшн вью к значениям по умолчанию
+    private func resetAllElementsCollectionView() {
+        loopThroughEachCellWith { cell, _ in
+            //снимается выделение с каждого cell
+            cell.checkmark.isHidden = true
+        }
+    }
+    
+    //метод в котором для каждой ячейки выполняется какое-нибудь действие
+    private func loopThroughEachCellWith(action: (CategoryCollectionViewCell, IndexPath)->Void) {
+        //получаем количество ячеек коллекшн вью (= количеству отображенных категорий)
+        let cellsCount = categoryCollectionView.numberOfItems(inSection: 0)
+        //проходим по всем объектам коллекшн вью
+        for index in 0..<cellsCount {
+            let indexPath = IndexPath(item: index, section: 0)
+            guard let cell = categoryCollectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return }
+            action(cell,indexPath)
+        }
     }
     
     //анимация появления кнопки

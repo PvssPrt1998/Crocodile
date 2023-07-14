@@ -21,6 +21,15 @@
 		9988F3FC29EE8BDA003D7FF3 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988F3FB29EE8BDA003D7FF3 /* GameManager.swift */; };
 		9988F3FF29EE8E1E003D7FF3 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988F3FE29EE8E1E003D7FF3 /* CategoryCollectionViewCell.swift */; };
 		999AC33A2A5538E000F7D321 /* ScoreScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AC3392A5538E000F7D321 /* ScoreScreenCoordinator.swift */; };
+		999AC33F2A586FCD00F7D321 /* IncreasePlayerScoreScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 999AC33E2A586FCD00F7D321 /* IncreasePlayerScoreScreen.storyboard */; };
+		999AC3422A5872A800F7D321 /* IncreasePlayerScoreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AC3412A5872A800F7D321 /* IncreasePlayerScoreScreen.swift */; };
+		999AC3442A5874E500F7D321 /* CutsomPresentationNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AC3432A5874E500F7D321 /* CutsomPresentationNavigationController.swift */; };
+		999AC3462A5AFE5D00F7D321 /* IncreaseScoreScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AC3452A5AFE5D00F7D321 /* IncreaseScoreScreenViewController.swift */; };
+		999AC3492A5B061F00F7D321 /* ViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AC3482A5B061F00F7D321 /* ViewController+Convenience.swift */; };
+		999AC34B2A5BC31C00F7D321 /* CustomModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AC34A2A5BC31C00F7D321 /* CustomModalTransitioningDelegate.swift */; };
+		999AC34D2A5BC38100F7D321 /* CustomModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AC34C2A5BC38100F7D321 /* CustomModalPresentationController.swift */; };
+		999AC3512A5BC92A00F7D321 /* CustomModalDismissalHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AC3502A5BC92A00F7D321 /* CustomModalDismissalHandler.swift */; };
+		999AC3532A5EB77300F7D321 /* PlayersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AC3522A5EB77300F7D321 /* PlayersTableViewCell.swift */; };
 		99BB88F429EEB75100C65EE1 /* AddPlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB88F329EEB75100C65EE1 /* AddPlayersViewController.swift */; };
 		99BB88F629EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB88F529EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift */; };
 		99BB88F829FA387B00C65EE1 /* GameScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99BB88F729FA387B00C65EE1 /* GameScreen.storyboard */; };
@@ -61,6 +70,15 @@
 		9988F3FB29EE8BDA003D7FF3 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		9988F3FE29EE8E1E003D7FF3 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		999AC3392A5538E000F7D321 /* ScoreScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScreenCoordinator.swift; sourceTree = "<group>"; };
+		999AC33E2A586FCD00F7D321 /* IncreasePlayerScoreScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = IncreasePlayerScoreScreen.storyboard; sourceTree = "<group>"; };
+		999AC3412A5872A800F7D321 /* IncreasePlayerScoreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreasePlayerScoreScreen.swift; sourceTree = "<group>"; };
+		999AC3432A5874E500F7D321 /* CutsomPresentationNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutsomPresentationNavigationController.swift; sourceTree = "<group>"; };
+		999AC3452A5AFE5D00F7D321 /* IncreaseScoreScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreaseScoreScreenViewController.swift; sourceTree = "<group>"; };
+		999AC3482A5B061F00F7D321 /* ViewController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Convenience.swift"; sourceTree = "<group>"; };
+		999AC34A2A5BC31C00F7D321 /* CustomModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalTransitioningDelegate.swift; sourceTree = "<group>"; };
+		999AC34C2A5BC38100F7D321 /* CustomModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalPresentationController.swift; sourceTree = "<group>"; };
+		999AC3502A5BC92A00F7D321 /* CustomModalDismissalHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalDismissalHandler.swift; sourceTree = "<group>"; };
+		999AC3522A5EB77300F7D321 /* PlayersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersTableViewCell.swift; sourceTree = "<group>"; };
 		99BB88F329EEB75100C65EE1 /* AddPlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayersViewController.swift; sourceTree = "<group>"; };
 		99BB88F529EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayerTableViewCell.swift; sourceTree = "<group>"; };
 		99BB88F729FA387B00C65EE1 /* GameScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GameScreen.storyboard; sourceTree = "<group>"; };
@@ -114,6 +132,8 @@
 		9988F3CD29EE4A5A003D7FF3 /* Crocodile */ = {
 			isa = PBXGroup;
 			children = (
+				999AC34E2A5BC7CC00F7D321 /* Helpers */,
+				999AC3472A5B05F700F7D321 /* Extensions */,
 				99BB890029FA3D3800C65EE1 /* Protocols */,
 				9988F3F629EE8995003D7FF3 /* Screens */,
 				9988F3E929EE66DB003D7FF3 /* Routers */,
@@ -149,6 +169,7 @@
 				99BB890B29FA7E2600C65EE1 /* AddPlayersCoordinator.swift */,
 				99DFCB642A39772D00481714 /* GameScreenCoordinator.swift */,
 				999AC3392A5538E000F7D321 /* ScoreScreenCoordinator.swift */,
+				999AC3412A5872A800F7D321 /* IncreasePlayerScoreScreen.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -159,6 +180,7 @@
 				9988F3EA29EE66EF003D7FF3 /* Router.swift */,
 				99BB890729FA68B400C65EE1 /* NavigationRouter.swift */,
 				99BB890929FA739800C65EE1 /* ModalNavigationRouter.swift */,
+				999AC3432A5874E500F7D321 /* CutsomPresentationNavigationController.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -166,6 +188,7 @@
 		9988F3F629EE8995003D7FF3 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				999AC33B2A586F6400F7D321 /* IncreasePlayerScoreScreen */,
 				9988F3FD29EE8DF4003D7FF3 /* CategoryScreen */,
 				99BB88F929FA3B5100C65EE1 /* ScoreScreen */,
 				9988F3F829EE89D3003D7FF3 /* GameScreen */,
@@ -201,6 +224,50 @@
 				9988F3FE29EE8E1E003D7FF3 /* CategoryCollectionViewCell.swift */,
 			);
 			path = CategoryScreen;
+			sourceTree = "<group>";
+		};
+		999AC33B2A586F6400F7D321 /* IncreasePlayerScoreScreen */ = {
+			isa = PBXGroup;
+			children = (
+				999AC3452A5AFE5D00F7D321 /* IncreaseScoreScreenViewController.swift */,
+				999AC3522A5EB77300F7D321 /* PlayersTableViewCell.swift */,
+				999AC33E2A586FCD00F7D321 /* IncreasePlayerScoreScreen.storyboard */,
+				999AC3402A58724B00F7D321 /* IncreasePlayerScoreScreenCustonTransitioning */,
+			);
+			path = IncreasePlayerScoreScreen;
+			sourceTree = "<group>";
+		};
+		999AC3402A58724B00F7D321 /* IncreasePlayerScoreScreenCustonTransitioning */ = {
+			isa = PBXGroup;
+			children = (
+				999AC34A2A5BC31C00F7D321 /* CustomModalTransitioningDelegate.swift */,
+				999AC34C2A5BC38100F7D321 /* CustomModalPresentationController.swift */,
+				999AC3502A5BC92A00F7D321 /* CustomModalDismissalHandler.swift */,
+			);
+			path = IncreasePlayerScoreScreenCustonTransitioning;
+			sourceTree = "<group>";
+		};
+		999AC3472A5B05F700F7D321 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				999AC3482A5B061F00F7D321 /* ViewController+Convenience.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		999AC34E2A5BC7CC00F7D321 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				999AC34F2A5BC80600F7D321 /* UI */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		999AC34F2A5BC80600F7D321 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		99BB88F929FA3B5100C65EE1 /* ScoreScreen */ = {
@@ -306,6 +373,7 @@
 				9988F3DB29EE4A5B003D7FF3 /* Assets.xcassets in Resources */,
 				9988F3D629EE4A5A003D7FF3 /* Category.storyboard in Resources */,
 				99BB88F829FA387B00C65EE1 /* GameScreen.storyboard in Resources */,
+				999AC33F2A586FCD00F7D321 /* IncreasePlayerScoreScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,16 +385,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				99BB88F629EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift in Sources */,
+				999AC3512A5BC92A00F7D321 /* CustomModalDismissalHandler.swift in Sources */,
 				99BB890829FA68B400C65EE1 /* NavigationRouter.swift in Sources */,
 				99DFCBEB2A55355E00481714 /* ScoreTableViewCell.swift in Sources */,
 				9988F3D329EE4A5A003D7FF3 /* CategoryViewController.swift in Sources */,
 				99BB890429FA3E1100C65EE1 /* CategoryCoordinator.swift in Sources */,
 				9988F3FC29EE8BDA003D7FF3 /* GameManager.swift in Sources */,
+				999AC3442A5874E500F7D321 /* CutsomPresentationNavigationController.swift in Sources */,
+				999AC3462A5AFE5D00F7D321 /* IncreaseScoreScreenViewController.swift in Sources */,
 				9988F3CF29EE4A5A003D7FF3 /* AppDelegate.swift in Sources */,
 				99DFCBA62A44037200481714 /* DELETETHIS.swift in Sources */,
 				99DFCBAF2A44459F00481714 /* Word+CoreDataClass.swift in Sources */,
 				99DFCB962A40974200481714 /* PlayerManager.swift in Sources */,
 				99DFCBB12A44459F00481714 /* Category+CoreDataClass.swift in Sources */,
+				999AC3492A5B061F00F7D321 /* ViewController+Convenience.swift in Sources */,
 				99BB890229FA3D5B00C65EE1 /* StoryboardInstantiable.swift in Sources */,
 				99BB88FF29FA3C5500C65EE1 /* GameScreenViewController.swift in Sources */,
 				99DFCBB02A44459F00481714 /* Word+CoreDataProperties.swift in Sources */,
@@ -334,10 +406,14 @@
 				999AC33A2A5538E000F7D321 /* ScoreScreenCoordinator.swift in Sources */,
 				9988F3D929EE4A5A003D7FF3 /* Crocodile.xcdatamodeld in Sources */,
 				9988F3E729EE4A7C003D7FF3 /* Player.swift in Sources */,
+				999AC3422A5872A800F7D321 /* IncreasePlayerScoreScreen.swift in Sources */,
 				9988F3EB29EE66EF003D7FF3 /* Router.swift in Sources */,
 				99DFCB9B2A43FD2B00481714 /* CoreDataStack.swift in Sources */,
+				999AC3532A5EB77300F7D321 /* PlayersTableViewCell.swift in Sources */,
 				99BB890C29FA7E2600C65EE1 /* AddPlayersCoordinator.swift in Sources */,
+				999AC34B2A5BC31C00F7D321 /* CustomModalTransitioningDelegate.swift in Sources */,
 				9988F3D129EE4A5A003D7FF3 /* SceneDelegate.swift in Sources */,
+				999AC34D2A5BC38100F7D321 /* CustomModalPresentationController.swift in Sources */,
 				9988F3ED29EE6705003D7FF3 /* Coordinator.swift in Sources */,
 				9988F3FF29EE8E1E003D7FF3 /* CategoryCollectionViewCell.swift in Sources */,
 				99DFCB652A39772D00481714 /* GameScreenCoordinator.swift in Sources */,

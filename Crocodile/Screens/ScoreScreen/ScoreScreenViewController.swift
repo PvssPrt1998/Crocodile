@@ -38,7 +38,7 @@ public class ScoreScreenViewController: UIViewController {
     
     //сортировка массива по очкам
     private func sortPlayersArray() {
-        playersScoreArray.sort { $0.1 < $1.1 }
+        playersScoreArray.sort { $0.1 > $1.1 }
     }
 }
 

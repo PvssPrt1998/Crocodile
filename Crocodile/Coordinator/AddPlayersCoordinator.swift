@@ -29,16 +29,18 @@ public class AddPlayersCoordinator: Coordinator {
     
     //dismiss
     public func dismiss(animated: Bool) {
-        
+        router.dismiss(animated: animated)
     }
 }
 
 //MARK: - AddPlayersViewControllerDelegate
 extension AddPlayersCoordinator: AddPlayersViewControllerDelegate {
-    public func addPlayersViewControllerDidPressNext(_ viewController: AddPlayersViewController) {
+    public func addPlayersViewControllerDidPressNext(_ viewController: AddPlayersViewController, onDismissed: (()->Void)?) {
         let gameManager = viewController.gameManager
         let coordinator = GameScreenCoordinator(router: router)
-        presentChild(coordinator, animated: true) {
+        presentChild(coordinator, animated: true, onDismissed: {
+            onDismissed?()
+        }) {
             return gameManager
         }
     }

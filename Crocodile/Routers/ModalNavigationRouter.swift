@@ -47,7 +47,6 @@ extension ModalNavigationRouter: Router {
         parentViewController.present(navigationController, animated: animated, completion: nil)
     }
     
-    //Метод который срабатывает при закрытии родительского вьюКонтроллера
     public func dismiss(animated: Bool) {
         performOnDismissed(for: navigationController.viewControllers.first!)
         parentViewController.dismiss(animated: animated, completion: nil)
