@@ -10,8 +10,14 @@ import UIKit
 //MARK: - AddPlayerTableViewCell
 class AddPlayerTableViewCell: UITableViewCell {
     
-    //Добавлен ли игрок
-    var isPlayerAdded: Bool = false
+    //Добавлен ли игрок (свойство нужно чтобы перещелкивать с крестика на галочку и наоборот)
+    var isPlayerAdded: Bool = false {
+        didSet {
+            if oldValue != isPlayerAdded {
+                toggleImageOnPlayerButton()
+            }
+        }
+    }
     //Outlets
     @IBOutlet weak var playerNameTextField: UITextField!
     @IBOutlet weak var playerButton: UIButton!
@@ -32,10 +38,14 @@ class AddPlayerTableViewCell: UITableViewCell {
     //Если поле заполнено и кнопка крестик, то мы удаляем игрока.
     //Если поле пустое, то кнопка неактивна.
     @IBAction func playerButtonAction(_ sender: UIButton) {
-        delegate?.changeDescription(sender: sender)
+        delegate?.playerButtonPressed(sender: sender)
         //перещелкиваем картинку и isPlayerAdded. Сначала щелкаем isPlayerAdded
         isPlayerAdded.toggle()
-        toggleImageOnPlayerButton()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        resetCell()
     }
     
     //Меняет картинку галочка или крестик. Также меняет isPlayerAdded, что влияет на логику
@@ -56,8 +66,19 @@ class AddPlayerTableViewCell: UITableViewCell {
 
     //Метод который проверяет условие должна ли быть кнопка playerButton активна или наоборот (пустое ли поле игрока или нет)
     private func playerButtonActiveCondition() {
-        if playerNameTextField.text != "" {
-            makePlayerButtonActive()
+        let playerName = playerNameTextField.text ?? ""
+        if playerName != "" {
+            guard let delegate = delegate else { return }
+            //если игрока в массиве еще нет
+            if !delegate.isPlayerAddedNow(playerName) {
+                makePlayerButtonActive()
+            } else {
+                
+                // TODO: - если игрок с таким именем уже есть в массиве игроков, то мы не делаем кнопку активной и отображаем строчку
+                //"такой игрок уже есть, добавьте другое имя"
+                
+                
+            }
         } else {
             makePlayerButtonInactive()
         }
@@ -77,10 +98,9 @@ class AddPlayerTableViewCell: UITableViewCell {
     
     //сбросить сell до значений по умолчанию.
     public func resetCell() {
-        super.prepareForReuse()
         playerNameTextField.text = ""
         makePlayerButtonInactive()
         isPlayerAdded = false
-        toggleImageOnPlayerButton()
+        playerNameTextField.placeholder = ""
     }
 }

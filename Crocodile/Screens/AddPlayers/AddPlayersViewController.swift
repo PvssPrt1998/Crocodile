@@ -15,7 +15,8 @@ public protocol AddPlayersViewControllerDelegate: AnyObject {
 //MARK: - PlayerButtonActionDelegate
 //Используется для передачи sender из cell во viewController
 public protocol playerButtonActionDelegate: AnyObject {
-    func changeDescription(sender: UIButton)
+    func playerButtonPressed(sender: UIButton)
+    func isPlayerAddedNow(_ player: String)-> Bool
 }
 
 //MARK: - UIViewController (AddPlayersViewController)
@@ -34,10 +35,19 @@ public class AddPlayersViewController: UIViewController {
     //MARK: - Outlets
     @IBOutlet weak var addPlayersTableView: UITableView!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var backgroundViewForButton: UIView!
     
     //MARK: - ViewControlletLifeCycle
     public override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //фишка с внутренней тенью. Если сделать борт вокруг вьюшки и тень, то тень провалится внутрь при условии
+        //что backgroundColor = clear
+        nextButton.innerShadow(backgroundColor: UIColor(rgb: 0x00DF08).cgColor)
+        backgroundViewForButton.layer.cornerRadius = nextButton.layer.cornerRadius
     }
     
     //Кнопка перехода к экрану игры
@@ -49,6 +59,7 @@ public class AddPlayersViewController: UIViewController {
     
     //Удалить строку по indexPath
     private func deleteRow(by indexPath: IndexPath) {
+        addPlayersTableView.cellForRow(at: indexPath)?.prepareForReuse()
         addPlayersTableView.beginUpdates()
         addPlayersTableView.deleteRows(at: [indexPath], with: .automatic)
         addPlayersTableView.endUpdates()
@@ -91,6 +102,7 @@ public class AddPlayersViewController: UIViewController {
     private func animateNextButton(opacity: Float) {
         UIView.animate(withDuration: 0.2) {  [] in
             //меняем прозрачность
+            self.backgroundViewForButton.layer.opacity = opacity
             self.nextButton.layer.opacity = opacity
         }
     }
@@ -99,6 +111,10 @@ public class AddPlayersViewController: UIViewController {
 
 //MARK: -ChangeDescriptionDelegate
 extension AddPlayersViewController: playerButtonActionDelegate {
+    
+    public func isPlayerAddedNow(_ player: String) -> Bool {
+        gameManager?.playerManager.isPlayerAddedNow(player) ?? false
+    }
     
     //В cell классе нажимается кнопка, мы получаем эту кнопку и ищем для неё супервью и так далее пока не найдем сслыку на cell
     private func getCellByUIView(_ view: UIView)-> AddPlayerTableViewCell? {
@@ -121,9 +137,13 @@ extension AddPlayersViewController: playerButtonActionDelegate {
         return indexPath
     }
     //метод который вызывается при нажатии на кнопку в целл классе
-    public func changeDescription(sender: UIButton) {
+    public func playerButtonPressed(sender: UIButton) {
         //проверяем cell и indexPath на nil
-        guard let gameManager = gameManager, let cell = getCellByUIView(sender), let indexPath = getIndexPathBy(cell: cell) else { return }
+        guard let gameManager = gameManager,
+              let cell = getCellByUIView(sender),
+              let indexPath = getIndexPathBy(cell: cell)
+              //gameManager.playerManager.isPlayerAddedNow(cell.)
+        else { return }
         
         //Если игрок не добавлен, то добавляем
         if cell.isPlayerAdded == false {

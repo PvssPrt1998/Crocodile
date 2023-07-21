@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,7 +18,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nKj-wG-6in" userLabel="AddPlayersTableView">
                                 <rect key="frame" x="0.0" y="103" width="393" height="749"/>
-                                <color key="backgroundColor" red="0.45490196350000001" green="0.88627451660000001" blue="0.64705884459999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addPlayerCell" rowHeight="88" id="SFs-a1-KLn" customClass="AddPlayerTableViewCell" customModule="Crocodile" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="88"/>
@@ -39,9 +38,9 @@
                                                         <action selector="playerButtonAction:" destination="SFs-a1-KLn" eventType="touchUpInside" id="6s0-aS-BlZ"/>
                                                     </connections>
                                                 </button>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I63-aD-P4q">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Введите имя игрока" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I63-aD-P4q">
                                                     <rect key="frame" x="20" y="11" width="279" height="66"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="playerNameTextFieldDidChange:" destination="SFs-a1-KLn" eventType="editingChanged" id="Vel-Nh-gW1"/>
@@ -58,6 +57,7 @@
                                                 <constraint firstItem="I63-aD-P4q" firstAttribute="bottom" secondItem="sQ6-Xn-QeZ" secondAttribute="bottomMargin" id="wnc-Vg-Xmp"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="playerButton" destination="4Nq-OP-Llz" id="4pq-Ge-5p2"/>
                                             <outlet property="playerNameTextField" destination="I63-aD-P4q" id="sqA-71-dWG"/>
@@ -69,9 +69,13 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="RSO-h2-F6I"/>
                                 </connections>
                             </tableView>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9wn-Ji-75e" userLabel="BackgroundViewForButton">
+                                <rect key="frame" x="59" y="737" width="275" height="59.666666666666629"/>
+                                <color key="backgroundColor" red="1" green="0.58039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="deviceRGB"/>
+                            </view>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UmD-tH-4c4">
                                 <rect key="frame" x="59" y="737" width="275" height="59.666666666666629"/>
-                                <color key="backgroundColor" red="0.85098039219999999" green="0.61176470589999998" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="NextButton"/>
                                 <connections>
@@ -80,14 +84,18 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <color key="backgroundColor" red="0.0" green="0.87450980389999999" blue="0.031372549020000001" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
+                            <constraint firstItem="UmD-tH-4c4" firstAttribute="bottom" secondItem="9wn-Ji-75e" secondAttribute="bottom" id="03y-Xn-O7h"/>
+                            <constraint firstItem="9wn-Ji-75e" firstAttribute="leading" secondItem="UmD-tH-4c4" secondAttribute="leading" id="986-2j-5LA"/>
                             <constraint firstItem="nKj-wG-6in" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="KAw-vE-iDx"/>
                             <constraint firstItem="nKj-wG-6in" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="LX6-TM-x2O"/>
                             <constraint firstItem="UmD-tH-4c4" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.7" id="Loz-PK-AXu"/>
                             <constraint firstItem="UmD-tH-4c4" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" multiplier="1.8" id="MPq-LV-drp"/>
+                            <constraint firstItem="9wn-Ji-75e" firstAttribute="top" secondItem="UmD-tH-4c4" secondAttribute="top" id="Oup-JT-cqi"/>
                             <constraint firstItem="UmD-tH-4c4" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="hTp-EK-g8r"/>
                             <constraint firstItem="nKj-wG-6in" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="hmq-SJ-JRa"/>
+                            <constraint firstItem="UmD-tH-4c4" firstAttribute="trailing" secondItem="9wn-Ji-75e" secondAttribute="trailing" id="ukB-2j-swS"/>
                             <constraint firstItem="UmD-tH-4c4" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="v47-IA-zNh"/>
                             <constraint firstAttribute="bottom" secondItem="nKj-wG-6in" secondAttribute="bottom" id="y0j-kc-KDv"/>
                         </constraints>
@@ -95,6 +103,7 @@
                     <navigationItem key="navigationItem" title="Введите имена игроков" id="jQ9-CG-hSj"/>
                     <connections>
                         <outlet property="addPlayersTableView" destination="nKj-wG-6in" id="ntT-NI-Lvo"/>
+                        <outlet property="backgroundViewForButton" destination="9wn-Ji-75e" id="umv-LE-Ryb"/>
                         <outlet property="nextButton" destination="UmD-tH-4c4" id="ZyX-cp-t8l"/>
                     </connections>
                 </viewController>
@@ -123,8 +132,5 @@
     </scenes>
     <resources>
         <image name="checkmark.circle" catalog="system" width="128" height="123"/>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

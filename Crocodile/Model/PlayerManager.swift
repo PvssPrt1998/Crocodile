@@ -51,7 +51,7 @@ public class PlayerManager {
         players.append(Player(name: playerName))
     }
     //Проверка есть ли уже в массиве такой игрок
-    private func isPlayerAddedNow(_ playerName: String) -> Bool {
+    public func isPlayerAddedNow(_ playerName: String) -> Bool {
         players.contains { $0.name == playerName }
     }
     

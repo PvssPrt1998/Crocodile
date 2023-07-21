@@ -23,9 +23,14 @@ public class CategoryViewController: UIViewController {
     //IBOutlets
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var nextButton: UIButton!
+    //тень у кнопки работает когда она прозрачная
+    //эта вьюшка бэкграунд для кнопки чтобы кнопка была цветной
+    @IBOutlet weak var backgroundViewForButton: UIView!
     
     private lazy var onDismissed: ()->Void = {
         self.gameManager?.resetGameManager()
+        self.nextButton.layer.opacity = 0.0
+        self.backgroundViewForButton.layer.opacity = 0.0
     }
     
     //CoreData properties
@@ -50,11 +55,6 @@ public class CategoryViewController: UIViewController {
 
     //GameManager
     var gameManager: GameManager? = GameManager()
-    
-    //тень у кнопки работает когда она прозрачная
-    //эта вьюшка бэкграунд для кнопки чтобы кнопка была цветной
-    @IBOutlet weak var backgroundViewForButton: UIView!
-     
     
     //MARK: - ViewControllerLifeCycle
     public override func viewDidLoad() {

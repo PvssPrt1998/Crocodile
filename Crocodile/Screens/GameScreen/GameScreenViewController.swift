@@ -45,15 +45,26 @@ public final class GameScreenViewController: UIViewController {
     }
     
     //MARK: - Outlets
+    @IBOutlet weak var gameContainerView: UIView!
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var readyButton: UIButton!
     @IBOutlet weak var giveUpButton: UIButton!
     @IBOutlet weak var showingPlayerLabel: UILabel!
+    @IBOutlet weak var backgroundViewForButton: UIView!
     
     //MARK: - ViewController LifeCycle
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupViewConfigs()
+    }
+    
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //фишка с внутренней тенью. Если сделать борт вокруг вьюшки и тень, то тень провалится внутрь при условии
+        //что backgroundColor = clear
+        readyButton.innerShadow(backgroundColor: UIColor(rgb: 0x00DF08).cgColor)
+        backgroundViewForButton.layer.cornerRadius = readyButton.layer.cornerRadius
+        gameContainerView.layer.cornerRadius = backgroundViewForButton.layer.cornerRadius
     }
     
     //MARK: - Configure views methods
