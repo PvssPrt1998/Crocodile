@@ -41,16 +41,24 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Показывает игрок" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I73-vl-UQu">
+                                        <rect key="frame" x="99.333333333333357" y="222.66666666666666" width="145.66666666666663" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="Dwq-Yt-6OT" firstAttribute="centerY" secondItem="M9V-Ta-UWb" secondAttribute="centerY" multiplier="1.8" id="4d7-s8-k8O"/>
+                                    <constraint firstItem="I73-vl-UQu" firstAttribute="centerX" secondItem="M9V-Ta-UWb" secondAttribute="centerX" id="F3j-cG-e2t"/>
+                                    <constraint firstItem="I73-vl-UQu" firstAttribute="centerY" secondItem="M9V-Ta-UWb" secondAttribute="centerY" id="WYk-WG-fLi"/>
                                     <constraint firstItem="2Hb-8m-iah" firstAttribute="centerY" secondItem="M9V-Ta-UWb" secondAttribute="centerY" multiplier="1.6" id="faK-Bh-dYd"/>
                                     <constraint firstItem="Dwq-Yt-6OT" firstAttribute="centerX" secondItem="M9V-Ta-UWb" secondAttribute="centerX" id="sAF-6c-8t7"/>
                                     <constraint firstItem="2Hb-8m-iah" firstAttribute="centerX" secondItem="M9V-Ta-UWb" secondAttribute="centerX" id="tai-1e-xd7"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUW-jy-k5A">
+                            <button hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUW-jy-k5A">
                                 <rect key="frame" x="43" y="613.66666666666663" width="90" height="35"/>
                                 <color key="backgroundColor" red="0.85098039219999999" green="0.61176470589999998" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
@@ -79,6 +87,7 @@
                     <connections>
                         <outlet property="giveUpButton" destination="KUW-jy-k5A" id="Ly0-hM-jQ1"/>
                         <outlet property="readyButton" destination="aL9-Og-PVi" id="AaF-Wh-8r9"/>
+                        <outlet property="showingPlayerLabel" destination="I73-vl-UQu" id="We6-iM-3Fe"/>
                         <outlet property="wordLabel" destination="2Hb-8m-iah" id="ZnU-xC-bvE"/>
                     </connections>
                 </viewController>

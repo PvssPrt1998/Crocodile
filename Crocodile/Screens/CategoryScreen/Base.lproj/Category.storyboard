@@ -20,7 +20,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PKM-8a-T6k">
                                 <rect key="frame" x="0.0" y="103" width="393" height="749"/>
-                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <color key="backgroundColor" red="1" green="0.60392156862745094" blue="0.30196078431372547" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h8O-SD-Cmc">
                                     <size key="itemSize" width="186" height="187"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -78,9 +78,13 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="0OQ-rM-JUc"/>
                                 </connections>
                             </collectionView>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAR-Va-W2B">
+                                <rect key="frame" x="59" y="740.66666666666663" width="275" height="52.333333333333371"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                            </view>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccB-S8-sLV">
                                 <rect key="frame" x="59" y="740.66666666666663" width="275" height="52.333333333333371"/>
-                                <color key="backgroundColor" red="0.85098039219999999" green="0.61176470589999998" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="1" green="0.60392156862745094" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
@@ -89,20 +93,25 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <color key="backgroundColor" red="0.0" green="0.87450980392156863" blue="0.031372549019607843" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="PKM-8a-T6k" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ADX-N8-xh6"/>
                             <constraint firstItem="PKM-8a-T6k" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Gvi-Lh-JqL"/>
                             <constraint firstAttribute="bottom" secondItem="PKM-8a-T6k" secondAttribute="bottom" id="MLY-uD-CY3"/>
+                            <constraint firstItem="ccB-S8-sLV" firstAttribute="bottom" secondItem="dAR-Va-W2B" secondAttribute="bottom" id="SLm-bO-pWV"/>
                             <constraint firstItem="ccB-S8-sLV" firstAttribute="height" secondItem="PKM-8a-T6k" secondAttribute="height" multiplier="0.07" id="VIM-pb-DFO"/>
                             <constraint firstItem="PKM-8a-T6k" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Wef-n2-fSb"/>
                             <constraint firstItem="ccB-S8-sLV" firstAttribute="width" secondItem="PKM-8a-T6k" secondAttribute="width" multiplier="0.7" id="dKk-AB-b4V"/>
+                            <constraint firstItem="dAR-Va-W2B" firstAttribute="leading" secondItem="ccB-S8-sLV" secondAttribute="leading" id="lYO-Fs-bQf"/>
                             <constraint firstItem="ccB-S8-sLV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="raW-aH-bqt"/>
                             <constraint firstItem="ccB-S8-sLV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.8" id="voC-nU-uru"/>
+                            <constraint firstItem="dAR-Va-W2B" firstAttribute="top" secondItem="ccB-S8-sLV" secondAttribute="top" id="xSQ-Dk-seg"/>
+                            <constraint firstItem="ccB-S8-sLV" firstAttribute="trailing" secondItem="dAR-Va-W2B" secondAttribute="trailing" id="ySW-eR-iwo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Выберите категорию" id="Gc0-Rv-iTC"/>
                     <connections>
+                        <outlet property="backgroundViewForButton" destination="dAR-Va-W2B" id="RAA-xM-eDF"/>
                         <outlet property="categoryCollectionView" destination="PKM-8a-T6k" id="wxs-8j-Ppt"/>
                         <outlet property="nextButton" destination="ccB-S8-sLV" id="J2P-IW-vcl"/>
                     </connections>
@@ -135,11 +144,8 @@
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

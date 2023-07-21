@@ -41,11 +41,13 @@ extension GameScreenCoordinator: GameScreenViewControllerDelegate {
         }
     }
     
-    public func GameViewControllerDidPressGuessed(_ viewController: GameScreenViewController) {
+    public func GameViewControllerDidPressGuessed(_ viewController: GameScreenViewController, onDismissed: (()->Void)?) {
         let gameManager = viewController.gameManager
         let router = CustomPresentationRouter(parentViewController: viewController)
         let coordinator = IncreasePlayerScoreScreenCoordinator(router: router)
-        presentChild(coordinator, animated: true) {
+        presentChild(coordinator, animated: true, onDismissed: {
+            onDismissed?()
+        }) {
             return gameManager
         }
     }

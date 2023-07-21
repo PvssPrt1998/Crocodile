@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		991442082A63035A008DD377 /* UIColor + hexInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442072A63035A008DD377 /* UIColor + hexInit.swift */; };
+		9914420A2A6A697F008DD377 /* UIButton + InnerShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442092A6A697F008DD377 /* UIButton + InnerShadow.swift */; };
+		9914420C2A6A6B52008DD377 /* Button.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9914420B2A6A6B52008DD377 /* Button.xib */; };
+		9914420E2A6A6D3E008DD377 /* ReusableMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9914420D2A6A6D3E008DD377 /* ReusableMainButton.swift */; };
 		9988F3CF29EE4A5A003D7FF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988F3CE29EE4A5A003D7FF3 /* AppDelegate.swift */; };
 		9988F3D129EE4A5A003D7FF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988F3D029EE4A5A003D7FF3 /* SceneDelegate.swift */; };
 		9988F3D329EE4A5A003D7FF3 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988F3D229EE4A5A003D7FF3 /* CategoryViewController.swift */; };
@@ -54,6 +58,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		991442072A63035A008DD377 /* UIColor + hexInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + hexInit.swift"; sourceTree = "<group>"; };
+		991442092A6A697F008DD377 /* UIButton + InnerShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + InnerShadow.swift"; sourceTree = "<group>"; };
+		9914420B2A6A6B52008DD377 /* Button.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Button.xib; sourceTree = "<group>"; };
+		9914420D2A6A6D3E008DD377 /* ReusableMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableMainButton.swift; sourceTree = "<group>"; };
 		9988F3CB29EE4A5A003D7FF3 /* Crocodile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crocodile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9988F3CE29EE4A5A003D7FF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9988F3D029EE4A5A003D7FF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +201,8 @@
 				99BB88F929FA3B5100C65EE1 /* ScoreScreen */,
 				9988F3F829EE89D3003D7FF3 /* GameScreen */,
 				9988F3F729EE899D003D7FF3 /* AddPlayers */,
+				9914420B2A6A6B52008DD377 /* Button.xib */,
+				9914420D2A6A6D3E008DD377 /* ReusableMainButton.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -251,6 +261,8 @@
 			isa = PBXGroup;
 			children = (
 				999AC3482A5B061F00F7D321 /* ViewController+Convenience.swift */,
+				991442072A63035A008DD377 /* UIColor + hexInit.swift */,
+				991442092A6A697F008DD377 /* UIButton + InnerShadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -374,6 +386,7 @@
 				9988F3D629EE4A5A003D7FF3 /* Category.storyboard in Resources */,
 				99BB88F829FA387B00C65EE1 /* GameScreen.storyboard in Resources */,
 				999AC33F2A586FCD00F7D321 /* IncreasePlayerScoreScreen.storyboard in Resources */,
+				9914420C2A6A6B52008DD377 /* Button.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,7 +406,9 @@
 				9988F3FC29EE8BDA003D7FF3 /* GameManager.swift in Sources */,
 				999AC3442A5874E500F7D321 /* CutsomPresentationNavigationController.swift in Sources */,
 				999AC3462A5AFE5D00F7D321 /* IncreaseScoreScreenViewController.swift in Sources */,
+				991442082A63035A008DD377 /* UIColor + hexInit.swift in Sources */,
 				9988F3CF29EE4A5A003D7FF3 /* AppDelegate.swift in Sources */,
+				9914420E2A6A6D3E008DD377 /* ReusableMainButton.swift in Sources */,
 				99DFCBA62A44037200481714 /* DELETETHIS.swift in Sources */,
 				99DFCBAF2A44459F00481714 /* Word+CoreDataClass.swift in Sources */,
 				99DFCB962A40974200481714 /* PlayerManager.swift in Sources */,
@@ -415,6 +430,7 @@
 				9988F3D129EE4A5A003D7FF3 /* SceneDelegate.swift in Sources */,
 				999AC34D2A5BC38100F7D321 /* CustomModalPresentationController.swift in Sources */,
 				9988F3ED29EE6705003D7FF3 /* Coordinator.swift in Sources */,
+				9914420A2A6A697F008DD377 /* UIButton + InnerShadow.swift in Sources */,
 				9988F3FF29EE8E1E003D7FF3 /* CategoryCollectionViewCell.swift in Sources */,
 				99DFCB652A39772D00481714 /* GameScreenCoordinator.swift in Sources */,
 				99DFCBB22A44459F00481714 /* Category+CoreDataProperties.swift in Sources */,

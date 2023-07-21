@@ -51,6 +51,11 @@ public class CategoryViewController: UIViewController {
     //GameManager
     var gameManager: GameManager? = GameManager()
     
+    //тень у кнопки работает когда она прозрачная
+    //эта вьюшка бэкграунд для кнопки чтобы кнопка была цветной
+    @IBOutlet weak var backgroundViewForButton: UIView!
+     
+    
     //MARK: - ViewControllerLifeCycle
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +68,14 @@ public class CategoryViewController: UIViewController {
         
         importDataIfNeeded()
         //destroyPersistentStore()
+    }
+    
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //фишка с внутренней тенью. Если сделать борт вокруг вьюшки и тень, то тень провалится внутрь при условии
+        //что backgroundColor = clear
+        nextButton.innerShadow(backgroundColor: UIColor(rgb: 0x00DF08).cgColor)
+        backgroundViewForButton.layer.cornerRadius = nextButton.layer.cornerRadius
     }
     
     //RESET DATABASE
@@ -109,7 +122,7 @@ public class CategoryViewController: UIViewController {
     private func resetAllElementsCollectionView() {
         loopThroughEachCellWith { cell, _ in
             //снимается выделение с каждого cell
-            cell.checkmark.isHidden = true
+            cell.prepareForReuse()
         }
     }
     
@@ -128,6 +141,7 @@ public class CategoryViewController: UIViewController {
     //анимация появления кнопки
     private func animateNextButton(opacity: Float) {
         UIView.animate(withDuration: 0.2) {  [] in
+            self.backgroundViewForButton.layer.opacity = opacity
             self.nextButton.layer.opacity = opacity
         }
     }
@@ -216,7 +230,7 @@ extension CategoryViewController: UICollectionViewDelegateFlowLayout {
         
         //ширина экрана / 30
         let totalWidth = view.bounds.width
-        let numberOfCellsPerLine: CGFloat = 3
+        let numberOfCellsPerLine: CGFloat = 2
         let width = (totalWidth - (totalWidth / 30) * (numberOfCellsPerLine + 1)) / numberOfCellsPerLine
         //высота экрана
         let height = width

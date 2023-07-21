@@ -13,8 +13,7 @@ import Foundation
 //Может добавлять
 public class PlayerManager {
     //MARK: - Properties
-    //TODO: - Change to Struct
-    var currentPlayer: (Player,Int)?
+    var currentPlayer: Player?
     //Массив игроков
     private var players: [Player] = []
     
@@ -22,29 +21,26 @@ public class PlayerManager {
     //устанавливает текущим игроком первого игрока из массива игроков
     public func setCurrentPlayerFirst() {
         guard let player = players.first else { return }
-        currentPlayer?.0 = player
-        currentPlayer?.1 = 0
+        currentPlayer = player
+        players.removeFirst()
     }
     
     //Cледующий игрок
     public func makeNextPlayerCurrent() {
-        guard var currentPlayer = currentPlayer else { return }
-        //Если индекс меньше или равен индексу предпоследнего элемента массива, то плюс один. Иначе скидываем до нуля
-        if currentPlayer.1 < playersCount() - 1 {
-            //increment index of current player
-            currentPlayer.1 += 1
-        } else {
-            //assign currentPlayer index to 0
-            currentPlayer.1 = 1
-        }
-        //assign other player current by new index
-        currentPlayer.0 = players[currentPlayer.1]
+        //проверяет есть ли currentPlayer. Прикол в том что при вызове этого метода currentPlayer должен быть в любом случае
+        //Если вдруг его нет, значит в addPlayers контроллере можно пройти дальше без добавления второго игрока
+        guard let currentPlayer = currentPlayer else { return }
+        players.append(currentPlayer)
+        //прикол тот же, проверка не нужна по сути так как players.first будет всегда
+        guard let player = players.first else { return }
+        self.currentPlayer = player
+        players.removeFirst()
     }
     
     //Операция с очками игрока
     public func setCurrentPlayerScore(to score: Int) {
         guard let currentPlayer = currentPlayer else { return }
-        currentPlayer.0.score += score
+        currentPlayer.score += score
     }
     
     //добавить игрока

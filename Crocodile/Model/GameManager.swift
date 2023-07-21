@@ -29,6 +29,10 @@ public class GameManager {
         chosenWords.insert(word)
     }
     
+    public func prepareForGame() {
+        playerManager.setCurrentPlayerFirst()
+    }
+    
     //Игрок нажал кнопку сдаться
     public func giveUpButtonPressed() {
         playerManager.decrementCurrentPlayerScore()

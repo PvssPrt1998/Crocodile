@@ -10,17 +10,22 @@ import UIKit
 //MARK: - CoordinatorDelegate
 public protocol GameScreenViewControllerDelegate: AnyObject {
     func GameViewControllerDidPressRatingButton(_ viewController: GameScreenViewController)
-    func GameViewControllerDidPressGuessed(_ viewController: GameScreenViewController)
+    func GameViewControllerDidPressGuessed(_ viewController: GameScreenViewController, onDismissed: (()->Void)?)
 }
 
 public final class GameScreenViewController: UIViewController {
     
-    //GameManager
+    //MARK: - Properties
     var gameManager: GameManager?
-    
-    //Delegate
+
     //Делегатом выступает координатор данного контроллера
     public weak var delegate: GameScreenViewControllerDelegate?
+    
+    private lazy var onDismissed: ()->Void = {
+        guard let navigationTitleButton = self.navigationItem.titleView as? UIButton  else { return }
+        navigationTitleButton.setTitle("Рейтинг", for: .normal)
+        navigationTitleButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+    }
     
     //TODO: - вывести геймСтейт в геймменеджер
     enum GameState {
@@ -29,31 +34,68 @@ public final class GameScreenViewController: UIViewController {
     }
     
     //TODO: - свойство геймСтейт тоже вынести в геймменеджер
-    var gameState: GameState = .waiting
-    
-    //MARK: - Properties
+    var gameState: GameState = .waiting {
+        willSet {
+            if newValue == .waiting {
+                prepareViewsForWaitingState()
+            } else {
+                prepareViewsForInProgressState()
+            }
+        }
+    }
     
     //MARK: - Outlets
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var readyButton: UIButton!
     @IBOutlet weak var giveUpButton: UIButton!
+    @IBOutlet weak var showingPlayerLabel: UILabel!
     
     //MARK: - ViewController LifeCycle
     public override func viewDidLoad() {
         super.viewDidLoad()
-        configMiddleBarButton()
-        print(navigationController?.navigationBar.frame.height ?? 0)
+        setupViewConfigs()
     }
     
-    //MARK: - Configure views
+    //MARK: - Configure views methods
+    //задает нужный текст для лейблов и кнопок при загрузке
+    private func setupViewConfigs() {
+        configMiddleBarButton()
+        prepareViewsForWaitingState()
+    }
+    
+    //готовит вьюшки для состояния ожидания готовности игрока
+    private func prepareViewsForWaitingState() {
+        guard let gameManager = gameManager else { return }
+        let showingPlayerLabelText = gameManager.playerManager.currentPlayer?.name ?? ""
+        showingPlayerLabel.text = "Показывает игрок: \(showingPlayerLabelText)"
+        //отображаем лейбл с именем показывающего
+        showingPlayerLabel.isHidden = false
+        UIView.animate(withDuration: 0.2) {
+            self.showingPlayerLabel.layer.opacity = 1.0
+        }
+        
+        readyButton.setTitle("Готов!", for: .normal)
+    }
+    
+    //готовит вьюшки для состояния "игра в процессе"
+    private func prepareViewsForInProgressState() {
+        UIView.animate(withDuration: 0.2) {
+            self.showingPlayerLabel.layer.opacity = 0.0
+        }
+        showingPlayerLabel.isHidden = true
+        
+        readyButton.setTitle("Угадано!", for: .normal)
+    }
+    
     //Кнопка в titleView navigationBar
     private func configMiddleBarButton() {
         let titleButton =  UIButton(type: .custom)
         let viewHeight = view.bounds.height
         let viewWidth = view.bounds.width
-        titleButton.frame = CGRect(x: 0, y: 0, width: viewWidth / 7, height: viewHeight / 25)
+        titleButton.frame = CGRect(x: 0, y: 0, width: viewWidth / 2, height: viewHeight / 25)
         titleButton.backgroundColor = .clear
         titleButton.setTitle("Рейтинг", for: .normal)
+        titleButton.titleLabel?.textAlignment = .center
         titleButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         titleButton.tintColor = .black
         titleButton.setTitleColor(.black, for: .normal)
@@ -69,7 +111,11 @@ public final class GameScreenViewController: UIViewController {
         if gameState == .waiting {
             presentNewWord()
         } else {
+            guard let navigationTitleButton = self.navigationItem.titleView as? UIButton  else { return }
+            navigationTitleButton.setTitle("Выберите угадавшего", for: .normal)
+            navigationTitleButton.setImage(UIImage(), for: .normal)
             presentIncreaseScoreScreenViewController()
+            hideWord()
         }
         gameStateToggle()
     }
@@ -80,7 +126,9 @@ public final class GameScreenViewController: UIViewController {
         gameManager.giveUpButtonPressed()
         wordLabel.alpha = 0.0
         giveUpButton.alpha = 0.0
-        readyButton.setTitle("Готов!", for: .normal)
+        giveUpButton.isHidden = true
+        gameState = .waiting
+        //readyButton.setTitle("Готов!", for: .normal)
     }
     
     @objc
@@ -88,6 +136,12 @@ public final class GameScreenViewController: UIViewController {
         delegate?.GameViewControllerDidPressRatingButton(self)
     }
     
+    //скрывает старое слово после сдачи или отгадывания
+    private func hideWord() {
+        wordLabel.alpha = 0.0
+        giveUpButton.alpha = 0.0
+        giveUpButton.isHidden = true
+    }
     
     //Отобразить нвоое слово
     private func presentNewWord() {
@@ -99,8 +153,9 @@ public final class GameScreenViewController: UIViewController {
         wordLabel.text = word
         //Показываем слово (опасити 1.0)
         wordLabel.alpha = 1.0
+        giveUpButton.isHidden = false
         giveUpButton.alpha = 1.0
-        readyButton.setTitle("Угадано!", for: .normal)
+        //readyButton.setTitle("Угадано!", for: .normal)
     }
     
     //переключает состояние игры на ожидание когда игрок будет готов показывать, либо наоборот
@@ -115,8 +170,7 @@ public final class GameScreenViewController: UIViewController {
     //Срабатывает если кто-то угадал слово и показывающий игрок нажал на кнопку "Угадано!"
     //Открывает IncreasePlayerScoreScreenViewController где показывающий выбирает отгадавшего
     private func presentIncreaseScoreScreenViewController() {
-        delegate?.GameViewControllerDidPressGuessed(self)
-        print("presentIncreaseScoreScreenViewController end")
+        delegate?.GameViewControllerDidPressGuessed(self, onDismissed: onDismissed)
     }
 }
 

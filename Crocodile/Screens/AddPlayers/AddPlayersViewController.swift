@@ -42,6 +42,7 @@ public class AddPlayersViewController: UIViewController {
     
     //Кнопка перехода к экрану игры
     @IBAction func nextButtonAction(_ sender: UIButton) {
+        gameManager?.prepareForGame()
         delegate?.addPlayersViewControllerDidPressNext(self, onDismissed: onDismissed)
     }
     
@@ -52,7 +53,7 @@ public class AddPlayersViewController: UIViewController {
         addPlayersTableView.deleteRows(at: [indexPath], with: .automatic)
         addPlayersTableView.endUpdates()
         //Проверяем есть ли игроки и нужно ли отображать nextButton. Если нет, то скрыть
-        nextButtonCheck()
+        nextButtonAvailabilityCheck()
     }
     
     //Добавить пустую строку для ввода в конец таблицы
@@ -66,16 +67,16 @@ public class AddPlayersViewController: UIViewController {
         addPlayersTableView.insertRows(at: [indexPath], with: .automatic)
         addPlayersTableView.endUpdates()
         //Проверяем есть ли игроки и нужно ли отображать nextButton. Если нет, то скрыть
-        nextButtonCheck()
+        nextButtonAvailabilityCheck()
     }
     
     //Метод, проверяющий можно ли отображать nextButton или нужно скрыть
-    private func nextButtonCheck() {
+    private func nextButtonAvailabilityCheck() {
         guard let gameManager = gameManager else { return }
         //Если игроки не введены
         let playersCount = gameManager.playerManager.playersCount()
-        //TODO: - add method players.isEmpty -------------------------------------------------------------------------------------------------------------------------
-        if playersCount == 0 {
+        //если игроков меньше двух, то играть не получится кнопка. не отобразится просто (игра не для одного)
+        if playersCount < 2 {
             animateNextButton(opacity: 0)
             //Выключаем кнопку
             nextButton.isEnabled = false
