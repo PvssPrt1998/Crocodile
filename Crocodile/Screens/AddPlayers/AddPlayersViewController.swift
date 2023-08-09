@@ -160,6 +160,11 @@ extension AddPlayersViewController: playerButtonActionDelegate {
             deleteRow(by: indexPath)
         }
     }
+    
+    func setGameManager(data: AnyObject) {
+        guard let data = data as? GameManager else { return }
+        gameManager = data
+    }
 }
 
 //MARK: - UITableViewDelegate

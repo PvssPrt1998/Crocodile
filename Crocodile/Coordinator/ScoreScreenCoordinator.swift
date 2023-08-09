@@ -18,12 +18,12 @@ class ScoreScreenCoordinator: Coordinator {
     }
     
     //present
-    public func present(animated: Bool, onDismissed: (() -> Void)?, data: (()->AnyObject?)?) {
+    public func present(animated: Bool, onDismissed: (() -> Void)?, data: AnyObject?) {
         //Инициализируем viewController и назначаем делегатом себя чтобы вызывался метод didPressNext конкретно этого класса
         let viewController = ScoreScreenViewController.instantiate()
         //проверяем прокинули мы данные и являются ли они гейм менеджером. (Надо бы синглтон уже сделать и не напрягаться)
-        guard let data = data, let data = data() as? GameManager else { return }
-        viewController.gameManager = data
+        guard let data = data else { return }
+        viewController.setGameManager(data: data)
         router.present(viewController, animated: animated, onDismissed: onDismissed)
     }
     

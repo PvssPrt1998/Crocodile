@@ -44,7 +44,7 @@ public class IncreasePlayerScoreScreenViewController: UIViewController {
     //Засовывает из гейм менеджера данные в массив и запускает его сортировку по имени
     private func setupPlayersArray() {
         guard let gameManager = gameManager else { return }
-        let upperBound = gameManager.playerManager.playersCount() - 1
+        let upperBound = gameManager.playerManager.playersCount() - 2
         for index in 0...upperBound {
             let name = gameManager.playerManager.getPlayerNameWithIndex(index)
             playersNamesArray.append(name)
@@ -60,6 +60,11 @@ public class IncreasePlayerScoreScreenViewController: UIViewController {
     
     private func updatePreferredContentSize() {
         preferredContentSize = .init(width: currentWidth, height: currentHeight)
+    }
+    
+    func setGameManager(data: AnyObject) {
+        guard let data = data as? GameManager else { return }
+        gameManager = data
     }
 }
 
@@ -77,7 +82,7 @@ extension IncreasePlayerScoreScreenViewController: StoryboardInstantiable {
 extension IncreasePlayerScoreScreenViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let gameManager = gameManager else { return 0 }
-        return gameManager.playerManager.playersCount()
+        return gameManager.playerManager.playersCount() - 1
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -20,10 +20,10 @@ public class AddPlayersCoordinator: Coordinator {
     }
     
     //present
-    public func present(animated: Bool, onDismissed: (() -> Void)?, data: (()->AnyObject?)?) {
+    public func present(animated: Bool, onDismissed: (() -> Void)?, data: AnyObject?) {
         let viewController = AddPlayersViewController.instantiate(delegate: self)
-        guard let data = data, let data = data() as? GameManager else { return }
-        viewController.gameManager = data
+        guard let data = data else { return }
+        viewController.setGameManager(data: data)
         router.present(viewController, animated: animated, onDismissed: onDismissed)
     }
     
@@ -36,13 +36,10 @@ public class AddPlayersCoordinator: Coordinator {
 //MARK: - AddPlayersViewControllerDelegate
 extension AddPlayersCoordinator: AddPlayersViewControllerDelegate {
     public func addPlayersViewControllerDidPressNext(_ viewController: AddPlayersViewController, onDismissed: (()->Void)?) {
-        let gameManager = viewController.gameManager
         let coordinator = GameScreenCoordinator(router: router)
         presentChild(coordinator, animated: true, onDismissed: {
             onDismissed?()
-        }) {
-            return gameManager
-        }
+        }, passData: viewController.gameManager)
     }
 }
 

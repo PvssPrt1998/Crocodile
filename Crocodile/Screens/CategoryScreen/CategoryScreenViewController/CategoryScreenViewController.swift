@@ -9,18 +9,21 @@ import UIKit
 import CoreData
 
 //MARK: - CoordinatorDelegate
-public protocol CategoryViewControllerDelegate: AnyObject {
-    func categoryViewControllerDidPressNext(_ viewController: CategoryViewController, onDismissed: (()->Void)?)
+public protocol CategoryScreenViewControllerDelegate: AnyObject {
+    func categoryViewControllerDidPressNext(_ viewController: CategoryScreenViewController, onDismissed: (()->Void)?)
 }
 
 //MARK: - CategoryViewController
-public class CategoryViewController: UIViewController {
-    
-    //MARK: - Delegate
-    public weak var delegate: CategoryViewControllerDelegate?
+public class CategoryScreenViewController: UIViewController {
     
     //MARK: - Properties
-    //IBOutlets
+    private let modelName: String = "Crocodile"
+    var gameManager: GameManager = GameManager()
+    
+    //MARK: - Delegate
+    public weak var delegate: CategoryScreenViewControllerDelegate?
+
+    //MARK: - IBOutlets
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var nextButton: UIButton!
     //тень у кнопки работает когда она прозрачная
@@ -28,14 +31,14 @@ public class CategoryViewController: UIViewController {
     @IBOutlet weak var backgroundViewForButton: UIView!
     
     private lazy var onDismissed: ()->Void = {
-        self.gameManager?.resetGameManager()
+        self.gameManager.resetGameManager()
         self.nextButton.layer.opacity = 0.0
         self.backgroundViewForButton.layer.opacity = 0.0
     }
     
-    //CoreData properties
-    //--CoreDataStack -importantString
-    lazy var coreDataStack = CoreDataStack(modelName: "Crocodile")
+    //MARK: - CoreData
+    //CoreDataStack
+    lazy var coreDataStack = CoreDataStack(modelName: modelName)
     
     //MARK: - FetchedResultsController
     lazy var fetchedResultsController: NSFetchedResultsController<Category> = {
@@ -52,9 +55,6 @@ public class CategoryViewController: UIViewController {
 
         return fetchedResultsController
     }()
-
-    //GameManager
-    var gameManager: GameManager? = GameManager()
     
     //MARK: - ViewControllerLifeCycle
     public override func viewDidLoad() {
@@ -92,7 +92,7 @@ public class CategoryViewController: UIViewController {
        }
     }
     
-    //NextButtonAction
+    //MARK: - Actions
     @IBAction func nextButtonAction(_ sender: UIButton) {
         setupSetFromSelectedCategories()
         defer {
@@ -102,20 +102,19 @@ public class CategoryViewController: UIViewController {
     }
     
     private func setupSetFromSelectedCategories() {
-        guard let gameManager = gameManager else { return }
-        //Добавляем в gameManager words сеты категорий, названия которых содержатся в ChosenCategories.categories
-        loopThroughEachCellWith { cell, indexPath in
-            //если галочка отображается значит ячейка выделена, а это значит что надо добавлять слова в массив гейм менеджер
-            if !cell.checkmark.isHidden {
-                //получаем set и проверяем на nil
-                guard let set = fetchedResultsController.object(at: indexPath).words else { return }
-                //проходим по каждому объекту сета и проверяем можем ли мы привести к типу Word и если можем, то получаем слово
+        //проходим через все категории
+        fetchedResultsController.fetchedObjects?.forEach({ category in
+            //смотрим есть ли выбранные
+            if category.isSelected {
+                //получаем сет элементов NSSet.Element для выбранной категории
+                guard let set = category.words else { return }
+                //каждый NSSet.Element приводим к типу word и закидываем word в геймменеджер сет
                 set.forEach { item in
                     guard let item = item as? Word, let word = item.word else { return }
                     gameManager.addWordToSet(word)
                 }
             }
-        }
+        })
     }
     
     //сбрасывает элементы коллекшн вью к значениям по умолчанию
@@ -139,7 +138,7 @@ public class CategoryViewController: UIViewController {
     }
     
     //анимация появления кнопки
-    private func animateNextButton(opacity: Float) {
+    func animateNextButton(opacity: Float) {
         UIView.animate(withDuration: 0.2) {  [] in
             self.backgroundViewForButton.layer.opacity = opacity
             self.nextButton.layer.opacity = opacity
@@ -147,111 +146,14 @@ public class CategoryViewController: UIViewController {
     }
 }
 
-//MARK: - collectionViewDelegateExtension
-extension CategoryViewController: UICollectionViewDelegate {
-    
-    //didSelectItemAt indexPath
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
-        //получаем ячейку если можем
-        guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return }
-        //TODO: - ПРОВЕРИТЬ НА СБРОС добавить в cell класс функцию prepare for reuse ЯЧЕЕК!---------------------------------------------------------------------------------------------------------------------------
-        cell.checkmarkToggleHiddenFlag()
-        if isAnyCategorySelected() {
-            animateNextButton(opacity: 1.0)
-        } else { animateNextButton(opacity: 0.0) }
-    }
-    
-    //isAnyCategorySelected Есть ли выбранные категории
-    private func isAnyCategorySelected() -> Bool {
-        let cellsCount = categoryCollectionView.numberOfItems(inSection: 0)
-        for index in 0..<cellsCount {
-            let indexPath = IndexPath(item: index, section: 0)
-            //получаем cell
-            guard let cell = categoryCollectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return false }
-            //Если есть выбранная категория (cell с галочкой)
-            if !cell.checkmark.isHidden {
-                return true
-            }
-        }
-        return false
-    }
-    
-    //Исчезновение кнопки когда начинаем скроллить
-    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        animateNextButton(opacity: 0.0)
-    }
-    
-    //Появление кнопки когда палец перестал касаться экрана
-    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        animateNextButton(opacity: 1.0)
-    }
-    
-}
-
-//MARK: - collectionViewDataSourceExtension
-extension CategoryViewController: UICollectionViewDataSource {
-    //Количество секций
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        guard let sections = fetchedResultsController.sections else { return 0 }
-        
-        return sections.count
-    }
-    
-    //Количество ячеек в секции
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let sectionInfo = fetchedResultsController.sections?[section] else { return 0 }
-        return sectionInfo.numberOfObjects
-    }
-    
-    //CellForItemAt Конфигурируем ячейки
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        configure(cell: cell, for: indexPath)
-        return cell
-    }
-    
-    //configure cell
-    private func configure(cell: UICollectionViewCell, for indexPath: IndexPath) {
-        guard let cell = cell as? CategoryCollectionViewCell else { return }
-        let category = fetchedResultsController.object(at: indexPath)
-        cell.categoryLabel.text = category.title
-        guard let imageData = category.image, let image = UIImage(data: imageData) else { return }
-        cell.categoryImageView.image = image
-    }
-}
-
-//MARK: - CollectionViewDelegateFlowLayout
-extension CategoryViewController: UICollectionViewDelegateFlowLayout {
-    
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        //ширина экрана / 30
-        let totalWidth = view.bounds.width
-        let numberOfCellsPerLine: CGFloat = 2
-        let width = (totalWidth - (totalWidth / 30) * (numberOfCellsPerLine + 1)) / numberOfCellsPerLine
-        //высота экрана
-        let height = width
-        
-        return CGSize(width: width, height: height)
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let x = view.bounds.width / 30
-        return UIEdgeInsets(top: x, left: x , bottom: x, right: x)
-    }
-}
-
 //MARK: - FetchedResultsControllerDelegate
-extension CategoryViewController: NSFetchedResultsControllerDelegate {
+extension CategoryScreenViewController: NSFetchedResultsControllerDelegate {
 
 }
 
 //MARK: - StoryboardInstantiable extension
-extension CategoryViewController: StoryboardInstantiable {
-    public class func instantiate(delegate: CategoryViewControllerDelegate) -> CategoryViewController {
+extension CategoryScreenViewController: StoryboardInstantiable {
+    public class func instantiate(delegate: CategoryScreenViewControllerDelegate) -> CategoryScreenViewController {
         let viewController = instanceFromStoryboard()
         viewController.delegate = delegate
         return viewController
@@ -260,7 +162,7 @@ extension CategoryViewController: StoryboardInstantiable {
 
 //MARK: - Helper Methods
 //Import to CorData if store is empty
-extension CategoryViewController {
+extension CategoryScreenViewController {
     
     func importDataIfNeeded() {
         let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()

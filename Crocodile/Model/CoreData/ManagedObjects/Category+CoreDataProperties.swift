@@ -19,7 +19,6 @@ extension Category {
     @NSManaged public var title: String?
     @NSManaged public var image: Data?
     @NSManaged public var words: NSSet?
-
 }
 
 // MARK: Generated accessors for words

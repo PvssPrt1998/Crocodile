@@ -20,34 +20,27 @@ public class ScoreScreenViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupPlayersArray()
+        
     }
-    
-    //Засовывает из гейм менеджера данные в массив и запускает его сортировку по очкам
-    //TODO: - вынести в геймменеджер функцию с возвратом отсортированного массива
+
     private func setupPlayersArray() {
         guard let gameManager = gameManager else { return }
-        let upperBound = gameManager.playerManager.playersCount() - 1
-        for index in 0...upperBound {
-            let name = gameManager.playerManager.getPlayerNameWithIndex(index)
-            let score = gameManager.playerManager.getPlayerScoreWithIndex(index)
-            playersScoreArray.append((name, score))
-        }
-        guard let player = gameManager.playerManager.currentPlayer else { return }
-        playersScoreArray.append((player.name, player.score))
-        
-        //вызов сортировки массива
-        sortPlayersArray()
+        playersScoreArray = gameManager.playerManager.playersSortedArray()
     }
     
     //сортировка массива по очкам
     private func sortPlayersArray() {
         playersScoreArray.sort { $0.1 > $1.1 }
+    }
+    
+    func setGameManager(data: AnyObject) {
+        guard let data = data as? GameManager else { return }
+        gameManager = data
     }
 }
 
@@ -55,8 +48,7 @@ public class ScoreScreenViewController: UIViewController {
 extension ScoreScreenViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let gameManager = gameManager else { return 0 }
-        //playersCount это не все игроки. Есть еще currentPlayer которого надо учитывать тоже
-        return gameManager.playerManager.playersCount() + 1
+        return gameManager.playerManager.playersCount()
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

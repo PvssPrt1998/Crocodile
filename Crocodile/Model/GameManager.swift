@@ -14,15 +14,30 @@ import Foundation
 public class GameManager {
     
     //MARK: - Properties
-    //PlayerManager
+    private var observers: Array<Observer> = []
+    
     public var playerManager: PlayerManager = PlayerManager()
+    
+    var isGameInProgress: Bool {
+        didSet {
+            if isGameInProgress == true {
+                setCurrentWord()
+            } else {
+                playerManager.setCurrentPlayer()
+            }
+            notifyObservers()
+        }
+    }
     
     //текущее слово
     public var currentWord: String?
     
     //выбранные слова из категорий
     public var chosenWords: Set<String> = []
-    public var removedWords: Set<String> = []
+    
+    init() {
+        isGameInProgress = false
+    }
     
     //Берет сеты слов из хранилища кор даты и объединяет их в массив chosen words
     public func addWordToSet(_ word: String) {
@@ -30,26 +45,36 @@ public class GameManager {
     }
     
     public func prepareForGame() {
-        playerManager.setCurrentPlayerFirst()
+        playerManager.setCurrentPlayer()
     }
     
     //Игрок нажал кнопку сдаться
     public func giveUpButtonPressed() {
         playerManager.decrementCurrentPlayerScore()
-        playerManager.makeNextPlayerCurrent()
+        isGameInProgress = false
     }
     
-    public func setCurrentWord() -> String {
-        let word = chosenWords.removeFirst()
-        removedWords.insert(word)
-        currentWord = word
-        return word
+    public func setCurrentWord() {
+        currentWord = chosenWords.removeFirst()
     }
     
     public func resetGameManager() {
         chosenWords = []
-        removedWords = []
         currentWord = nil
         playerManager = PlayerManager()
+    }
+}
+
+extension GameManager: Subject {
+    func registerObserver(_ observer: Observer) {
+        observers.append(observer)
+    }
+    
+    func removeObserver(_ observer: Observer) {
+        observers.removeAll { $0 === observer }
+    }
+    
+    func notifyObservers() {
+        observers.forEach { $0.update(isGameInProgress: isGameInProgress) }
     }
 }

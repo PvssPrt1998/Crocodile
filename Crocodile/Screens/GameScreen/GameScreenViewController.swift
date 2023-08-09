@@ -27,23 +27,6 @@ public final class GameScreenViewController: UIViewController {
         navigationTitleButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
     }
     
-    //TODO: - вывести геймСтейт в геймменеджер
-    enum GameState {
-        case inProgress
-        case waiting
-    }
-    
-    //TODO: - свойство геймСтейт тоже вынести в геймменеджер
-    var gameState: GameState = .waiting {
-        willSet {
-            if newValue == .waiting {
-                prepareViewsForWaitingState()
-            } else {
-                prepareViewsForInProgressState()
-            }
-        }
-    }
-    
     //MARK: - Outlets
     @IBOutlet weak var gameContainerView: UIView!
     @IBOutlet weak var wordLabel: UILabel!
@@ -77,24 +60,32 @@ public final class GameScreenViewController: UIViewController {
     //готовит вьюшки для состояния ожидания готовности игрока
     private func prepareViewsForWaitingState() {
         guard let gameManager = gameManager else { return }
-        let showingPlayerLabelText = gameManager.playerManager.currentPlayer?.name ?? ""
+        let showingPlayerLabelText = gameManager.playerManager.currentPlayer!.name
         showingPlayerLabel.text = "Показывает игрок: \(showingPlayerLabelText)"
         //отображаем лейбл с именем показывающего
         showingPlayerLabel.isHidden = false
         UIView.animate(withDuration: 0.2) {
             self.showingPlayerLabel.layer.opacity = 1.0
+            self.giveUpButton.layer.opacity = 0.0
+            self.wordLabel.layer.opacity = 0.0
         }
+        wordLabel.isHidden = true
+        giveUpButton.isHidden = true
         
         readyButton.setTitle("Готов!", for: .normal)
     }
     
     //готовит вьюшки для состояния "игра в процессе"
     private func prepareViewsForInProgressState() {
+        wordLabel.text = gameManager?.currentWord
+        wordLabel.isHidden = false
+        giveUpButton.isHidden = false
         UIView.animate(withDuration: 0.2) {
+            self.wordLabel.layer.opacity = 1.0
+            self.giveUpButton.layer.opacity = 1.0
             self.showingPlayerLabel.layer.opacity = 0.0
         }
         showingPlayerLabel.isHidden = true
-        
         readyButton.setTitle("Угадано!", for: .normal)
     }
     
@@ -119,27 +110,17 @@ public final class GameScreenViewController: UIViewController {
     //readyButtonAction
     //Кнопка готовности. При нажатии появляется слово и начинается таймер и кнопка меняется на кнопку "Угадано" и при нажатии появляется окно игроков
     @IBAction func readyButtonAction(_ sender: UIButton) {
-        if gameState == .waiting {
-            presentNewWord()
-        } else {
-            guard let navigationTitleButton = self.navigationItem.titleView as? UIButton  else { return }
-            navigationTitleButton.setTitle("Выберите угадавшего", for: .normal)
-            navigationTitleButton.setImage(UIImage(), for: .normal)
+        if gameManager?.isGameInProgress == true {
             presentIncreaseScoreScreenViewController()
-            hideWord()
+        } else {
+            
         }
-        gameStateToggle()
+        gameManager?.isGameInProgress.toggle()
     }
     
     //Нажата кнопка сдаться
     @IBAction func giveUpButtonAction(_ sender: UIButton) {
-        guard let gameManager = gameManager else { return }
-        gameManager.giveUpButtonPressed()
-        wordLabel.alpha = 0.0
-        giveUpButton.alpha = 0.0
-        giveUpButton.isHidden = true
-        gameState = .waiting
-        //readyButton.setTitle("Готов!", for: .normal)
+        gameManager?.giveUpButtonPressed()
     }
     
     @objc
@@ -147,41 +128,22 @@ public final class GameScreenViewController: UIViewController {
         delegate?.GameViewControllerDidPressRatingButton(self)
     }
     
-    //скрывает старое слово после сдачи или отгадывания
-    private func hideWord() {
-        wordLabel.alpha = 0.0
-        giveUpButton.alpha = 0.0
-        giveUpButton.isHidden = true
-    }
-    
-    //Отобразить нвоое слово
-    private func presentNewWord() {
-        //Проверяем остались ли вообще слова в сете. Если не остались, то все слова угаданы и надо вывести пользователю
-        //сообщение с предложением повторить или попробовать другие категории
-        guard let gameManager = gameManager, !gameManager.chosenWords.isEmpty else { return }
-        //берем слово из сета геймМенеджера и вставляем в лейбл
-        let word = gameManager.setCurrentWord()
-        wordLabel.text = word
-        //Показываем слово (опасити 1.0)
-        wordLabel.alpha = 1.0
-        giveUpButton.isHidden = false
-        giveUpButton.alpha = 1.0
-        //readyButton.setTitle("Угадано!", for: .normal)
-    }
-    
-    //переключает состояние игры на ожидание когда игрок будет готов показывать, либо наоборот
-    private func gameStateToggle() {
-        if gameState == .inProgress {
-            gameState = .waiting
-        } else {
-            gameState = .inProgress
-        }
-    }
-    
     //Срабатывает если кто-то угадал слово и показывающий игрок нажал на кнопку "Угадано!"
     //Открывает IncreasePlayerScoreScreenViewController где показывающий выбирает отгадавшего
     private func presentIncreaseScoreScreenViewController() {
+        prepareNavigationItemForIncreaseViewController()
         delegate?.GameViewControllerDidPressGuessed(self, onDismissed: onDismissed)
+    }
+    private func prepareNavigationItemForIncreaseViewController() {
+        guard let navigationTitleButton = self.navigationItem.titleView as? UIButton  else { return }
+        navigationTitleButton.setTitle("Выберите угадавшего", for: .normal)
+        navigationTitleButton.setImage(UIImage(), for: .normal)
+    }
+    
+    func setGameManager(data: AnyObject) {
+        guard let data = data as? GameManager else { return }
+        gameManager = data
+        gameManager?.registerObserver(self)
     }
 }
 
@@ -191,5 +153,15 @@ extension GameScreenViewController: StoryboardInstantiable {
         let viewController = instanceFromStoryboard()
         viewController.delegate = delegate
         return viewController
+    }
+}
+
+extension GameScreenViewController: Observer {
+    func update(isGameInProgress: Bool) {
+        if isGameInProgress == true {
+            prepareViewsForInProgressState()
+        } else {
+            prepareViewsForWaitingState()
+        }
     }
 }

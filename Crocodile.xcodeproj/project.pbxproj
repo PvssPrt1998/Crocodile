@@ -9,10 +9,15 @@
 /* Begin PBXBuildFile section */
 		991442082A63035A008DD377 /* UIColor + hexInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442072A63035A008DD377 /* UIColor + hexInit.swift */; };
 		9914420A2A6A697F008DD377 /* UIButton + InnerShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442092A6A697F008DD377 /* UIButton + InnerShadow.swift */; };
+		991442112A7CAF52008DD377 /* CategoryScreenViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442102A7CAF52008DD377 /* CategoryScreenViewController+CollectionViewDelegate.swift */; };
+		991442132A7CAFEF008DD377 /* CategoryScreenViewController+CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442122A7CAFEF008DD377 /* CategoryScreenViewController+CollectionViewDataSource.swift */; };
+		991442152A7CB205008DD377 /* CategoryViewController+CollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442142A7CB205008DD377 /* CategoryViewController+CollectionViewDelegateFlowLayout.swift */; };
+		991442172A7CDE0D008DD377 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442162A7CDE0D008DD377 /* Subject.swift */; };
+		991442192A7CDE1B008DD377 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442182A7CDE1B008DD377 /* Observer.swift */; };
 		9988F3CF29EE4A5A003D7FF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988F3CE29EE4A5A003D7FF3 /* AppDelegate.swift */; };
 		9988F3D129EE4A5A003D7FF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988F3D029EE4A5A003D7FF3 /* SceneDelegate.swift */; };
-		9988F3D329EE4A5A003D7FF3 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988F3D229EE4A5A003D7FF3 /* CategoryViewController.swift */; };
-		9988F3D629EE4A5A003D7FF3 /* Category.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9988F3D429EE4A5A003D7FF3 /* Category.storyboard */; };
+		9988F3D329EE4A5A003D7FF3 /* CategoryScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988F3D229EE4A5A003D7FF3 /* CategoryScreenViewController.swift */; };
+		9988F3D629EE4A5A003D7FF3 /* CategoryScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9988F3D429EE4A5A003D7FF3 /* CategoryScreen.storyboard */; };
 		9988F3D929EE4A5A003D7FF3 /* Crocodile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9988F3D729EE4A5A003D7FF3 /* Crocodile.xcdatamodeld */; };
 		9988F3DB29EE4A5B003D7FF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9988F3DA29EE4A5B003D7FF3 /* Assets.xcassets */; };
 		9988F3DE29EE4A5B003D7FF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9988F3DC29EE4A5B003D7FF3 /* LaunchScreen.storyboard */; };
@@ -58,11 +63,16 @@
 /* Begin PBXFileReference section */
 		991442072A63035A008DD377 /* UIColor + hexInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + hexInit.swift"; sourceTree = "<group>"; };
 		991442092A6A697F008DD377 /* UIButton + InnerShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + InnerShadow.swift"; sourceTree = "<group>"; };
+		991442102A7CAF52008DD377 /* CategoryScreenViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryScreenViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		991442122A7CAFEF008DD377 /* CategoryScreenViewController+CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryScreenViewController+CollectionViewDataSource.swift"; sourceTree = "<group>"; };
+		991442142A7CB205008DD377 /* CategoryViewController+CollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+CollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
+		991442162A7CDE0D008DD377 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
+		991442182A7CDE1B008DD377 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		9988F3CB29EE4A5A003D7FF3 /* Crocodile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crocodile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9988F3CE29EE4A5A003D7FF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9988F3D029EE4A5A003D7FF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9988F3D229EE4A5A003D7FF3 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
-		9988F3D529EE4A5A003D7FF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Category.storyboard; sourceTree = "<group>"; };
+		9988F3D229EE4A5A003D7FF3 /* CategoryScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScreenViewController.swift; sourceTree = "<group>"; };
+		9988F3D529EE4A5A003D7FF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CategoryScreen.storyboard; sourceTree = "<group>"; };
 		9988F3D829EE4A5A003D7FF3 /* Crocodile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Crocodile.xcdatamodel; sourceTree = "<group>"; };
 		9988F3DA29EE4A5B003D7FF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9988F3DD29EE4A5B003D7FF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -117,6 +127,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9914420F2A7CAF34008DD377 /* CategoryScreenViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9988F3D229EE4A5A003D7FF3 /* CategoryScreenViewController.swift */,
+				991442102A7CAF52008DD377 /* CategoryScreenViewController+CollectionViewDelegate.swift */,
+				991442122A7CAFEF008DD377 /* CategoryScreenViewController+CollectionViewDataSource.swift */,
+				991442142A7CB205008DD377 /* CategoryViewController+CollectionViewDelegateFlowLayout.swift */,
+			);
+			path = CategoryScreenViewController;
+			sourceTree = "<group>";
+		};
 		9988F3C229EE4A5A003D7FF3 = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +182,8 @@
 				9988F3FB29EE8BDA003D7FF3 /* GameManager.swift */,
 				99DFCB952A40974200481714 /* PlayerManager.swift */,
 				99DFCBA52A44037200481714 /* DELETETHIS.swift */,
+				991442162A7CDE0D008DD377 /* Subject.swift */,
+				991442182A7CDE1B008DD377 /* Observer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,8 +246,8 @@
 		9988F3FD29EE8DF4003D7FF3 /* CategoryScreen */ = {
 			isa = PBXGroup;
 			children = (
-				9988F3D429EE4A5A003D7FF3 /* Category.storyboard */,
-				9988F3D229EE4A5A003D7FF3 /* CategoryViewController.swift */,
+				9914420F2A7CAF34008DD377 /* CategoryScreenViewController */,
+				9988F3D429EE4A5A003D7FF3 /* CategoryScreen.storyboard */,
 				9988F3FE29EE8E1E003D7FF3 /* CategoryCollectionViewCell.swift */,
 			);
 			path = CategoryScreen;
@@ -377,7 +400,7 @@
 				99BB88FB29FA3B7000C65EE1 /* ScoreScreen.storyboard in Resources */,
 				9988F3FA29EE8A1F003D7FF3 /* AddPlayers.storyboard in Resources */,
 				9988F3DB29EE4A5B003D7FF3 /* Assets.xcassets in Resources */,
-				9988F3D629EE4A5A003D7FF3 /* Category.storyboard in Resources */,
+				9988F3D629EE4A5A003D7FF3 /* CategoryScreen.storyboard in Resources */,
 				99BB88F829FA387B00C65EE1 /* GameScreen.storyboard in Resources */,
 				999AC33F2A586FCD00F7D321 /* IncreasePlayerScoreScreen.storyboard in Resources */,
 			);
@@ -394,7 +417,7 @@
 				999AC3512A5BC92A00F7D321 /* CustomModalDismissalHandler.swift in Sources */,
 				99BB890829FA68B400C65EE1 /* NavigationRouter.swift in Sources */,
 				99DFCBEB2A55355E00481714 /* ScoreTableViewCell.swift in Sources */,
-				9988F3D329EE4A5A003D7FF3 /* CategoryViewController.swift in Sources */,
+				9988F3D329EE4A5A003D7FF3 /* CategoryScreenViewController.swift in Sources */,
 				99BB890429FA3E1100C65EE1 /* CategoryCoordinator.swift in Sources */,
 				9988F3FC29EE8BDA003D7FF3 /* GameManager.swift in Sources */,
 				999AC3442A5874E500F7D321 /* CutsomPresentationNavigationController.swift in Sources */,
@@ -404,8 +427,11 @@
 				99DFCBA62A44037200481714 /* DELETETHIS.swift in Sources */,
 				99DFCBAF2A44459F00481714 /* Word+CoreDataClass.swift in Sources */,
 				99DFCB962A40974200481714 /* PlayerManager.swift in Sources */,
+				991442112A7CAF52008DD377 /* CategoryScreenViewController+CollectionViewDelegate.swift in Sources */,
+				991442132A7CAFEF008DD377 /* CategoryScreenViewController+CollectionViewDataSource.swift in Sources */,
 				99DFCBB12A44459F00481714 /* Category+CoreDataClass.swift in Sources */,
 				999AC3492A5B061F00F7D321 /* ViewController+Convenience.swift in Sources */,
+				991442172A7CDE0D008DD377 /* Subject.swift in Sources */,
 				99BB890229FA3D5B00C65EE1 /* StoryboardInstantiable.swift in Sources */,
 				99BB88FF29FA3C5500C65EE1 /* GameScreenViewController.swift in Sources */,
 				99DFCBB02A44459F00481714 /* Word+CoreDataProperties.swift in Sources */,
@@ -424,9 +450,11 @@
 				9988F3ED29EE6705003D7FF3 /* Coordinator.swift in Sources */,
 				9914420A2A6A697F008DD377 /* UIButton + InnerShadow.swift in Sources */,
 				9988F3FF29EE8E1E003D7FF3 /* CategoryCollectionViewCell.swift in Sources */,
+				991442152A7CB205008DD377 /* CategoryViewController+CollectionViewDelegateFlowLayout.swift in Sources */,
 				99DFCB652A39772D00481714 /* GameScreenCoordinator.swift in Sources */,
 				99DFCBB22A44459F00481714 /* Category+CoreDataProperties.swift in Sources */,
 				99BB88F429EEB75100C65EE1 /* AddPlayersViewController.swift in Sources */,
+				991442192A7CDE1B008DD377 /* Observer.swift in Sources */,
 				99DFCBAA2A442E1200481714 /* CoreDataManager.swift in Sources */,
 				99BB88FD29FA3C1F00C65EE1 /* ScoreScreenViewController.swift in Sources */,
 			);
@@ -435,12 +463,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9988F3D429EE4A5A003D7FF3 /* Category.storyboard */ = {
+		9988F3D429EE4A5A003D7FF3 /* CategoryScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				9988F3D529EE4A5A003D7FF3 /* Base */,
 			);
-			name = Category.storyboard;
+			name = CategoryScreen.storyboard;
 			sourceTree = "<group>";
 		};
 		9988F3DC29EE4A5B003D7FF3 /* LaunchScreen.storyboard */ = {
@@ -580,7 +608,7 @@
 				INFOPLIST_FILE = Crocodile/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Category;
+				INFOPLIST_KEY_UIMainStoryboardFile = CategoryScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -611,7 +639,7 @@
 				INFOPLIST_FILE = Crocodile/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Category;
+				INFOPLIST_KEY_UIMainStoryboardFile = CategoryScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -11,5 +11,5 @@ import CoreData
 
 @objc(Category)
 public class Category: NSManagedObject {
-
+    public var isSelected: Bool = false
 }

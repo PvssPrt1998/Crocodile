@@ -11,5 +11,4 @@ class ScoreTableViewCell: UITableViewCell {
     
     @IBOutlet weak var playerNameLabel: UILabel!
     @IBOutlet weak var playerScoreLabel: UILabel!
-    
 }

@@ -19,22 +19,21 @@ public class PlayerManager {
     
     //MARK: - Methods
     //устанавливает текущим игроком первого игрока из массива игроков
-    public func setCurrentPlayerFirst() {
-        guard let player = players.first else { return }
+    public func setCurrentPlayer() {
+        let player = players.removeFirst()
         currentPlayer = player
-        players.removeFirst()
+        players.append(player)
     }
     
-    //Cледующий игрок
-    public func makeNextPlayerCurrent() {
-        //проверяет есть ли currentPlayer. Прикол в том что при вызове этого метода currentPlayer должен быть в любом случае
-        //Если вдруг его нет, значит в addPlayers контроллере можно пройти дальше без добавления второго игрока
-        guard let currentPlayer = currentPlayer else { return }
-        players.append(currentPlayer)
-        //прикол тот же, проверка не нужна по сути так как players.first будет всегда
-        guard let player = players.first else { return }
-        self.currentPlayer = player
-        players.removeFirst()
+    public func playersSortedArray() -> Array<(String, Int)> {
+        var sortedPlayers: Array<(String, Int)> = []
+        players.forEach { player in
+            let name = player.name
+            let score = player.score
+            sortedPlayers.append((name, score))
+        }
+        sortedPlayers.sort { $0.1 > $1.1 }
+        return sortedPlayers
     }
     
     //Операция с очками игрока
@@ -79,11 +78,6 @@ public class PlayerManager {
     public func incrementPlayerScore(by name: String) {
         guard let index = players.firstIndex(where: { $0.name == name }) else { return }
         players[index].score += 1
-    }
-    
-    //Забрать очко у игрока
-    public func decrementPlayerScore() {
-        
     }
     
     //забрать очко у текущего игрока (сдался или не смог нормально показать слово)

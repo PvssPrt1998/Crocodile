@@ -17,8 +17,8 @@ public class CategoryCoordinator: Coordinator {
         self.router = router
     }
 
-    public func present(animated: Bool, onDismissed: (() -> Void)?, data: (()->AnyObject?)?) {
-        let viewController = CategoryViewController.instantiate(delegate: self)
+    public func present(animated: Bool, onDismissed: (() -> Void)?, data: AnyObject?) {
+        let viewController = CategoryScreenViewController.instantiate(delegate: self)
         router.present(viewController, animated: animated, onDismissed: onDismissed)
     }
     
@@ -27,15 +27,12 @@ public class CategoryCoordinator: Coordinator {
     }
 }
 
-extension CategoryCoordinator: CategoryViewControllerDelegate {
-    public func categoryViewControllerDidPressNext(_ viewController: CategoryViewController, onDismissed: (()->Void)?) {
-        let gameManager = viewController.gameManager
+extension CategoryCoordinator: CategoryScreenViewControllerDelegate {
+    public func categoryViewControllerDidPressNext(_ viewController: CategoryScreenViewController, onDismissed: (()->Void)?) {
         let coordinator = AddPlayersCoordinator(router: router)
         presentChild(coordinator, animated: true, onDismissed: {
             onDismissed?()
-        }) {
-            return gameManager
-        }
+        }, passData: viewController.gameManager)
     }
 }
 

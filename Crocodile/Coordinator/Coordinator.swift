@@ -17,11 +17,11 @@ public protocol Coordinator: AnyObject {
     
     //MARK: - Methods
     //метод презент вызывается для презентации вьюконтроллера. В этот вьюконтроллер закидывается дисмисс хэндлер который срабатывает при его закрытии. И прокидывается экземпляр модели
-    func present(animated: Bool, onDismissed: (()->Void)?, data: (()->AnyObject?)?)
+    func present(animated: Bool, onDismissed: (()->Void)?, data: AnyObject?)
     //
     func dismiss(animated: Bool)
     //презент чайлд вызывает метод презент у координатора из чилдрен
-    func presentChild(_ child: Coordinator, animated: Bool, onDismissed: (()->Void)?, passData: (()->AnyObject?)?)
+    func presentChild(_ child: Coordinator, animated: Bool, onDismissed: (()->Void)?, passData: AnyObject?)
 }
 
 extension Coordinator {
@@ -30,7 +30,7 @@ extension Coordinator {
         router.dismiss(animated: animated)
     }
     
-    public func presentChild(_ child: Coordinator, animated: Bool, onDismissed: (()->Void)? = nil, passData: (()->AnyObject?)?) {
+    public func presentChild(_ child: Coordinator, animated: Bool, onDismissed: (()->Void)? = nil, passData: AnyObject?) {
         //добавляем чайлд координатор в массив чилдрен чтобы на него была сильная ссылка и он не деинициилиализировался
         children.append(child)
         //вызываем у координатора чайлд метод презент и прописываем он дисмисс клоужер. хватаем ссылку на координатор вызвавший презент чайлд
