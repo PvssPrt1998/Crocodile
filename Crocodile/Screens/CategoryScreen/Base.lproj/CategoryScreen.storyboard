@@ -78,42 +78,29 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="0OQ-rM-JUc"/>
                                 </connections>
                             </collectionView>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAR-Va-W2B">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9QR-JB-IRY" customClass="MainButton" customModule="Crocodile" customModuleProvider="target">
                                 <rect key="frame" x="59" y="740.66666666666663" width="275" height="52.333333333333371"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                            </view>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccB-S8-sLV">
-                                <rect key="frame" x="59" y="740.66666666666663" width="275" height="52.333333333333371"/>
-                                <color key="backgroundColor" red="1" green="0.60392156862745094" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Далее"/>
-                                <connections>
-                                    <action selector="nextButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rZk-2y-9nr"/>
-                                </connections>
+                                <buttonConfiguration key="configuration" style="plain"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.0" green="0.87450980392156863" blue="0.031372549019607843" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
+                            <constraint firstItem="9QR-JB-IRY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5oa-Hw-Cvf"/>
                             <constraint firstItem="PKM-8a-T6k" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ADX-N8-xh6"/>
+                            <constraint firstItem="9QR-JB-IRY" firstAttribute="height" secondItem="PKM-8a-T6k" secondAttribute="height" multiplier="0.07" id="BHr-rj-UDm"/>
                             <constraint firstItem="PKM-8a-T6k" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Gvi-Lh-JqL"/>
+                            <constraint firstItem="9QR-JB-IRY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.8" id="Lqg-w9-ofp"/>
                             <constraint firstAttribute="bottom" secondItem="PKM-8a-T6k" secondAttribute="bottom" id="MLY-uD-CY3"/>
-                            <constraint firstItem="ccB-S8-sLV" firstAttribute="bottom" secondItem="dAR-Va-W2B" secondAttribute="bottom" id="SLm-bO-pWV"/>
-                            <constraint firstItem="ccB-S8-sLV" firstAttribute="height" secondItem="PKM-8a-T6k" secondAttribute="height" multiplier="0.07" id="VIM-pb-DFO"/>
                             <constraint firstItem="PKM-8a-T6k" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Wef-n2-fSb"/>
-                            <constraint firstItem="ccB-S8-sLV" firstAttribute="width" secondItem="PKM-8a-T6k" secondAttribute="width" multiplier="0.7" id="dKk-AB-b4V"/>
-                            <constraint firstItem="dAR-Va-W2B" firstAttribute="leading" secondItem="ccB-S8-sLV" secondAttribute="leading" id="lYO-Fs-bQf"/>
-                            <constraint firstItem="ccB-S8-sLV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="raW-aH-bqt"/>
-                            <constraint firstItem="ccB-S8-sLV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.8" id="voC-nU-uru"/>
-                            <constraint firstItem="dAR-Va-W2B" firstAttribute="top" secondItem="ccB-S8-sLV" secondAttribute="top" id="xSQ-Dk-seg"/>
-                            <constraint firstItem="ccB-S8-sLV" firstAttribute="trailing" secondItem="dAR-Va-W2B" secondAttribute="trailing" id="ySW-eR-iwo"/>
+                            <constraint firstItem="9QR-JB-IRY" firstAttribute="width" secondItem="PKM-8a-T6k" secondAttribute="width" multiplier="0.7" id="gIW-Lf-Cwf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Выберите категорию" id="Gc0-Rv-iTC"/>
                     <connections>
-                        <outlet property="backgroundViewForButton" destination="dAR-Va-W2B" id="RAA-xM-eDF"/>
                         <outlet property="categoryCollectionView" destination="PKM-8a-T6k" id="wxs-8j-Ppt"/>
-                        <outlet property="nextButton" destination="ccB-S8-sLV" id="J2P-IW-vcl"/>
+                        <outlet property="mainButton" destination="9QR-JB-IRY" id="WpJ-ek-sgh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -139,13 +126,15 @@
             <point key="canvasLocation" x="54.198473282442748" y="-34.507042253521128"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="9QR-JB-IRY">
+            <size key="intrinsicContentSize" width="24" height="14"/>
+        </designable>
+    </designables>
     <resources>
         <image name="checkmark.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

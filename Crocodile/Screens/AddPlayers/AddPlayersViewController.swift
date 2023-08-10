@@ -45,8 +45,6 @@ public class AddPlayersViewController: UIViewController {
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         //фишка с внутренней тенью. Если сделать борт вокруг вьюшки и тень, то тень провалится внутрь при условии
-        //что backgroundColor = clear
-        nextButton.innerShadow(backgroundColor: UIColor(rgb: 0x00DF08).cgColor)
         backgroundViewForButton.layer.cornerRadius = nextButton.layer.cornerRadius
     }
     

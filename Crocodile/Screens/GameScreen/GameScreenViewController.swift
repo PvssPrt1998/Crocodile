@@ -45,7 +45,6 @@ public final class GameScreenViewController: UIViewController {
         super.viewDidLayoutSubviews()
         //фишка с внутренней тенью. Если сделать борт вокруг вьюшки и тень, то тень провалится внутрь при условии
         //что backgroundColor = clear
-        readyButton.innerShadow(backgroundColor: UIColor(rgb: 0x00DF08).cgColor)
         backgroundViewForButton.layer.cornerRadius = readyButton.layer.cornerRadius
         gameContainerView.layer.cornerRadius = backgroundViewForButton.layer.cornerRadius
     }

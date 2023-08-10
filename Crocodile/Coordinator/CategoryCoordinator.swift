@@ -28,7 +28,7 @@ public class CategoryCoordinator: Coordinator {
 }
 
 extension CategoryCoordinator: CategoryScreenViewControllerDelegate {
-    public func categoryViewControllerDidPressNext(_ viewController: CategoryScreenViewController, onDismissed: (()->Void)?) {
+    public func mainButtonDidPress(_ viewController: CategoryScreenViewController, onDismissed: (()->Void)?) {
         let coordinator = AddPlayersCoordinator(router: router)
         presentChild(coordinator, animated: true, onDismissed: {
             onDismissed?()

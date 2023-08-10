@@ -21,7 +21,7 @@
                                 <rect key="frame" x="64.666666666666686" y="806.33333333333337" width="301" height="65"/>
                                 <color key="backgroundColor" red="1" green="0.58039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="deviceRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aL9-Og-PVi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aL9-Og-PVi" customClass="MainButton" customModule="Crocodile" customModuleProvider="target">
                                 <rect key="frame" x="64.666666666666686" y="806.33333333333337" width="301" height="65"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -124,6 +124,11 @@
             <point key="canvasLocation" x="55.725190839694655" y="-27.464788732394368"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="aL9-Og-PVi">
+            <size key="intrinsicContentSize" width="122.33333333333333" height="34.333333333333336"/>
+        </designable>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

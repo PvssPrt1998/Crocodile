@@ -10,7 +10,7 @@ import CoreData
 
 //MARK: - CoordinatorDelegate
 public protocol CategoryScreenViewControllerDelegate: AnyObject {
-    func categoryViewControllerDidPressNext(_ viewController: CategoryScreenViewController, onDismissed: (()->Void)?)
+    func mainButtonDidPress(_ viewController: CategoryScreenViewController, onDismissed: (()->Void)?)
 }
 
 //MARK: - CategoryViewController
@@ -24,16 +24,13 @@ public class CategoryScreenViewController: UIViewController {
     public weak var delegate: CategoryScreenViewControllerDelegate?
 
     //MARK: - IBOutlets
+    @IBOutlet var mainButton: MainButton!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
-    @IBOutlet weak var nextButton: UIButton!
-    //тень у кнопки работает когда она прозрачная
-    //эта вьюшка бэкграунд для кнопки чтобы кнопка была цветной
-    @IBOutlet weak var backgroundViewForButton: UIView!
     
     private lazy var onDismissed: ()->Void = {
         self.gameManager.resetGameManager()
-        self.nextButton.layer.opacity = 0.0
-        self.backgroundViewForButton.layer.opacity = 0.0
+        //self.nextButton.layer.opacity = 0.0
+        //self.backgroundViewForButton.layer.opacity = 0.0
     }
     
     //MARK: - CoreData
@@ -67,15 +64,9 @@ public class CategoryScreenViewController: UIViewController {
         }
         
         importDataIfNeeded()
+        
+        mainButton.delegate = self
         //destroyPersistentStore()
-    }
-    
-    public override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        //фишка с внутренней тенью. Если сделать борт вокруг вьюшки и тень, то тень провалится внутрь при условии
-        //что backgroundColor = clear
-        nextButton.innerShadow(backgroundColor: UIColor(rgb: 0x00DF08).cgColor)
-        backgroundViewForButton.layer.cornerRadius = nextButton.layer.cornerRadius
     }
     
     //RESET DATABASE
@@ -93,13 +84,16 @@ public class CategoryScreenViewController: UIViewController {
     }
     
     //MARK: - Actions
-    @IBAction func nextButtonAction(_ sender: UIButton) {
-        setupSetFromSelectedCategories()
-        defer {
-            resetAllElementsCollectionView()
-        }
-        delegate?.categoryViewControllerDidPressNext(self, onDismissed: onDismissed)
+    @objc func doMyBest() {
+        print("lel")
     }
+    //    @IBAction func nextButtonAction(_ sender: UIButton) {
+//        setupSetFromSelectedCategories()
+//        defer {
+//            resetAllElementsCollectionView()
+//        }
+//        delegate?.categoryViewControllerDidPressNext(self, onDismissed: onDismissed)
+//    }
     
     private func setupSetFromSelectedCategories() {
         //проходим через все категории
@@ -140,8 +134,7 @@ public class CategoryScreenViewController: UIViewController {
     //анимация появления кнопки
     func animateNextButton(opacity: Float) {
         UIView.animate(withDuration: 0.2) {  [] in
-            self.backgroundViewForButton.layer.opacity = opacity
-            self.nextButton.layer.opacity = opacity
+            //self.nextButton.layer.opacity = opacity
         }
     }
 }
@@ -201,4 +194,13 @@ extension CategoryScreenViewController {
         
         coreDataStack.saveContext()
     }
+}
+
+
+extension CategoryScreenViewController: MainButtonDelegate {
+    func mainButtonTapped(_ button: MainButton) {
+        print("tapped")
+    }
+    
+    
 }

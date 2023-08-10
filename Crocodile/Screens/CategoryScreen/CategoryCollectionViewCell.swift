@@ -7,9 +7,8 @@
 
 import UIKit
 
+@IBDesignable
 class CategoryCollectionViewCell: UICollectionViewCell {
-    
-    public var cornerRadius: CGFloat = 5.0
 
     @IBOutlet weak var checkmark: UIImageView!
     @IBOutlet weak var categoryImageView: UIImageView!
@@ -26,6 +25,16 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layerCell()
+    }
+    
+    private func layerCell() {
+        let cornerRadius: CGFloat = 5.0
         //делаем круглые углы
         contentView.layer.cornerRadius = cornerRadius
         contentView.layer.masksToBounds = true
@@ -37,10 +46,6 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         layer.shadowOpacity = 1
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 5)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
     }
 }
