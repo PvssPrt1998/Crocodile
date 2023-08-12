@@ -17,18 +17,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QhL-2A-c6f">
-                                <rect key="frame" x="64.666666666666686" y="806.33333333333337" width="301" height="65"/>
-                                <color key="backgroundColor" red="1" green="0.58039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="deviceRGB"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aL9-Og-PVi" customClass="MainButton" customModule="Crocodile" customModuleProvider="target">
                                 <rect key="frame" x="64.666666666666686" y="806.33333333333337" width="301" height="65"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="ReadyButton"/>
-                                <connections>
-                                    <action selector="readyButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ULC-6L-6gz"/>
-                                </connections>
+                                <buttonConfiguration key="configuration" style="plain"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9V-Ta-UWb" userLabel="TimerAndWordView">
                                 <rect key="frame" x="43" y="139.66666666666663" width="344" height="466"/>
@@ -76,15 +69,11 @@
                         <color key="backgroundColor" red="0.0" green="0.87450980392156863" blue="0.031372549019607843" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="aL9-Og-PVi" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.7" id="0da-Rz-Fj0"/>
-                            <constraint firstItem="aL9-Og-PVi" firstAttribute="trailing" secondItem="QhL-2A-c6f" secondAttribute="trailing" id="2ai-ik-RJy"/>
                             <constraint firstItem="KUW-jy-k5A" firstAttribute="top" secondItem="M9V-Ta-UWb" secondAttribute="bottom" constant="8" symbolic="YES" id="BA5-Cd-rXx"/>
                             <constraint firstItem="aL9-Og-PVi" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="CKR-WB-iWZ"/>
                             <constraint firstItem="M9V-Ta-UWb" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.5" id="EnR-Up-rNI"/>
-                            <constraint firstItem="QhL-2A-c6f" firstAttribute="leading" secondItem="aL9-Og-PVi" secondAttribute="leading" id="Glb-ND-Xuv"/>
                             <constraint firstItem="KUW-jy-k5A" firstAttribute="leading" secondItem="M9V-Ta-UWb" secondAttribute="leading" id="KqJ-gl-oBx"/>
                             <constraint firstItem="aL9-Og-PVi" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="R8Y-uD-hNY"/>
-                            <constraint firstItem="QhL-2A-c6f" firstAttribute="top" secondItem="aL9-Og-PVi" secondAttribute="top" id="dSy-LI-N59"/>
-                            <constraint firstItem="QhL-2A-c6f" firstAttribute="bottom" secondItem="aL9-Og-PVi" secondAttribute="bottom" id="fti-1I-aVd"/>
                             <constraint firstItem="M9V-Ta-UWb" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="hqK-C3-BNo"/>
                             <constraint firstItem="aL9-Og-PVi" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" multiplier="1.8" id="iac-c3-t1u"/>
                             <constraint firstItem="M9V-Ta-UWb" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.8" id="m8g-eT-8HH"/>
@@ -93,10 +82,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ym3-wf-1yc"/>
                     <connections>
-                        <outlet property="backgroundViewForButton" destination="QhL-2A-c6f" id="Cro-oq-Lxa"/>
                         <outlet property="gameContainerView" destination="M9V-Ta-UWb" id="l6u-Bh-qfL"/>
                         <outlet property="giveUpButton" destination="KUW-jy-k5A" id="Ly0-hM-jQ1"/>
-                        <outlet property="readyButton" destination="aL9-Og-PVi" id="AaF-Wh-8r9"/>
+                        <outlet property="mainButton" destination="aL9-Og-PVi" id="AaF-Wh-8r9"/>
                         <outlet property="showingPlayerLabel" destination="I73-vl-UQu" id="We6-iM-3Fe"/>
                         <outlet property="wordLabel" destination="2Hb-8m-iah" id="ZnU-xC-bvE"/>
                     </connections>
@@ -126,7 +114,7 @@
     </scenes>
     <designables>
         <designable name="aL9-Og-PVi">
-            <size key="intrinsicContentSize" width="122.33333333333333" height="34.333333333333336"/>
+            <size key="intrinsicContentSize" width="24" height="14"/>
         </designable>
     </designables>
     <resources>

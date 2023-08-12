@@ -17,8 +17,9 @@ public class GameManager {
     private var observers: Array<Observer> = []
     
     public var playerManager: PlayerManager = PlayerManager()
+    var wordManager: WordManager = WordManager()
     
-    var isGameInProgress: Bool {
+    var isGameInProgress: Bool = false {
         didSet {
             if isGameInProgress == true {
                 setCurrentWord()
@@ -35,10 +36,8 @@ public class GameManager {
     //выбранные слова из категорий
     public var chosenWords: Set<String> = []
     
-    init() {
-        isGameInProgress = false
-    }
-    
+    //MARK: - Methods
+    //MARK: - Public methods
     //Берет сеты слов из хранилища кор даты и объединяет их в массив chosen words
     public func addWordToSet(_ word: String) {
         chosenWords.insert(word)
@@ -49,7 +48,7 @@ public class GameManager {
     }
     
     //Игрок нажал кнопку сдаться
-    public func giveUpButtonPressed() {
+    public func giveUp() {
         playerManager.decrementCurrentPlayerScore()
         isGameInProgress = false
     }

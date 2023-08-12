@@ -61,4 +61,31 @@ class MainButton: UIButton {
         mainButton.layer.masksToBounds = false
         mainButton.layer.cornerRadius = mainButton.bounds.width / 20
     }
+    
+    override func setTitle(_ title: String?, for state: UIControl.State) {
+        mainButton.setTitle(title, for: state)
+    }
+    
+    func hide() {
+        mainButton.isEnabled = false
+        mainButton.layer.opacity = 0.0
+    }
+    
+    func makeVisible() {
+        mainButton.isEnabled = true
+        animateMainButton(opacity: 1.0, with: 0.2)
+    }
+    
+    func makeInvisible() {
+        animateMainButton(opacity: 0.0, with: 0.2)
+        mainButton.isEnabled = false
+    }
+    
+    //Метод с анимацией появления mainButton либо сокрытия
+    private func animateMainButton(opacity: Float, with duration: CGFloat) {
+        UIView.animate(withDuration: duration) {  [] in
+            //меняем прозрачность
+            self.mainButton.layer.opacity = opacity
+        }
+    }
 }

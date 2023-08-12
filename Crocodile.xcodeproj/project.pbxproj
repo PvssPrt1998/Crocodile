@@ -38,6 +38,13 @@
 		999AC34D2A5BC38100F7D321 /* CustomModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AC34C2A5BC38100F7D321 /* CustomModalPresentationController.swift */; };
 		999AC3512A5BC92A00F7D321 /* CustomModalDismissalHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AC3502A5BC92A00F7D321 /* CustomModalDismissalHandler.swift */; };
 		999AC3532A5EB77300F7D321 /* PlayersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AC3522A5EB77300F7D321 /* PlayersTableViewCell.swift */; };
+		99A121922A84FE7C00DF803A /* CategoryScreenViewController+mainButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A121912A84FE7C00DF803A /* CategoryScreenViewController+mainButtonDelegate.swift */; };
+		99A121942A84FFAF00DF803A /* AddPlayerViewController+mainButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A121932A84FFAF00DF803A /* AddPlayerViewController+mainButtonDelegate.swift */; };
+		99A121962A8500E200DF803A /* AddPlayerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A121952A8500E200DF803A /* AddPlayerViewController+UITableViewDataSource.swift */; };
+		99A121982A85012000DF803A /* AddPlayersViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A121972A85012000DF803A /* AddPlayersViewController+UITableViewDelegate.swift */; };
+		99A1219A2A85069400DF803A /* AddPlayerViewController+PlayerButtonActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A121992A85069400DF803A /* AddPlayerViewController+PlayerButtonActionDelegate.swift */; };
+		99A1219C2A87812400DF803A /* GameScreenViewController+MainButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1219B2A87812400DF803A /* GameScreenViewController+MainButtonDelegate.swift */; };
+		99A1219E2A87875F00DF803A /* WordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1219D2A87875F00DF803A /* WordManager.swift */; };
 		99BB88F429EEB75100C65EE1 /* AddPlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB88F329EEB75100C65EE1 /* AddPlayersViewController.swift */; };
 		99BB88F629EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB88F529EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift */; };
 		99BB88F829FA387B00C65EE1 /* GameScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99BB88F729FA387B00C65EE1 /* GameScreen.storyboard */; };
@@ -95,6 +102,13 @@
 		999AC34C2A5BC38100F7D321 /* CustomModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalPresentationController.swift; sourceTree = "<group>"; };
 		999AC3502A5BC92A00F7D321 /* CustomModalDismissalHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalDismissalHandler.swift; sourceTree = "<group>"; };
 		999AC3522A5EB77300F7D321 /* PlayersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersTableViewCell.swift; sourceTree = "<group>"; };
+		99A121912A84FE7C00DF803A /* CategoryScreenViewController+mainButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryScreenViewController+mainButtonDelegate.swift"; sourceTree = "<group>"; };
+		99A121932A84FFAF00DF803A /* AddPlayerViewController+mainButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddPlayerViewController+mainButtonDelegate.swift"; sourceTree = "<group>"; };
+		99A121952A8500E200DF803A /* AddPlayerViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddPlayerViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
+		99A121972A85012000DF803A /* AddPlayersViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddPlayersViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		99A121992A85069400DF803A /* AddPlayerViewController+PlayerButtonActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddPlayerViewController+PlayerButtonActionDelegate.swift"; sourceTree = "<group>"; };
+		99A1219B2A87812400DF803A /* GameScreenViewController+MainButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScreenViewController+MainButtonDelegate.swift"; sourceTree = "<group>"; };
+		99A1219D2A87875F00DF803A /* WordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordManager.swift; sourceTree = "<group>"; };
 		99BB88F329EEB75100C65EE1 /* AddPlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayersViewController.swift; sourceTree = "<group>"; };
 		99BB88F529EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayerTableViewCell.swift; sourceTree = "<group>"; };
 		99BB88F729FA387B00C65EE1 /* GameScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GameScreen.storyboard; sourceTree = "<group>"; };
@@ -136,6 +150,7 @@
 				991442102A7CAF52008DD377 /* CategoryScreenViewController+CollectionViewDelegate.swift */,
 				991442122A7CAFEF008DD377 /* CategoryScreenViewController+CollectionViewDataSource.swift */,
 				991442142A7CB205008DD377 /* CategoryViewController+CollectionViewDelegateFlowLayout.swift */,
+				99A121912A84FE7C00DF803A /* CategoryScreenViewController+mainButtonDelegate.swift */,
 			);
 			path = CategoryScreenViewController;
 			sourceTree = "<group>";
@@ -189,13 +204,15 @@
 		9988F3E529EE4A6D003D7FF3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				99DFCB992A43FCD600481714 /* CoreData */,
 				9988F3E629EE4A7C003D7FF3 /* Player.swift */,
 				9988F3FB29EE8BDA003D7FF3 /* GameManager.swift */,
 				99DFCB952A40974200481714 /* PlayerManager.swift */,
+				99A1219D2A87875F00DF803A /* WordManager.swift */,
 				99DFCBA52A44037200481714 /* DELETETHIS.swift */,
 				991442162A7CDE0D008DD377 /* Subject.swift */,
 				991442182A7CDE1B008DD377 /* Observer.swift */,
+				99DFCB992A43FCD600481714 /* CoreData */,
+				99DFCBA42A43FF4500481714 /* ManagedObjects */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -242,6 +259,10 @@
 				9988F3F929EE8A1F003D7FF3 /* AddPlayers.storyboard */,
 				99BB88F329EEB75100C65EE1 /* AddPlayersViewController.swift */,
 				99BB88F529EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift */,
+				99A121932A84FFAF00DF803A /* AddPlayerViewController+mainButtonDelegate.swift */,
+				99A121952A8500E200DF803A /* AddPlayerViewController+UITableViewDataSource.swift */,
+				99A121972A85012000DF803A /* AddPlayersViewController+UITableViewDelegate.swift */,
+				99A121992A85069400DF803A /* AddPlayerViewController+PlayerButtonActionDelegate.swift */,
 			);
 			path = AddPlayers;
 			sourceTree = "<group>";
@@ -251,6 +272,7 @@
 			children = (
 				99BB88F729FA387B00C65EE1 /* GameScreen.storyboard */,
 				99BB88FE29FA3C5500C65EE1 /* GameScreenViewController.swift */,
+				99A1219B2A87812400DF803A /* GameScreenViewController+MainButtonDelegate.swift */,
 			);
 			path = GameScreen;
 			sourceTree = "<group>";
@@ -258,9 +280,9 @@
 		9988F3FD29EE8DF4003D7FF3 /* CategoryScreen */ = {
 			isa = PBXGroup;
 			children = (
-				9914420F2A7CAF34008DD377 /* CategoryScreenViewController */,
 				9988F3D429EE4A5A003D7FF3 /* CategoryScreen.storyboard */,
 				9988F3FE29EE8E1E003D7FF3 /* CategoryCollectionViewCell.swift */,
+				9914420F2A7CAF34008DD377 /* CategoryScreenViewController */,
 			);
 			path = CategoryScreen;
 			sourceTree = "<group>";
@@ -333,7 +355,6 @@
 			children = (
 				99DFCB9A2A43FD2B00481714 /* CoreDataStack.swift */,
 				99DFCBA92A442E1200481714 /* CoreDataManager.swift */,
-				99DFCBA42A43FF4500481714 /* ManagedObjects */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -427,10 +448,12 @@
 			files = (
 				99BB88F629EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift in Sources */,
 				999AC3512A5BC92A00F7D321 /* CustomModalDismissalHandler.swift in Sources */,
+				99A121962A8500E200DF803A /* AddPlayerViewController+UITableViewDataSource.swift in Sources */,
 				99BB890829FA68B400C65EE1 /* NavigationRouter.swift in Sources */,
 				99DFCBEB2A55355E00481714 /* ScoreTableViewCell.swift in Sources */,
 				9988F3D329EE4A5A003D7FF3 /* CategoryScreenViewController.swift in Sources */,
 				99BB890429FA3E1100C65EE1 /* CategoryCoordinator.swift in Sources */,
+				99A121922A84FE7C00DF803A /* CategoryScreenViewController+mainButtonDelegate.swift in Sources */,
 				9988F3FC29EE8BDA003D7FF3 /* GameManager.swift in Sources */,
 				999AC3442A5874E500F7D321 /* CutsomPresentationNavigationController.swift in Sources */,
 				999AC3462A5AFE5D00F7D321 /* IncreaseScoreScreenViewController.swift in Sources */,
@@ -451,10 +474,13 @@
 				9988F3D929EE4A5A003D7FF3 /* Crocodile.xcdatamodeld in Sources */,
 				9988F3E729EE4A7C003D7FF3 /* Player.swift in Sources */,
 				999AC3422A5872A800F7D321 /* IncreasePlayerScoreScreen.swift in Sources */,
+				99A1219C2A87812400DF803A /* GameScreenViewController+MainButtonDelegate.swift in Sources */,
+				99A121982A85012000DF803A /* AddPlayersViewController+UITableViewDelegate.swift in Sources */,
 				9988F3EB29EE66EF003D7FF3 /* Router.swift in Sources */,
 				99DFCB9B2A43FD2B00481714 /* CoreDataStack.swift in Sources */,
 				999AC3532A5EB77300F7D321 /* PlayersTableViewCell.swift in Sources */,
 				9914422C2A84C278008DD377 /* MainButton.swift in Sources */,
+				99A1219A2A85069400DF803A /* AddPlayerViewController+PlayerButtonActionDelegate.swift in Sources */,
 				99BB890C29FA7E2600C65EE1 /* AddPlayersCoordinator.swift in Sources */,
 				999AC34B2A5BC31C00F7D321 /* CustomModalTransitioningDelegate.swift in Sources */,
 				9988F3D129EE4A5A003D7FF3 /* SceneDelegate.swift in Sources */,
@@ -462,8 +488,10 @@
 				9988F3ED29EE6705003D7FF3 /* Coordinator.swift in Sources */,
 				9914420A2A6A697F008DD377 /* UIButton + InnerShadow.swift in Sources */,
 				9988F3FF29EE8E1E003D7FF3 /* CategoryCollectionViewCell.swift in Sources */,
+				99A1219E2A87875F00DF803A /* WordManager.swift in Sources */,
 				991442152A7CB205008DD377 /* CategoryViewController+CollectionViewDelegateFlowLayout.swift in Sources */,
 				99DFCB652A39772D00481714 /* GameScreenCoordinator.swift in Sources */,
+				99A121942A84FFAF00DF803A /* AddPlayerViewController+mainButtonDelegate.swift in Sources */,
 				99DFCBB22A44459F00481714 /* Category+CoreDataProperties.swift in Sources */,
 				99BB88F429EEB75100C65EE1 /* AddPlayersViewController.swift in Sources */,
 				991442192A7CDE1B008DD377 /* Observer.swift in Sources */,

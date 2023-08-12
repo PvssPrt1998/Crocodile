@@ -23,7 +23,7 @@ class AddPlayerTableViewCell: UITableViewCell {
     @IBOutlet weak var playerButton: UIButton!
     
     //Делегат для того чтобы прокинуть sender UIButton во viewController
-    weak var delegate: playerButtonActionDelegate? 
+    weak var delegate: PlayerButtonActionDelegate? 
     
     //массив UIImage галочка и крестик
     let checkmarkImageArray = [UIImage(systemName: "checkmark.circle")!, UIImage(systemName: "clear")!]

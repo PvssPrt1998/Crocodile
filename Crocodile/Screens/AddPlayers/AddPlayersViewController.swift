@@ -14,7 +14,7 @@ public protocol AddPlayersViewControllerDelegate: AnyObject {
 
 //MARK: - PlayerButtonActionDelegate
 //Используется для передачи sender из cell во viewController
-public protocol playerButtonActionDelegate: AnyObject {
+public protocol PlayerButtonActionDelegate: AnyObject {
     func playerButtonPressed(sender: UIButton)
     func isPlayerAddedNow(_ player: String)-> Bool
 }
@@ -28,170 +28,19 @@ public class AddPlayersViewController: UIViewController {
     //GameManager
     var gameManager: GameManager?
     
-    private lazy var onDismissed: ()->Void = {
+    lazy var onDismissed: ()->Void = {
         self.gameManager?.resetGameManager()
     }
     
     //MARK: - Outlets
     @IBOutlet weak var addPlayersTableView: UITableView!
-    @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var backgroundViewForButton: UIView!
+    @IBOutlet weak var mainButton: MainButton!
     
     //MARK: - ViewControlletLifeCycle
     public override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    public override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        //фишка с внутренней тенью. Если сделать борт вокруг вьюшки и тень, то тень провалится внутрь при условии
-        backgroundViewForButton.layer.cornerRadius = nextButton.layer.cornerRadius
-    }
-    
-    //Кнопка перехода к экрану игры
-    @IBAction func nextButtonAction(_ sender: UIButton) {
-        gameManager?.prepareForGame()
-        delegate?.addPlayersViewControllerDidPressNext(self, onDismissed: onDismissed)
-    }
-    
-    
-    //Удалить строку по indexPath
-    private func deleteRow(by indexPath: IndexPath) {
-        addPlayersTableView.cellForRow(at: indexPath)?.prepareForReuse()
-        addPlayersTableView.beginUpdates()
-        addPlayersTableView.deleteRows(at: [indexPath], with: .automatic)
-        addPlayersTableView.endUpdates()
-        //Проверяем есть ли игроки и нужно ли отображать nextButton. Если нет, то скрыть
-        nextButtonAvailabilityCheck()
-    }
-    
-    //Добавить пустую строку для ввода в конец таблицы
-    private func insertRow() {
-        guard let gameManager = gameManager else { return }
-        //Инициализируем indexPath по нужному значению
-        let playersCount = gameManager.playerManager.playersCount()
-        let indexPath = IndexPath(row: playersCount, section: 0)
-        //
-        addPlayersTableView.beginUpdates()
-        addPlayersTableView.insertRows(at: [indexPath], with: .automatic)
-        addPlayersTableView.endUpdates()
-        //Проверяем есть ли игроки и нужно ли отображать nextButton. Если нет, то скрыть
-        nextButtonAvailabilityCheck()
-    }
-    
-    //Метод, проверяющий можно ли отображать nextButton или нужно скрыть
-    private func nextButtonAvailabilityCheck() {
-        guard let gameManager = gameManager else { return }
-        //Если игроки не введены
-        let playersCount = gameManager.playerManager.playersCount()
-        //если игроков меньше двух, то играть не получится кнопка. не отобразится просто (игра не для одного)
-        if playersCount < 2 {
-            animateNextButton(opacity: 0)
-            //Выключаем кнопку
-            nextButton.isEnabled = false
-        } else {
-            animateNextButton(opacity: 1.0)
-            //Включаем кнопку
-            nextButton.isEnabled = true
-        }
-    }
-    
-    //Метод с анимацией появления nextButton либо сокрытия
-    private func animateNextButton(opacity: Float) {
-        UIView.animate(withDuration: 0.2) {  [] in
-            //меняем прозрачность
-            self.backgroundViewForButton.layer.opacity = opacity
-            self.nextButton.layer.opacity = opacity
-        }
-    }
-}
-//
-
-//MARK: -ChangeDescriptionDelegate
-extension AddPlayersViewController: playerButtonActionDelegate {
-    
-    public func isPlayerAddedNow(_ player: String) -> Bool {
-        gameManager?.playerManager.isPlayerAddedNow(player) ?? false
-    }
-    
-    //В cell классе нажимается кнопка, мы получаем эту кнопку и ищем для неё супервью и так далее пока не найдем сслыку на cell
-    private func getCellByUIView(_ view: UIView)-> AddPlayerTableViewCell? {
-        //берем супервью для баттона
-        var superview = view.superview
-        //если вью не cell то берем супервью для вью пока не будет cell
-        while let view = superview, !(view is UITableViewCell) {
-            superview = view.superview
-        }
-        //проверяем можем ли пропарсить для нашего кастомного целл и получаем целл типа нашего целл
-        guard let cell = superview as? AddPlayerTableViewCell else { return nil }
-        return cell
-    }
-    
-    //и используя аутлет таблицы получаем indexPath имея cell
-    private func getIndexPathBy(cell: AddPlayerTableViewCell)-> IndexPath? {
-        //получаем индекс пасс если можем
-        guard let indexPath = addPlayersTableView.indexPath(for: cell) else { return nil }
-        //возвращаем indexPath
-        return indexPath
-    }
-    //метод который вызывается при нажатии на кнопку в целл классе
-    public func playerButtonPressed(sender: UIButton) {
-        //проверяем cell и indexPath на nil
-        guard let gameManager = gameManager,
-              let cell = getCellByUIView(sender),
-              let indexPath = getIndexPathBy(cell: cell)
-              //gameManager.playerManager.isPlayerAddedNow(cell.)
-        else { return }
-        
-        //Если игрок не добавлен, то добавляем
-        if cell.isPlayerAdded == false {
-            //force unwrap потому что текст точно есть в текстфилде. Если бы текста не было, кнопка бы не нажалась и метод бы не сработал
-            let playerName = cell.playerNameTextField.text!
-            //добавляем игрока
-            gameManager.playerManager.addPlayer(playerName)
-            //создаем пустую строку в конце таблицы для ввода имени нового игрока
-            insertRow()
-        } else { //Если игрок добавлен и мы нажимаем крестик
-            //удаляем игрока в по индекс пасс. В таблице и в массиве игрок на одном и том же индексе.
-            gameManager.playerManager.removePlayer(by: indexPath.row)
-            //Удаляем строку по индекс пассу
-            deleteRow(by: indexPath)
-        }
-    }
-    
-    func setGameManager(data: AnyObject) {
-        guard let data = data as? GameManager else { return }
-        gameManager = data
-    }
-}
-
-//MARK: - UITableViewDelegate
-extension AddPlayersViewController: UITableViewDelegate {
-    //Событие после нажатия на строку
-    public func tableView(_ tableView: UITableView, didSelectRowAt: IndexPath) {
-        tableView.deselectRow(at: didSelectRowAt, animated: false)
-    }
-}
-
-//MARK: - UITableViewDataSource
-extension AddPlayersViewController: UITableViewDataSource {
-    //Количество строк в секции таблицы (равно количеству игроков). В этой таблице только одна секция с игроками.
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let gameManager = gameManager else { return 0 }
-        return gameManager.playerManager.playersCount() + 1
-    }
-    //Инициализируем строку здесь
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "addPlayerCell", for: indexPath) as? AddPlayerTableViewCell else {
-            return UITableViewCell()
-        }
-        //Сбрасываем cell чтобы у нас не при добавлении не появлялись заполненные cell
-        cell.resetCell()
-        //Назначаем делегатом себя, чтобы при нажатии на кнопку cell срабатывал метод вьюконтроллера
-        cell.delegate = self
-        //Выключаем видимый эффект выделения ячейки
-        cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        return cell
+        mainButton.hide()
+        mainButton.delegate = self
     }
 }
 

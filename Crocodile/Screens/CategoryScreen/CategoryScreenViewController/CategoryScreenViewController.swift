@@ -27,10 +27,9 @@ public class CategoryScreenViewController: UIViewController {
     @IBOutlet var mainButton: MainButton!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
-    private lazy var onDismissed: ()->Void = {
+    lazy var onDismissed: ()->Void = {
         self.gameManager.resetGameManager()
-        //self.nextButton.layer.opacity = 0.0
-        //self.backgroundViewForButton.layer.opacity = 0.0
+        self.mainButton.hide()
     }
     
     //MARK: - CoreData
@@ -56,17 +55,21 @@ public class CategoryScreenViewController: UIViewController {
     //MARK: - ViewControllerLifeCycle
     public override func viewDidLoad() {
         super.viewDidLoad()
-        //performFetch
+        performFecth()
+        
+        importDataIfNeeded()
+        
+        mainButton.hide()
+        mainButton.delegate = self
+        //destroyPersistentStore()
+    }
+    
+    private func performFecth() {
         do {
           try fetchedResultsController.performFetch()
         } catch let error as NSError {
           print("Fetching error: \(error), \(error.userInfo)")
         }
-        
-        importDataIfNeeded()
-        
-        mainButton.delegate = self
-        //destroyPersistentStore()
     }
     
     //RESET DATABASE
@@ -82,20 +85,8 @@ public class CategoryScreenViewController: UIViewController {
             print("Unable to destroy persistent store: \(error) - \(error.localizedDescription)")
        }
     }
-    
-    //MARK: - Actions
-    @objc func doMyBest() {
-        print("lel")
-    }
-    //    @IBAction func nextButtonAction(_ sender: UIButton) {
-//        setupSetFromSelectedCategories()
-//        defer {
-//            resetAllElementsCollectionView()
-//        }
-//        delegate?.categoryViewControllerDidPressNext(self, onDismissed: onDismissed)
-//    }
-    
-    private func setupSetFromSelectedCategories() {
+
+    func setupSetFromSelectedCategories() {
         //проходим через все категории
         fetchedResultsController.fetchedObjects?.forEach({ category in
             //смотрим есть ли выбранные
@@ -112,7 +103,7 @@ public class CategoryScreenViewController: UIViewController {
     }
     
     //сбрасывает элементы коллекшн вью к значениям по умолчанию
-    private func resetAllElementsCollectionView() {
+    func resetAllElementsCollectionView() {
         loopThroughEachCellWith { cell, _ in
             //снимается выделение с каждого cell
             cell.prepareForReuse()
@@ -128,13 +119,6 @@ public class CategoryScreenViewController: UIViewController {
             let indexPath = IndexPath(item: index, section: 0)
             guard let cell = categoryCollectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return }
             action(cell,indexPath)
-        }
-    }
-    
-    //анимация появления кнопки
-    func animateNextButton(opacity: Float) {
-        UIView.animate(withDuration: 0.2) {  [] in
-            //self.nextButton.layer.opacity = opacity
         }
     }
 }
@@ -194,13 +178,4 @@ extension CategoryScreenViewController {
         
         coreDataStack.saveContext()
     }
-}
-
-
-extension CategoryScreenViewController: MainButtonDelegate {
-    func mainButtonTapped(_ button: MainButton) {
-        print("tapped")
-    }
-    
-    
 }

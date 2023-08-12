@@ -20,8 +20,8 @@ extension CategoryScreenViewController: UICollectionViewDelegate {
         fetchedResultsController.object(at: indexPath).isSelected = !cell.checkmark.isHidden
         
         if isAnyCategorySelected() {
-            animateNextButton(opacity: 1.0)
-        } else { animateNextButton(opacity: 0.0) }
+            mainButton.makeVisible()
+        } else { mainButton.makeInvisible() }
     }
     
     //isAnyCategorySelected Есть ли выбранные категории
@@ -33,12 +33,12 @@ extension CategoryScreenViewController: UICollectionViewDelegate {
     
     //Исчезновение кнопки когда начинаем скроллить
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        animateNextButton(opacity: 0.0)
+        mainButton.makeInvisible()
     }
     
     //Появление кнопки когда палец перестал касаться экрана
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        animateNextButton(opacity: 1.0)
+        mainButton.makeVisible()
     }
     
 }

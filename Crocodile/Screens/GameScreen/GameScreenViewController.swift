@@ -30,10 +30,9 @@ public final class GameScreenViewController: UIViewController {
     //MARK: - Outlets
     @IBOutlet weak var gameContainerView: UIView!
     @IBOutlet weak var wordLabel: UILabel!
-    @IBOutlet weak var readyButton: UIButton!
+    @IBOutlet weak var mainButton: MainButton!
     @IBOutlet weak var giveUpButton: UIButton!
     @IBOutlet weak var showingPlayerLabel: UILabel!
-    @IBOutlet weak var backgroundViewForButton: UIView!
     
     //MARK: - ViewController LifeCycle
     public override func viewDidLoad() {
@@ -41,19 +40,12 @@ public final class GameScreenViewController: UIViewController {
         setupViewConfigs()
     }
     
-    public override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        //фишка с внутренней тенью. Если сделать борт вокруг вьюшки и тень, то тень провалится внутрь при условии
-        //что backgroundColor = clear
-        backgroundViewForButton.layer.cornerRadius = readyButton.layer.cornerRadius
-        gameContainerView.layer.cornerRadius = backgroundViewForButton.layer.cornerRadius
-    }
-    
     //MARK: - Configure views methods
     //задает нужный текст для лейблов и кнопок при загрузке
     private func setupViewConfigs() {
         configMiddleBarButton()
         prepareViewsForWaitingState()
+        mainButton.delegate = self
     }
     
     //готовит вьюшки для состояния ожидания готовности игрока
@@ -71,7 +63,7 @@ public final class GameScreenViewController: UIViewController {
         wordLabel.isHidden = true
         giveUpButton.isHidden = true
         
-        readyButton.setTitle("Готов!", for: .normal)
+        mainButton.setTitle("Готов!", for: .normal)
     }
     
     //готовит вьюшки для состояния "игра в процессе"
@@ -85,7 +77,7 @@ public final class GameScreenViewController: UIViewController {
             self.showingPlayerLabel.layer.opacity = 0.0
         }
         showingPlayerLabel.isHidden = true
-        readyButton.setTitle("Угадано!", for: .normal)
+        mainButton.setTitle("Угадано!", for: .normal)
     }
     
     //Кнопка в titleView navigationBar
@@ -106,20 +98,9 @@ public final class GameScreenViewController: UIViewController {
     }
     
     //MARK: - ButtonActions
-    //readyButtonAction
-    //Кнопка готовности. При нажатии появляется слово и начинается таймер и кнопка меняется на кнопку "Угадано" и при нажатии появляется окно игроков
-    @IBAction func readyButtonAction(_ sender: UIButton) {
-        if gameManager?.isGameInProgress == true {
-            presentIncreaseScoreScreenViewController()
-        } else {
-            
-        }
-        gameManager?.isGameInProgress.toggle()
-    }
-    
     //Нажата кнопка сдаться
     @IBAction func giveUpButtonAction(_ sender: UIButton) {
-        gameManager?.giveUpButtonPressed()
+        gameManager?.giveUp()
     }
     
     @objc
@@ -129,7 +110,7 @@ public final class GameScreenViewController: UIViewController {
     
     //Срабатывает если кто-то угадал слово и показывающий игрок нажал на кнопку "Угадано!"
     //Открывает IncreasePlayerScoreScreenViewController где показывающий выбирает отгадавшего
-    private func presentIncreaseScoreScreenViewController() {
+    func presentIncreaseScoreScreenViewController() {
         prepareNavigationItemForIncreaseViewController()
         delegate?.GameViewControllerDidPressGuessed(self, onDismissed: onDismissed)
     }
@@ -146,7 +127,7 @@ public final class GameScreenViewController: UIViewController {
     }
 }
 
-//MARK: - StoryboardInstantiable extension
+//MARK: - StoryboardInstantiable
 extension GameScreenViewController: StoryboardInstantiable {
     public class func instantiate(delegate: GameScreenViewControllerDelegate) -> GameScreenViewController {
         let viewController = instanceFromStoryboard()
@@ -155,6 +136,8 @@ extension GameScreenViewController: StoryboardInstantiable {
     }
 }
 
+
+//MARK: - Observer
 extension GameScreenViewController: Observer {
     func update(isGameInProgress: Bool) {
         if isGameInProgress == true {
