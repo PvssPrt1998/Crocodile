@@ -28,7 +28,7 @@ public class CategoryScreenViewController: UIViewController {
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     lazy var onDismissed: ()->Void = {
-        self.gameManager.resetGameManager()
+        self.gameManager.reset()
         self.mainButton.hide()
     }
     
@@ -96,7 +96,7 @@ public class CategoryScreenViewController: UIViewController {
                 //каждый NSSet.Element приводим к типу word и закидываем word в геймменеджер сет
                 set.forEach { item in
                     guard let item = item as? Word, let word = item.word else { return }
-                    gameManager.addWordToSet(word)
+                    gameManager.wordManager.addWord(word)
                 }
             }
         })

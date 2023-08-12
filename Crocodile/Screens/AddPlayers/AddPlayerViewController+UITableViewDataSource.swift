@@ -21,7 +21,7 @@ extension AddPlayersViewController: UITableViewDataSource {
         }
         //Сбрасываем cell чтобы у нас не при добавлении не появлялись заполненные cell
         cell.resetCell()
-        //Назначаем делегатом себя, чтобы при нажатии на кнопку cell срабатывал метод вьюконтроллера
+        //Назначаем делегатом этот viewController, чтобы при нажатии на кнопку cell срабатывал метод вьюконтроллера
         cell.delegate = self
         //Выключаем видимый эффект выделения ячейки
         cell.selectionStyle = UITableViewCell.SelectionStyle.none

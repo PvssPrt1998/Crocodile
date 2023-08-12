@@ -16,13 +16,13 @@ public class GameManager {
     //MARK: - Properties
     private var observers: Array<Observer> = []
     
-    public var playerManager: PlayerManager = PlayerManager()
+    var playerManager: PlayerManager = PlayerManager()
     var wordManager: WordManager = WordManager()
     
     var isGameInProgress: Bool = false {
         didSet {
             if isGameInProgress == true {
-                setCurrentWord()
+                wordManager.setCurrentWord()
             } else {
                 playerManager.setCurrentPlayer()
             }
@@ -30,36 +30,15 @@ public class GameManager {
         }
     }
     
-    //текущее слово
-    public var currentWord: String?
-    
-    //выбранные слова из категорий
-    public var chosenWords: Set<String> = []
-    
     //MARK: - Methods
-    //MARK: - Public methods
-    //Берет сеты слов из хранилища кор даты и объединяет их в массив chosen words
-    public func addWordToSet(_ word: String) {
-        chosenWords.insert(word)
-    }
-    
-    public func prepareForGame() {
-        playerManager.setCurrentPlayer()
-    }
-    
     //Игрок нажал кнопку сдаться
-    public func giveUp() {
+    func giveUp() {
         playerManager.decrementCurrentPlayerScore()
         isGameInProgress = false
     }
     
-    public func setCurrentWord() {
-        currentWord = chosenWords.removeFirst()
-    }
-    
-    public func resetGameManager() {
-        chosenWords = []
-        currentWord = nil
+     func reset() {
+        wordManager = WordManager()
         playerManager = PlayerManager()
     }
 }

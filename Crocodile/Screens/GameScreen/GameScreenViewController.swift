@@ -37,6 +37,7 @@ public final class GameScreenViewController: UIViewController {
     //MARK: - ViewController LifeCycle
     public override func viewDidLoad() {
         super.viewDidLoad()
+        gameManager?.playerManager.setCurrentPlayer()
         setupViewConfigs()
     }
     
@@ -68,7 +69,7 @@ public final class GameScreenViewController: UIViewController {
     
     //готовит вьюшки для состояния "игра в процессе"
     private func prepareViewsForInProgressState() {
-        wordLabel.text = gameManager?.currentWord
+        wordLabel.text = gameManager?.wordManager.currentWord
         wordLabel.isHidden = false
         giveUpButton.isHidden = false
         UIView.animate(withDuration: 0.2) {

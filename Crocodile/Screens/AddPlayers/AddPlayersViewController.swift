@@ -29,7 +29,7 @@ public class AddPlayersViewController: UIViewController {
     var gameManager: GameManager?
     
     lazy var onDismissed: ()->Void = {
-        self.gameManager?.resetGameManager()
+        self.gameManager?.reset()
     }
     
     //MARK: - Outlets

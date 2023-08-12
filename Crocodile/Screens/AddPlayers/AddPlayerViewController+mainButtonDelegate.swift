@@ -9,7 +9,6 @@ import UIKit
 
 extension AddPlayersViewController: MainButtonDelegate {
     func mainButtonTapped(_ button: MainButton) {
-        gameManager?.prepareForGame()
         delegate?.addPlayersViewControllerDidPressNext(self, onDismissed: onDismissed)
     }
 }

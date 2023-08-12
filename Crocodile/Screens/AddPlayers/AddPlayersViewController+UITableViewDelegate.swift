@@ -9,8 +9,7 @@ import UIKit
 
 //MARK: - UITableViewDelegate
 extension AddPlayersViewController: UITableViewDelegate {
-    //Событие после нажатия на строку
-    public func tableView(_ tableView: UITableView, didSelectRowAt: IndexPath) {
-        tableView.deselectRow(at: didSelectRowAt, animated: false)
-    }
+//    public func tableView(_ tableView: UITableView, didSelectRowAt: IndexPath) {
+//        tableView.deselectRow(at: didSelectRowAt, animated: false)
+//    }
 }

@@ -10,6 +10,7 @@ import UIKit
 //MARK: - AddPlayerTableViewCell
 class AddPlayerTableViewCell: UITableViewCell {
     
+    //MARK: - Properties
     //Добавлен ли игрок (свойство нужно чтобы перещелкивать с крестика на галочку и наоборот)
     var isPlayerAdded: Bool = false {
         didSet {
@@ -18,7 +19,8 @@ class AddPlayerTableViewCell: UITableViewCell {
             }
         }
     }
-    //Outlets
+    
+    //MARK: - IBOutlets
     @IBOutlet weak var playerNameTextField: UITextField!
     @IBOutlet weak var playerButton: UIButton!
     
@@ -28,6 +30,17 @@ class AddPlayerTableViewCell: UITableViewCell {
     //массив UIImage галочка и крестик
     let checkmarkImageArray = [UIImage(systemName: "checkmark.circle")!, UIImage(systemName: "clear")!]
     //
+    
+    //MARK: - Methods
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let blurEffect = UIBlurEffect(style: .light)
+        // 3
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        // 4
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.insertSubview(blurView, at: 0)
+    }
     
     //Событие которое срабатывает при изменении playerNameTextField
     @IBAction func playerNameTextFieldDidChange(_ sender: UITextField) {
@@ -73,11 +86,8 @@ class AddPlayerTableViewCell: UITableViewCell {
             if !delegate.isPlayerAddedNow(playerName) {
                 makePlayerButtonActive()
             } else {
-                
                 // TODO: - если игрок с таким именем уже есть в массиве игроков, то мы не делаем кнопку активной и отображаем строчку
                 //"такой игрок уже есть, добавьте другое имя"
-                
-                
             }
         } else {
             makePlayerButtonInactive()
@@ -96,7 +106,8 @@ class AddPlayerTableViewCell: UITableViewCell {
         playerButton.isEnabled = true
     }
     
-    //сбросить сell до значений по умолчанию.
+    //сбросить сell до значений по умолчанию. Необходимо, потому что ячейки в коллекшн вью переиспользуются
+    //и после удаления ячейки не перезагружая таблицу, новая ячейка создастся с данными ранее хранимыми в ней
     public func resetCell() {
         playerNameTextField.text = ""
         makePlayerButtonInactive()
