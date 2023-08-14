@@ -39,8 +39,13 @@ public class AddPlayersViewController: UIViewController {
     //MARK: - ViewControlletLifeCycle
     public override func viewDidLoad() {
         super.viewDidLoad()
+        setupMainButton()
+    }
+    
+    private func setupMainButton() {
         mainButton.hide()
         mainButton.delegate = self
+        mainButton.setTitle("Далее", for: .normal)
     }
 }
 

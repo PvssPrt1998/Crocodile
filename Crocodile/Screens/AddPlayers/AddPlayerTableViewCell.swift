@@ -31,17 +31,94 @@ class AddPlayerTableViewCell: UITableViewCell {
     let checkmarkImageArray = [UIImage(systemName: "checkmark.circle")!, UIImage(systemName: "clear")!]
     //
     
+    
+    
     //MARK: - Methods
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        let blurEffect = UIBlurEffect(style: .light)
-        // 3
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        // 4
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.insertSubview(blurView, at: 0)
+    override func layoutIfNeeded() {
+        super.layoutIfNeeded()
+//        setupPlayerNameTextFieldLayer()
+        setupPlayerTextField()
     }
     
+    //MARK: - AddPlayersTextField Layer
+    
+    func setupPlayerTextField() {
+        let cornerRadius = contentView.bounds.width / 30
+        let borderWidth: CGFloat = 2
+        let textFieldInset: CGFloat = (borderWidth * 2) + (cornerRadius / 2)
+        
+        let innerShadow = CALayer()
+        innerShadow.frame = playerNameTextField.bounds
+
+        let radius = cornerRadius
+        let dx: CGFloat = -borderWidth
+        let dy: CGFloat = -borderWidth
+        let path = UIBezierPath(roundedRect: layer.bounds.insetBy(dx: dx, dy: dy), cornerRadius: radius + dy)
+        let cutout = UIBezierPath(roundedRect: layer.bounds, cornerRadius:radius).reversing()
+
+        path.append(cutout)
+        
+        innerShadow.shadowPath = path.cgPath
+        innerShadow.masksToBounds = true
+        innerShadow.shadowColor = UIColor.black.cgColor
+        innerShadow.shadowOffset = CGSize(width: 0, height: 0)
+        innerShadow.shadowOpacity = 1
+        innerShadow.shadowRadius = 3
+        
+        playerNameTextField.layer.addSublayer(innerShadow)
+        
+        playerNameTextField.layer.opacity = 0.6
+        playerNameTextField.layer.cornerRadius = cornerRadius
+        playerNameTextField.layer.borderWidth = borderWidth
+        playerNameTextField.layer.borderColor = UIColor.white.cgColor
+        playerNameTextField.layer.masksToBounds = true
+        
+        playerNameTextField.setLeftPaddingPoints(textFieldInset)
+        playerNameTextField.setRightPaddingPoints(textFieldInset)
+        playerNameTextField.tintColor = .gray
+    }
+    
+    //MARK: - DEPECATED
+    private func innerShadowPath(for layer: CALayer, with radius: CGFloat) -> CGPath {
+        let radius = radius
+        let dx: CGFloat = -1
+        let dy: CGFloat = -1
+        let path = UIBezierPath(roundedRect: layer.bounds.insetBy(dx: dx, dy: dy), cornerRadius: radius + dy)
+        let cutout = UIBezierPath(roundedRect: layer.bounds, cornerRadius:radius).reversing()
+            
+        path.append(cutout)
+        return path.cgPath
+    }
+    
+    private func setupInnerShadowForPlayerNameTextField(with cornerRadius: CGFloat) {
+        let innerShadow = CALayer()
+        innerShadow.frame = playerNameTextField.bounds
+        innerShadow.cornerRadius = cornerRadius
+        innerShadow.shadowColor = UIColor.black.cgColor
+        innerShadow.shadowOffset = CGSize(width: 0, height: 0)
+        innerShadow.shadowOpacity = 0.8
+        innerShadow.shadowRadius = 3
+        innerShadow.masksToBounds = true
+        playerNameTextField.layer.addSublayer(innerShadow)
+    }
+    
+    private func setupPlayerNameTextFieldLayer() {
+        let cornerRadius = contentView.bounds.width / 30
+        let borderWidth: CGFloat = 2
+        
+        playerNameTextField.layer.cornerRadius = cornerRadius
+        playerNameTextField.layer.borderWidth = borderWidth
+        playerNameTextField.layer.borderColor = UIColor.white.cgColor
+        playerNameTextField.layer.opacity = 0.6
+        let textFieldInset: CGFloat = (borderWidth * 2) + (cornerRadius / 2)
+        playerNameTextField.setLeftPaddingPoints(textFieldInset)
+        playerNameTextField.setRightPaddingPoints(textFieldInset)
+        playerNameTextField.tintColor = .gray
+        
+        setupInnerShadowForPlayerNameTextField(with: cornerRadius)
+    }
+    
+    //MARK: - Actions
     //Событие которое срабатывает при изменении playerNameTextField
     @IBAction func playerNameTextFieldDidChange(_ sender: UITextField) {
         playerButtonActiveCondition()
@@ -75,7 +152,6 @@ class AddPlayerTableViewCell: UITableViewCell {
     private func playerButtonSetImage(_ image: UIImage) {
         playerButton.setImage(image, for: .normal)
     }
-    
 
     //Метод который проверяет условие должна ли быть кнопка playerButton активна или наоборот (пустое ли поле игрока или нет)
     private func playerButtonActiveCondition() {

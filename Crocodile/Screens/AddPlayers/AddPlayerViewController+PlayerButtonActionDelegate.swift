@@ -10,9 +10,37 @@ import UIKit
 //MARK: -ChangeDescriptionDelegate
 extension AddPlayersViewController: PlayerButtonActionDelegate {
     
+    //метод который вызывается при нажатии на кнопку в целл классе
+    public func playerButtonPressed(sender: UIButton) {
+        //проверяем cell и indexPath на nil
+        guard let gameManager = gameManager,
+              let cell = getCellByUIView(sender),
+              let indexPath = getIndexPathBy(cell: cell)
+        else { return }
+        
+        //Если игрок не добавлен, то добавляем
+        if cell.isPlayerAdded == false {
+            //force unwrap потому что текст точно есть в текстфилде. Если бы текста не было, кнопка бы не нажалась и метод бы не сработал
+            let playerName = cell.playerNameTextField.text!
+            //добавляем игрока
+            gameManager.playerManager.addPlayer(playerName)
+            //создаем пустую строку в начале таблицы для ввода имени нового игрока
+            insertRow()
+        } else { //Если игрок добавлен и мы нажимаем крестик
+            //удаляем игрока в по индекс пасс. В таблице и в массиве игрок на одном и том же индексе
+            gameManager.playerManager.removePlayer(by: indexPath.row - 1)
+            //Удаляем строку по индекс пассу
+            deleteRow(by: indexPath)
+        }
+    }
+    
     //Удалить строку по indexPath
     private func deleteRow(by indexPath: IndexPath) {
-        addPlayersTableView.cellForRow(at: indexPath)?.prepareForReuse()
+        guard let cell = addPlayersTableView.cellForRow(at: indexPath) else { return }
+        //force unwrap потому что если поле можно удалить, то имя введено 100%
+        print("delete")
+        print(gameManager!.playerManager.playersCount())
+        cell.prepareForReuse()
         addPlayersTableView.beginUpdates()
         addPlayersTableView.deleteRows(at: [indexPath], with: .automatic)
         addPlayersTableView.endUpdates()
@@ -22,13 +50,16 @@ extension AddPlayersViewController: PlayerButtonActionDelegate {
     
     //Добавить пустую строку для ввода в конец таблицы
     private func insertRow() {
-        guard let gameManager = gameManager else { return }
         let indexPath = IndexPath(row: 0, section: 0)
         addPlayersTableView.beginUpdates()
         addPlayersTableView.insertRows(at: [indexPath], with: .automatic)
         addPlayersTableView.endUpdates()
+        guard let cell = addPlayersTableView.cellForRow(at: indexPath) as? AddPlayerTableViewCell else { return }
+        cell.playerNameTextField.becomeFirstResponder()
         //Проверяем есть ли игроки и нужно ли отображать nextButton. Если нет, то скрыть
         mainButtonAvailabilityCheck()
+        print("insert")
+        print(gameManager!.playerManager.playersCount())
     }
     
     //Метод, проверяющий можно ли отображать nextButton или нужно скрыть
@@ -68,30 +99,8 @@ extension AddPlayersViewController: PlayerButtonActionDelegate {
         //возвращаем indexPath
         return indexPath
     }
-    //метод который вызывается при нажатии на кнопку в целл классе
-    public func playerButtonPressed(sender: UIButton) {
-        //проверяем cell и indexPath на nil
-        guard let gameManager = gameManager,
-              let cell = getCellByUIView(sender),
-              let indexPath = getIndexPathBy(cell: cell)
-              //gameManager.playerManager.isPlayerAddedNow(cell.)
-        else { return }
-        
-        //Если игрок не добавлен, то добавляем
-        if cell.isPlayerAdded == false {
-            //force unwrap потому что текст точно есть в текстфилде. Если бы текста не было, кнопка бы не нажалась и метод бы не сработал
-            let playerName = cell.playerNameTextField.text!
-            //добавляем игрока
-            gameManager.playerManager.addPlayer(playerName)
-            //создаем пустую строку в конце таблицы для ввода имени нового игрока
-            insertRow()
-        } else { //Если игрок добавлен и мы нажимаем крестик
-            //удаляем игрока в по индекс пасс. В таблице и в массиве игрок на одном и том же индексе.
-            gameManager.playerManager.removePlayer(by: indexPath.row)
-            //Удаляем строку по индекс пассу
-            deleteRow(by: indexPath)
-        }
-    }
+    
+    
     
     func setGameManager(data: AnyObject) {
         guard let data = data as? GameManager else { return }

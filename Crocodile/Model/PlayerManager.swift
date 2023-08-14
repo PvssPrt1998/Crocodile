@@ -59,6 +59,7 @@ public class PlayerManager {
     //Удаление по имени
     public func removePlayer(by name: String) {
         guard let index = players.firstIndex(where: { $0.name == name }) else { return }
+        print("removed")
         players.remove(at: index)
     }
     

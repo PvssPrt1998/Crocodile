@@ -59,9 +59,14 @@ public class CategoryScreenViewController: UIViewController {
         
         importDataIfNeeded()
         
+        setupMainButton()
+        //destroyPersistentStore()
+    }
+    
+    private func setupMainButton() {
         mainButton.hide()
         mainButton.delegate = self
-        //destroyPersistentStore()
+        mainButton.setTitle("Далее", for: .normal)
     }
     
     private func performFecth() {
