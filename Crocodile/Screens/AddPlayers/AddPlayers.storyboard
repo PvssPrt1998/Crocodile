@@ -38,7 +38,7 @@
                                                         <action selector="playerButtonAction:" destination="SFs-a1-KLn" eventType="touchUpInside" id="6s0-aS-BlZ"/>
                                                     </connections>
                                                 </button>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Введите имя игрока" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I63-aD-P4q">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Введите имя игрока" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I63-aD-P4q" customClass="PlayerNameTextField" customModule="Crocodile" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="11" width="279" height="66"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>

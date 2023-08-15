@@ -21,7 +21,7 @@ class AddPlayerTableViewCell: UITableViewCell {
     }
     
     //MARK: - IBOutlets
-    @IBOutlet weak var playerNameTextField: UITextField!
+    @IBOutlet weak var playerNameTextField: PlayerNameTextField!
     @IBOutlet weak var playerButton: UIButton!
     
     //Делегат для того чтобы прокинуть sender UIButton во viewController
@@ -31,52 +31,58 @@ class AddPlayerTableViewCell: UITableViewCell {
     let checkmarkImageArray = [UIImage(systemName: "checkmark.circle")!, UIImage(systemName: "clear")!]
     //
     
-    
-    
     //MARK: - Methods
+//    let innerShadow = CALayer()
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        playerNameTextField.sizeForCalculateLayout = 200
+        print(contentView.bounds.width)
+        playerNameTextField.addLayer()
+    }
+    
     override func layoutIfNeeded() {
         super.layoutIfNeeded()
-//        setupPlayerNameTextFieldLayer()
-        setupPlayerTextField()
+        playerNameTextField.setupLayer()
     }
-    
+//
     //MARK: - AddPlayersTextField Layer
     
-    func setupPlayerTextField() {
-        let cornerRadius = contentView.bounds.width / 30
-        let borderWidth: CGFloat = 2
-        let textFieldInset: CGFloat = (borderWidth * 2) + (cornerRadius / 2)
-        
-        let innerShadow = CALayer()
-        innerShadow.frame = playerNameTextField.bounds
-
-        let radius = cornerRadius
-        let dx: CGFloat = -borderWidth
-        let dy: CGFloat = -borderWidth
-        let path = UIBezierPath(roundedRect: layer.bounds.insetBy(dx: dx, dy: dy), cornerRadius: radius + dy)
-        let cutout = UIBezierPath(roundedRect: layer.bounds, cornerRadius:radius).reversing()
-
-        path.append(cutout)
-        
-        innerShadow.shadowPath = path.cgPath
-        innerShadow.masksToBounds = true
-        innerShadow.shadowColor = UIColor.black.cgColor
-        innerShadow.shadowOffset = CGSize(width: 0, height: 0)
-        innerShadow.shadowOpacity = 1
-        innerShadow.shadowRadius = 3
-        
-        playerNameTextField.layer.addSublayer(innerShadow)
-        
-        playerNameTextField.layer.opacity = 0.6
-        playerNameTextField.layer.cornerRadius = cornerRadius
-        playerNameTextField.layer.borderWidth = borderWidth
-        playerNameTextField.layer.borderColor = UIColor.white.cgColor
-        playerNameTextField.layer.masksToBounds = true
-        
-        playerNameTextField.setLeftPaddingPoints(textFieldInset)
-        playerNameTextField.setRightPaddingPoints(textFieldInset)
-        playerNameTextField.tintColor = .gray
-    }
+//    func setupPlayerTextField() {
+//        let cornerRadius = contentView.bounds.width / 30
+//        let borderWidth: CGFloat = 2
+//        let textFieldInset: CGFloat = (borderWidth * 2) + (cornerRadius / 2)
+//
+//        //let innerShadow = CALayer()
+//        innerShadow.frame = playerNameTextField.bounds
+//
+//        let radius = cornerRadius
+//        let dx: CGFloat = -borderWidth
+//        let dy: CGFloat = -borderWidth
+//        let path = UIBezierPath(roundedRect: layer.bounds.insetBy(dx: dx, dy: dy), cornerRadius: radius + dy)
+//        let cutout = UIBezierPath(roundedRect: layer.bounds, cornerRadius:radius).reversing()
+//
+//        path.append(cutout)
+//
+//        innerShadow.shadowPath = path.cgPath
+//        innerShadow.masksToBounds = true
+//        innerShadow.shadowColor = UIColor.black.cgColor
+//        innerShadow.shadowOffset = CGSize(width: 0, height: 0)
+//        innerShadow.shadowOpacity = 1
+//        innerShadow.shadowRadius = 3
+//
+//        playerNameTextField.layer.addSublayer(innerShadow)
+//
+//        playerNameTextField.layer.opacity = 0.6
+//        playerNameTextField.layer.cornerRadius = cornerRadius
+//        playerNameTextField.layer.borderWidth = borderWidth
+//        playerNameTextField.layer.borderColor = UIColor.white.cgColor
+//        playerNameTextField.layer.masksToBounds = true
+//
+//        playerNameTextField.setLeftPaddingPoints(textFieldInset)
+//        playerNameTextField.setRightPaddingPoints(textFieldInset)
+//        playerNameTextField.tintColor = .gray
+//    }
     
     //MARK: - DEPECATED
     private func innerShadowPath(for layer: CALayer, with radius: CGFloat) -> CGPath {

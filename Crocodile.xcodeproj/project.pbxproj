@@ -45,6 +45,7 @@
 		99A1219C2A87812400DF803A /* GameScreenViewController+MainButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1219B2A87812400DF803A /* GameScreenViewController+MainButtonDelegate.swift */; };
 		99A1219E2A87875F00DF803A /* WordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1219D2A87875F00DF803A /* WordManager.swift */; };
 		99A121A22A894B2000DF803A /* UITextField + Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A121A12A894B2000DF803A /* UITextField + Insets.swift */; };
+		99A121A52A8A689B00DF803A /* PlayerNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A121A42A8A689B00DF803A /* PlayerNameTextField.swift */; };
 		99BB88F429EEB75100C65EE1 /* AddPlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB88F329EEB75100C65EE1 /* AddPlayersViewController.swift */; };
 		99BB88F629EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB88F529EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift */; };
 		99BB88F829FA387B00C65EE1 /* GameScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99BB88F729FA387B00C65EE1 /* GameScreen.storyboard */; };
@@ -109,6 +110,7 @@
 		99A1219B2A87812400DF803A /* GameScreenViewController+MainButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScreenViewController+MainButtonDelegate.swift"; sourceTree = "<group>"; };
 		99A1219D2A87875F00DF803A /* WordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordManager.swift; sourceTree = "<group>"; };
 		99A121A12A894B2000DF803A /* UITextField + Insets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Insets.swift"; sourceTree = "<group>"; };
+		99A121A42A8A689B00DF803A /* PlayerNameTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNameTextField.swift; sourceTree = "<group>"; };
 		99BB88F329EEB75100C65EE1 /* AddPlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayersViewController.swift; sourceTree = "<group>"; };
 		99BB88F529EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayerTableViewCell.swift; sourceTree = "<group>"; };
 		99BB88F729FA387B00C65EE1 /* GameScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GameScreen.storyboard; sourceTree = "<group>"; };
@@ -258,11 +260,11 @@
 			children = (
 				9988F3F929EE8A1F003D7FF3 /* AddPlayers.storyboard */,
 				99BB88F329EEB75100C65EE1 /* AddPlayersViewController.swift */,
-				99BB88F529EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift */,
 				99A121932A84FFAF00DF803A /* AddPlayerViewController+mainButtonDelegate.swift */,
 				99A121952A8500E200DF803A /* AddPlayerViewController+UITableViewDataSource.swift */,
 				99A121972A85012000DF803A /* AddPlayersViewController+UITableViewDelegate.swift */,
 				99A121992A85069400DF803A /* AddPlayerViewController+PlayerButtonActionDelegate.swift */,
+				99A121A32A8A686200DF803A /* AddPlayerTableViewCell */,
 			);
 			path = AddPlayers;
 			sourceTree = "<group>";
@@ -330,6 +332,15 @@
 				99A121A12A894B2000DF803A /* UITextField + Insets.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		99A121A32A8A686200DF803A /* AddPlayerTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				99BB88F529EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift */,
+				99A121A42A8A689B00DF803A /* PlayerNameTextField.swift */,
+			);
+			path = AddPlayerTableViewCell;
 			sourceTree = "<group>";
 		};
 		99BB88F929FA3B5100C65EE1 /* ScoreScreen */ = {
@@ -469,6 +480,7 @@
 				991442172A7CDE0D008DD377 /* Subject.swift in Sources */,
 				99BB890229FA3D5B00C65EE1 /* StoryboardInstantiable.swift in Sources */,
 				99BB88FF29FA3C5500C65EE1 /* GameScreenViewController.swift in Sources */,
+				99A121A52A8A689B00DF803A /* PlayerNameTextField.swift in Sources */,
 				99DFCBB02A44459F00481714 /* Word+CoreDataProperties.swift in Sources */,
 				99BB890A29FA739800C65EE1 /* ModalNavigationRouter.swift in Sources */,
 				999AC33A2A5538E000F7D321 /* ScoreScreenCoordinator.swift in Sources */,
