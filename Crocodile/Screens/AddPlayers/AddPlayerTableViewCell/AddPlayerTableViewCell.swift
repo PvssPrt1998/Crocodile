@@ -8,7 +8,7 @@
 import UIKit
 
 //MARK: - AddPlayerTableViewCell
-class AddPlayerTableViewCell: UITableViewCell {
+class AddPlayerTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     //MARK: - Properties
     //Добавлен ли игрок (свойство нужно чтобы перещелкивать с крестика на галочку и наоборот)
@@ -32,6 +32,7 @@ class AddPlayerTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         playerNameTextField.setupLayers()
+        playerNameTextField.delegate = self
     }
     
     override func layoutIfNeeded() {
@@ -79,6 +80,8 @@ class AddPlayerTableViewCell: UITableViewCell {
     }
     
     //MARK: - Private methods
+    //
+    
     //Меняет картинку галочка или крестик
     private func toggleImageOnPlayerButton() {
         switch isPlayerAdded {
@@ -88,8 +91,6 @@ class AddPlayerTableViewCell: UITableViewCell {
             playerNameTextField.isUserInteractionEnabled = true
         }
     }
-
-    
     
     //Сделать кнопку неактивной (Поле игрока пустое). Прозрачность почти 100%
     private func makePlayerButtonInactive() {
@@ -111,4 +112,10 @@ class AddPlayerTableViewCell: UITableViewCell {
         isPlayerAdded = false
         playerNameTextField.placeholder = ""
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        return true
+    }
 }
+

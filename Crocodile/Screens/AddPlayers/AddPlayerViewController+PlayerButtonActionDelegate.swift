@@ -65,10 +65,6 @@ extension AddPlayersViewController: PlayerButtonActionDelegate {
         print("firstCellActiveCondition")
         let indexPath = IndexPath(row: 0, section: 0)
         guard let cell = addPlayersTableView.cellForRow(at: indexPath) as? AddPlayerTableViewCell else { return }
-        print(cell.playerNameTextField.text)
-        gameManager!.playerManager.playersSortedArray().forEach { name, score in
-            print(name)
-        }
         cell.playerButtonActiveCondition()
     }
     

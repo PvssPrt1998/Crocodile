@@ -63,6 +63,11 @@ public class CategoryScreenViewController: UIViewController {
         //destroyPersistentStore()
     }
     
+    override public func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        categoryCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.frame.height - mainButton.frame.origin.y, right: 0)
+    }
+    
     private func setupMainButton() {
         mainButton.hide()
         mainButton.delegate = self

@@ -40,6 +40,20 @@ public class AddPlayersViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupMainButton()
+
+        addPlayersTableView.separatorStyle = .none
+    }
+    
+    public override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        addPlayersTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.frame.height - mainButton.frame.origin.y, right: 0)
+    }
+    
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        
+        
     }
     
     private func setupMainButton() {

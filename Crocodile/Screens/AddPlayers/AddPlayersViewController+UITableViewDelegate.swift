@@ -9,7 +9,4 @@ import UIKit
 
 //MARK: - UITableViewDelegate
 extension AddPlayersViewController: UITableViewDelegate {
-//    public func tableView(_ tableView: UITableView, didSelectRowAt: IndexPath) {
-//        tableView.deselectRow(at: didSelectRowAt, animated: false)
-//    }
 }

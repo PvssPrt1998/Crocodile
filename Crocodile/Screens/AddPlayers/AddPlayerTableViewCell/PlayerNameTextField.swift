@@ -71,7 +71,7 @@ class PlayerNameTextField: UITextField {
     private func calculateShadowPath(with cornerRadius: CGFloat, and borderWidth: CGFloat) -> CGPath {
         let dx: CGFloat = -borderWidth - 1
         let dy: CGFloat = -borderWidth - 1
-        let path = UIBezierPath(roundedRect: layer.bounds.insetBy(dx: dx, dy: dy), cornerRadius: cornerRadius + dy)
+        let path = UIBezierPath(roundedRect: layer.bounds.insetBy(dx: dx, dy: dy), cornerRadius: cornerRadius - dy)
         let cutout = UIBezierPath(roundedRect: layer.bounds, cornerRadius: cornerRadius).reversing()
         
         path.append(cutout)
