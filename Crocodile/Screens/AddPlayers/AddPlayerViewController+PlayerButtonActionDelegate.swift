@@ -18,17 +18,18 @@ extension AddPlayersViewController: PlayerButtonActionDelegate {
               let indexPath = getIndexPathBy(cell: cell)
         else { return }
         
+        //force unwrap потому что текст точно есть в текстфилде. Если бы текста не было, кнопка бы не нажалась и метод бы не сработал
+        let playerName = cell.playerNameTextField.text!
+        
         //Если игрок не добавлен, то добавляем
         if cell.isPlayerAdded == false {
-            //force unwrap потому что текст точно есть в текстфилде. Если бы текста не было, кнопка бы не нажалась и метод бы не сработал
-            let playerName = cell.playerNameTextField.text!
             //добавляем игрока
             gameManager.playerManager.addPlayer(playerName)
             //создаем пустую строку в начале таблицы для ввода имени нового игрока
             insertRow()
         } else { //Если игрок добавлен и мы нажимаем крестик
             //удаляем игрока в по индекс пасс. В таблице и в массиве игрок на одном и том же индексе
-            gameManager.playerManager.removePlayer(by: indexPath.row - 1)
+            gameManager.playerManager.removePlayer(by: playerName)
             //Удаляем строку по индекс пассу
             deleteRow(by: indexPath)
         }
@@ -37,15 +38,13 @@ extension AddPlayersViewController: PlayerButtonActionDelegate {
     //Удалить строку по indexPath
     private func deleteRow(by indexPath: IndexPath) {
         guard let cell = addPlayersTableView.cellForRow(at: indexPath) else { return }
-        //force unwrap потому что если поле можно удалить, то имя введено 100%
-        print("delete")
-        print(gameManager!.playerManager.playersCount())
         cell.prepareForReuse()
         addPlayersTableView.beginUpdates()
         addPlayersTableView.deleteRows(at: [indexPath], with: .automatic)
         addPlayersTableView.endUpdates()
         //Проверяем есть ли игроки и нужно ли отображать nextButton. Если нет, то скрыть
         mainButtonAvailabilityCheck()
+        firstCellAddAvailabilityCheck()
     }
     
     //Добавить пустую строку для ввода в конец таблицы
@@ -58,8 +57,19 @@ extension AddPlayersViewController: PlayerButtonActionDelegate {
         cell.playerNameTextField.becomeFirstResponder()
         //Проверяем есть ли игроки и нужно ли отображать nextButton. Если нет, то скрыть
         mainButtonAvailabilityCheck()
-        print("insert")
-        print(gameManager!.playerManager.playersCount())
+    }
+    
+    //Если в первом текстфилде написано имя, но не добавлено, а мы удалили игрока с таким же именем, которое введено в текстфилде
+    //галочка должна загореться
+    private func firstCellAddAvailabilityCheck() {
+        print("firstCellActiveCondition")
+        let indexPath = IndexPath(row: 0, section: 0)
+        guard let cell = addPlayersTableView.cellForRow(at: indexPath) as? AddPlayerTableViewCell else { return }
+        print(cell.playerNameTextField.text)
+        gameManager!.playerManager.playersSortedArray().forEach { name, score in
+            print(name)
+        }
+        cell.playerButtonActiveCondition()
     }
     
     //Метод, проверяющий можно ли отображать nextButton или нужно скрыть
@@ -98,12 +108,5 @@ extension AddPlayersViewController: PlayerButtonActionDelegate {
         guard let indexPath = addPlayersTableView.indexPath(for: cell) else { return nil }
         //возвращаем indexPath
         return indexPath
-    }
-    
-    
-    
-    func setGameManager(data: AnyObject) {
-        guard let data = data as? GameManager else { return }
-        gameManager = data
     }
 }

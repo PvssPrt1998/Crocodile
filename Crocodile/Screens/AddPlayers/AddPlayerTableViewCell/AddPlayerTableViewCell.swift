@@ -25,103 +25,20 @@ class AddPlayerTableViewCell: UITableViewCell {
     @IBOutlet weak var playerButton: UIButton!
     
     //Делегат для того чтобы прокинуть sender UIButton во viewController
-    weak var delegate: PlayerButtonActionDelegate? 
-    
-    //массив UIImage галочка и крестик
-    let checkmarkImageArray = [UIImage(systemName: "checkmark.circle")!, UIImage(systemName: "clear")!]
-    //
+    weak var delegate: PlayerButtonActionDelegate?
     
     //MARK: - Methods
-//    let innerShadow = CALayer()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        playerNameTextField.sizeForCalculateLayout = 200
-        print(contentView.bounds.width)
-        playerNameTextField.addLayer()
+        playerNameTextField.setupLayers()
     }
     
     override func layoutIfNeeded() {
         super.layoutIfNeeded()
-        playerNameTextField.setupLayer()
-    }
-//
-    //MARK: - AddPlayersTextField Layer
-    
-//    func setupPlayerTextField() {
-//        let cornerRadius = contentView.bounds.width / 30
-//        let borderWidth: CGFloat = 2
-//        let textFieldInset: CGFloat = (borderWidth * 2) + (cornerRadius / 2)
-//
-//        //let innerShadow = CALayer()
-//        innerShadow.frame = playerNameTextField.bounds
-//
-//        let radius = cornerRadius
-//        let dx: CGFloat = -borderWidth
-//        let dy: CGFloat = -borderWidth
-//        let path = UIBezierPath(roundedRect: layer.bounds.insetBy(dx: dx, dy: dy), cornerRadius: radius + dy)
-//        let cutout = UIBezierPath(roundedRect: layer.bounds, cornerRadius:radius).reversing()
-//
-//        path.append(cutout)
-//
-//        innerShadow.shadowPath = path.cgPath
-//        innerShadow.masksToBounds = true
-//        innerShadow.shadowColor = UIColor.black.cgColor
-//        innerShadow.shadowOffset = CGSize(width: 0, height: 0)
-//        innerShadow.shadowOpacity = 1
-//        innerShadow.shadowRadius = 3
-//
-//        playerNameTextField.layer.addSublayer(innerShadow)
-//
-//        playerNameTextField.layer.opacity = 0.6
-//        playerNameTextField.layer.cornerRadius = cornerRadius
-//        playerNameTextField.layer.borderWidth = borderWidth
-//        playerNameTextField.layer.borderColor = UIColor.white.cgColor
-//        playerNameTextField.layer.masksToBounds = true
-//
-//        playerNameTextField.setLeftPaddingPoints(textFieldInset)
-//        playerNameTextField.setRightPaddingPoints(textFieldInset)
-//        playerNameTextField.tintColor = .gray
-//    }
-    
-    //MARK: - DEPECATED
-    private func innerShadowPath(for layer: CALayer, with radius: CGFloat) -> CGPath {
-        let radius = radius
-        let dx: CGFloat = -1
-        let dy: CGFloat = -1
-        let path = UIBezierPath(roundedRect: layer.bounds.insetBy(dx: dx, dy: dy), cornerRadius: radius + dy)
-        let cutout = UIBezierPath(roundedRect: layer.bounds, cornerRadius:radius).reversing()
-            
-        path.append(cutout)
-        return path.cgPath
-    }
-    
-    private func setupInnerShadowForPlayerNameTextField(with cornerRadius: CGFloat) {
-        let innerShadow = CALayer()
-        innerShadow.frame = playerNameTextField.bounds
-        innerShadow.cornerRadius = cornerRadius
-        innerShadow.shadowColor = UIColor.black.cgColor
-        innerShadow.shadowOffset = CGSize(width: 0, height: 0)
-        innerShadow.shadowOpacity = 0.8
-        innerShadow.shadowRadius = 3
-        innerShadow.masksToBounds = true
-        playerNameTextField.layer.addSublayer(innerShadow)
-    }
-    
-    private func setupPlayerNameTextFieldLayer() {
-        let cornerRadius = contentView.bounds.width / 30
         let borderWidth: CGFloat = 2
-        
-        playerNameTextField.layer.cornerRadius = cornerRadius
-        playerNameTextField.layer.borderWidth = borderWidth
-        playerNameTextField.layer.borderColor = UIColor.white.cgColor
-        playerNameTextField.layer.opacity = 0.6
-        let textFieldInset: CGFloat = (borderWidth * 2) + (cornerRadius / 2)
-        playerNameTextField.setLeftPaddingPoints(textFieldInset)
-        playerNameTextField.setRightPaddingPoints(textFieldInset)
-        playerNameTextField.tintColor = .gray
-        
-        setupInnerShadowForPlayerNameTextField(with: cornerRadius)
+        let cornerRadius: CGFloat = playerNameTextField.bounds.width / 30
+        playerNameTextField.setupLayers(with: borderWidth, and: cornerRadius)
     }
     
     //MARK: - Actions
@@ -144,23 +61,8 @@ class AddPlayerTableViewCell: UITableViewCell {
         resetCell()
     }
     
-    //Меняет картинку галочка или крестик. Также меняет isPlayerAdded, что влияет на логику
-    private func toggleImageOnPlayerButton() {
-        switch isPlayerAdded {
-        case true: playerButtonSetImage(checkmarkImageArray[1])
-            playerNameTextField.isUserInteractionEnabled = false
-        case false: playerButtonSetImage(checkmarkImageArray[0])
-            playerNameTextField.isUserInteractionEnabled = true
-        }
-    }
-    
-    //Устанавливает картинку для кнопки playerButton
-    private func playerButtonSetImage(_ image: UIImage) {
-        playerButton.setImage(image, for: .normal)
-    }
-
     //Метод который проверяет условие должна ли быть кнопка playerButton активна или наоборот (пустое ли поле игрока или нет)
-    private func playerButtonActiveCondition() {
+    func playerButtonActiveCondition() {
         let playerName = playerNameTextField.text ?? ""
         if playerName != "" {
             guard let delegate = delegate else { return }
@@ -175,6 +77,19 @@ class AddPlayerTableViewCell: UITableViewCell {
             makePlayerButtonInactive()
         }
     }
+    
+    //MARK: - Private methods
+    //Меняет картинку галочка или крестик
+    private func toggleImageOnPlayerButton() {
+        switch isPlayerAdded {
+        case true: playerButton.setImage(UIImage(systemName: "clear")!, for: .normal)
+            playerNameTextField.isUserInteractionEnabled = false
+        case false: playerButton.setImage(UIImage(systemName: "checkmark.circle")!, for: .normal)
+            playerNameTextField.isUserInteractionEnabled = true
+        }
+    }
+
+    
     
     //Сделать кнопку неактивной (Поле игрока пустое). Прозрачность почти 100%
     private func makePlayerButtonInactive() {

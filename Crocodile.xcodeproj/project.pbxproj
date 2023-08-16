@@ -44,7 +44,6 @@
 		99A1219A2A85069400DF803A /* AddPlayerViewController+PlayerButtonActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A121992A85069400DF803A /* AddPlayerViewController+PlayerButtonActionDelegate.swift */; };
 		99A1219C2A87812400DF803A /* GameScreenViewController+MainButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1219B2A87812400DF803A /* GameScreenViewController+MainButtonDelegate.swift */; };
 		99A1219E2A87875F00DF803A /* WordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1219D2A87875F00DF803A /* WordManager.swift */; };
-		99A121A22A894B2000DF803A /* UITextField + Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A121A12A894B2000DF803A /* UITextField + Insets.swift */; };
 		99A121A52A8A689B00DF803A /* PlayerNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A121A42A8A689B00DF803A /* PlayerNameTextField.swift */; };
 		99BB88F429EEB75100C65EE1 /* AddPlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB88F329EEB75100C65EE1 /* AddPlayersViewController.swift */; };
 		99BB88F629EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB88F529EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift */; };
@@ -109,7 +108,6 @@
 		99A121992A85069400DF803A /* AddPlayerViewController+PlayerButtonActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddPlayerViewController+PlayerButtonActionDelegate.swift"; sourceTree = "<group>"; };
 		99A1219B2A87812400DF803A /* GameScreenViewController+MainButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScreenViewController+MainButtonDelegate.swift"; sourceTree = "<group>"; };
 		99A1219D2A87875F00DF803A /* WordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordManager.swift; sourceTree = "<group>"; };
-		99A121A12A894B2000DF803A /* UITextField + Insets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Insets.swift"; sourceTree = "<group>"; };
 		99A121A42A8A689B00DF803A /* PlayerNameTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNameTextField.swift; sourceTree = "<group>"; };
 		99BB88F329EEB75100C65EE1 /* AddPlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayersViewController.swift; sourceTree = "<group>"; };
 		99BB88F529EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayerTableViewCell.swift; sourceTree = "<group>"; };
@@ -329,7 +327,6 @@
 		999AC34F2A5BC80600F7D321 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				99A121A12A894B2000DF803A /* UITextField + Insets.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -474,7 +471,6 @@
 				99DFCB962A40974200481714 /* PlayerManager.swift in Sources */,
 				991442112A7CAF52008DD377 /* CategoryScreenViewController+CollectionViewDelegate.swift in Sources */,
 				991442132A7CAFEF008DD377 /* CategoryScreenViewController+CollectionViewDataSource.swift in Sources */,
-				99A121A22A894B2000DF803A /* UITextField + Insets.swift in Sources */,
 				99DFCBB12A44459F00481714 /* Category+CoreDataClass.swift in Sources */,
 				999AC3492A5B061F00F7D321 /* ViewController+Convenience.swift in Sources */,
 				991442172A7CDE0D008DD377 /* Subject.swift in Sources */,

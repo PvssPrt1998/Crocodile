@@ -9,82 +9,94 @@ import UIKit
 
 class PlayerNameTextField: UITextField {
     
+    //MARK: - Properties
     let innerShadow = CALayer()
-    public var sizeForCalculateLayout: CGFloat = 0 {
-        didSet {
-            cornerRadius = sizeForCalculateLayout / 30
-        }
-    }
-    var cornerRadius: CGFloat = 0
-    var borderWidth: CGFloat = 2
     
-    func addLayer() {
-        let textFieldInset: CGFloat = (borderWidth * 2) + (cornerRadius / 2)
+    //MARK: - Methods
+    //call this method in awakeFromNib of superclass
+    func setupLayers() {
+        setupLayer()
+        setupInnerShadowLayer()
+        self.layer.addSublayer(innerShadow)
+    }
+    
+    //call this method in superclass when sizes finally calculated
+    func setupLayers(with borderWidth: CGFloat, and cornerRadius: CGFloat) {
+        setupLayer(with: borderWidth, and: cornerRadius)
+        setupInnerShadowLayer(with: borderWidth, and: cornerRadius)
+    }
+    
+    //MARK: - Private methods
+    //основной слой
+    private func setupLayer() {
+        self.layer.opacity = 0.6
+        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.masksToBounds = true
+        self.tintColor = .gray
+    }
+    
+    //основной слой, когда известны размеры
+    private func setupLayer(with borderWidth: CGFloat, and cornerRadius: CGFloat) {
+        setupTextFieldHorizontalPadding(with: borderWidth, and: cornerRadius)
+        self.layer.cornerRadius = cornerRadius
+        self.layer.borderWidth = borderWidth
+    }
+    
+    //Слой внутренней тени
+    private func setupInnerShadowLayer() {
         innerShadow.masksToBounds = true
         innerShadow.shadowColor = UIColor.black.cgColor
         innerShadow.shadowOffset = CGSize(width: 0, height: 0)
         innerShadow.shadowOpacity = 1
         innerShadow.shadowRadius = 3
-        self.layer.addSublayer(innerShadow)
-        
-        self.layer.opacity = 0.6
-        self.layer.cornerRadius = cornerRadius
-        self.layer.borderWidth = borderWidth
-        self.layer.borderColor = UIColor.white.cgColor
-        self.layer.masksToBounds = true
-        
-        self.setLeftPaddingPoints(textFieldInset)
-        self.setRightPaddingPoints(textFieldInset)
-        self.tintColor = .gray
     }
     
-    
-    
-    func setupLayer() {
+    //Слой внутренней тени когда известны размеры
+    private func setupInnerShadowLayer(with cornerRadius: CGFloat, and borderWidth: CGFloat) {
         var innerShadowLayer: CALayer? = nil
         
-        self.layer.sublayers?.map({ layer in
+        //находим слой innerShadow среди добавленных слоев
+        let _ = self.layer.sublayers?.map({ layer in
             if layer === self.innerShadow {
                 innerShadowLayer = layer
             }
         })
+        
         guard let innerShadowLayer = innerShadowLayer else { return }
         
-//        let cornerRadius = sizeForCalculateLayout / 30
-        //let borderWidth: CGFloat = 2
-//        let textFieldInset: CGFloat = (borderWidth * 2) + (cornerRadius / 2)
-        
         innerShadowLayer.frame = self.bounds
-
-        let radius = cornerRadius
-        let dx: CGFloat = -borderWidth
-        let dy: CGFloat = -borderWidth
-        let path = UIBezierPath(roundedRect: layer.bounds.insetBy(dx: dx, dy: dy), cornerRadius: radius + dy)
-        let cutout = UIBezierPath(roundedRect: layer.bounds, cornerRadius:radius).reversing()
-
-        path.append(cutout)
-        //print(self.layer.sublayers?.count)
-        
-        innerShadowLayer.shadowPath = path.cgPath
-//        innerShadow.masksToBounds = true
-//        innerShadow.shadowColor = UIColor.black.cgColor
-//        innerShadow.shadowOffset = CGSize(width: 0, height: 0)
-//        innerShadow.shadowOpacity = 1
-//        innerShadow.shadowRadius = 3
-        //self.layer.addSublayer(innerShadow)
-        
-        //print(self.layer.sublayers?.count)
-//
-//        self.layer.opacity = 0.6
-//        self.layer.cornerRadius = cornerRadius
-//        self.layer.borderWidth = borderWidth
-//        self.layer.borderColor = UIColor.white.cgColor
-//        self.layer.masksToBounds = true
-//
-//        self.setLeftPaddingPoints(textFieldInset)
-//        self.setRightPaddingPoints(textFieldInset)
-//        self.tintColor = .gray
+        innerShadowLayer.shadowPath = calculateShadowPath(with: cornerRadius, and: borderWidth)
     }
     
+    private func calculateShadowPath(with cornerRadius: CGFloat, and borderWidth: CGFloat) -> CGPath {
+        let dx: CGFloat = -borderWidth - 1
+        let dy: CGFloat = -borderWidth - 1
+        let path = UIBezierPath(roundedRect: layer.bounds.insetBy(dx: dx, dy: dy), cornerRadius: cornerRadius + dy)
+        let cutout = UIBezierPath(roundedRect: layer.bounds, cornerRadius: cornerRadius).reversing()
+        
+        path.append(cutout)
+        return path.cgPath
+    }
+    
+    
+    //Content Insets
+    private func setupTextFieldHorizontalPadding(with borderWidth: CGFloat, and cornerRadius: CGFloat) {
+        let textFieldInset: CGFloat = (borderWidth * 2) + (cornerRadius / 2)
+        self.setLeftPaddingPoints(textFieldInset)
+        self.setRightPaddingPoints(textFieldInset)
+        
+    }
+    
+    private func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    
+    private func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
 
 }
