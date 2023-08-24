@@ -10,8 +10,6 @@
 		991442112A7CAF52008DD377 /* CategoryScreenViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442102A7CAF52008DD377 /* CategoryScreenViewController+CollectionViewDelegate.swift */; };
 		991442132A7CAFEF008DD377 /* CategoryScreenViewController+CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442122A7CAFEF008DD377 /* CategoryScreenViewController+CollectionViewDataSource.swift */; };
 		991442152A7CB205008DD377 /* CategoryViewController+CollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442142A7CB205008DD377 /* CategoryViewController+CollectionViewDelegateFlowLayout.swift */; };
-		991442172A7CDE0D008DD377 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442162A7CDE0D008DD377 /* Subject.swift */; };
-		991442192A7CDE1B008DD377 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442182A7CDE1B008DD377 /* Observer.swift */; };
 		9914422A2A84C224008DD377 /* MainButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991442292A84C224008DD377 /* MainButton.xib */; };
 		9914422C2A84C278008DD377 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9914422B2A84C278008DD377 /* MainButton.swift */; };
 		9988F3CF29EE4A5A003D7FF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988F3CE29EE4A5A003D7FF3 /* AppDelegate.swift */; };
@@ -56,6 +54,7 @@
 		99BB890829FA68B400C65EE1 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB890729FA68B400C65EE1 /* NavigationRouter.swift */; };
 		99BB890A29FA739800C65EE1 /* ModalNavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB890929FA739800C65EE1 /* ModalNavigationRouter.swift */; };
 		99BB890C29FA7E2600C65EE1 /* AddPlayersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB890B29FA7E2600C65EE1 /* AddPlayersCoordinator.swift */; };
+		99DC482F2A946E5A0009C597 /* TimerContainerViewGameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DC482E2A946E5A0009C597 /* TimerContainerViewGameScreenViewController.swift */; };
 		99DFCB652A39772D00481714 /* GameScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCB642A39772D00481714 /* GameScreenCoordinator.swift */; };
 		99DFCB962A40974200481714 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCB952A40974200481714 /* PlayerManager.swift */; };
 		99DFCB9B2A43FD2B00481714 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCB9A2A43FD2B00481714 /* CoreDataStack.swift */; };
@@ -72,8 +71,6 @@
 		991442102A7CAF52008DD377 /* CategoryScreenViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryScreenViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		991442122A7CAFEF008DD377 /* CategoryScreenViewController+CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryScreenViewController+CollectionViewDataSource.swift"; sourceTree = "<group>"; };
 		991442142A7CB205008DD377 /* CategoryViewController+CollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+CollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
-		991442162A7CDE0D008DD377 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
-		991442182A7CDE1B008DD377 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		991442292A84C224008DD377 /* MainButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainButton.xib; sourceTree = "<group>"; };
 		9914422B2A84C278008DD377 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		9988F3CB29EE4A5A003D7FF3 /* Crocodile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crocodile.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +117,7 @@
 		99BB890729FA68B400C65EE1 /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
 		99BB890929FA739800C65EE1 /* ModalNavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationRouter.swift; sourceTree = "<group>"; };
 		99BB890B29FA7E2600C65EE1 /* AddPlayersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayersCoordinator.swift; sourceTree = "<group>"; };
+		99DC482E2A946E5A0009C597 /* TimerContainerViewGameScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerContainerViewGameScreenViewController.swift; sourceTree = "<group>"; };
 		99DFCB642A39772D00481714 /* GameScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenCoordinator.swift; sourceTree = "<group>"; };
 		99DFCB952A40974200481714 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		99DFCB9A2A43FD2B00481714 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -209,8 +207,6 @@
 				99DFCB952A40974200481714 /* PlayerManager.swift */,
 				99A1219D2A87875F00DF803A /* WordManager.swift */,
 				99DFCBA52A44037200481714 /* DELETETHIS.swift */,
-				991442162A7CDE0D008DD377 /* Subject.swift */,
-				991442182A7CDE1B008DD377 /* Observer.swift */,
 				99DFCB992A43FCD600481714 /* CoreData */,
 				99DFCBA42A43FF4500481714 /* ManagedObjects */,
 			);
@@ -273,6 +269,7 @@
 				99BB88F729FA387B00C65EE1 /* GameScreen.storyboard */,
 				99BB88FE29FA3C5500C65EE1 /* GameScreenViewController.swift */,
 				99A1219B2A87812400DF803A /* GameScreenViewController+MainButtonDelegate.swift */,
+				99DC482E2A946E5A0009C597 /* TimerContainerViewGameScreenViewController.swift */,
 			);
 			path = GameScreen;
 			sourceTree = "<group>";
@@ -461,6 +458,7 @@
 				99DFCBEB2A55355E00481714 /* ScoreTableViewCell.swift in Sources */,
 				9988F3D329EE4A5A003D7FF3 /* CategoryScreenViewController.swift in Sources */,
 				99BB890429FA3E1100C65EE1 /* CategoryCoordinator.swift in Sources */,
+				99DC482F2A946E5A0009C597 /* TimerContainerViewGameScreenViewController.swift in Sources */,
 				99A121922A84FE7C00DF803A /* CategoryScreenViewController+mainButtonDelegate.swift in Sources */,
 				9988F3FC29EE8BDA003D7FF3 /* GameManager.swift in Sources */,
 				999AC3442A5874E500F7D321 /* CutsomPresentationNavigationController.swift in Sources */,
@@ -473,7 +471,6 @@
 				991442132A7CAFEF008DD377 /* CategoryScreenViewController+CollectionViewDataSource.swift in Sources */,
 				99DFCBB12A44459F00481714 /* Category+CoreDataClass.swift in Sources */,
 				999AC3492A5B061F00F7D321 /* ViewController+Convenience.swift in Sources */,
-				991442172A7CDE0D008DD377 /* Subject.swift in Sources */,
 				99BB890229FA3D5B00C65EE1 /* StoryboardInstantiable.swift in Sources */,
 				99BB88FF29FA3C5500C65EE1 /* GameScreenViewController.swift in Sources */,
 				99A121A52A8A689B00DF803A /* PlayerNameTextField.swift in Sources */,
@@ -502,7 +499,6 @@
 				99A121942A84FFAF00DF803A /* AddPlayerViewController+mainButtonDelegate.swift in Sources */,
 				99DFCBB22A44459F00481714 /* Category+CoreDataProperties.swift in Sources */,
 				99BB88F429EEB75100C65EE1 /* AddPlayersViewController.swift in Sources */,
-				991442192A7CDE1B008DD377 /* Observer.swift in Sources */,
 				99DFCBAA2A442E1200481714 /* CoreDataManager.swift in Sources */,
 				99BB88FD29FA3C1F00C65EE1 /* ScoreScreenViewController.swift in Sources */,
 			);

@@ -19,6 +19,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nKj-wG-6in" userLabel="AddPlayersTableView">
                                 <rect key="frame" x="0.0" y="103" width="393" height="749"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addPlayerCell" rowHeight="88" id="SFs-a1-KLn" customClass="AddPlayerTableViewCell" customModule="Crocodile" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="88"/>
@@ -42,7 +43,7 @@
                                                     <rect key="frame" x="20" y="11" width="279" height="66"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                                     <connections>
                                                         <action selector="playerNameTextFieldDidChange:" destination="SFs-a1-KLn" eventType="editingChanged" id="Vel-Nh-gW1"/>
                                                     </connections>
@@ -71,8 +72,12 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UmD-tH-4c4" customClass="MainButton" customModule="Crocodile" customModuleProvider="target">
-                                <rect key="frame" x="59" y="737" width="275" height="59.666666666666629"/>
+                                <rect key="frame" x="146.66666666666666" y="406" width="100" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="7oT-rj-eAU"/>
+                                    <constraint firstAttribute="height" constant="40" id="QuW-Mb-8BG"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain"/>
                             </button>
@@ -82,21 +87,30 @@
                         <constraints>
                             <constraint firstItem="nKj-wG-6in" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="KAw-vE-iDx"/>
                             <constraint firstItem="nKj-wG-6in" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="LX6-TM-x2O"/>
-                            <constraint firstItem="UmD-tH-4c4" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.7" id="Loz-PK-AXu"/>
-                            <constraint firstItem="UmD-tH-4c4" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" multiplier="1.8" id="MPq-LV-drp"/>
+                            <constraint firstItem="UmD-tH-4c4" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="MPq-LV-drp"/>
                             <constraint firstItem="UmD-tH-4c4" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="hTp-EK-g8r"/>
                             <constraint firstItem="nKj-wG-6in" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="hmq-SJ-JRa"/>
-                            <constraint firstItem="UmD-tH-4c4" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="v47-IA-zNh"/>
                             <constraint firstAttribute="bottom" secondItem="nKj-wG-6in" secondAttribute="bottom" id="y0j-kc-KDv"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="6kc-vc-yfy" appends="YES" id="p7N-SY-kqX"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Введите имена игроков" id="jQ9-CG-hSj"/>
                     <connections>
                         <outlet property="addPlayersTableView" destination="nKj-wG-6in" id="ntT-NI-Lvo"/>
                         <outlet property="mainButton" destination="UmD-tH-4c4" id="ZyX-cp-t8l"/>
+                        <outlet property="mainButtonCenterXConstraint" destination="MPq-LV-drp" id="yhd-LF-aP9"/>
+                        <outlet property="mainButtonHeightConstraint" destination="QuW-Mb-8BG" id="2Zt-gr-2Ti"/>
+                        <outlet property="mainButtonWidthConstraint" destination="7oT-rj-eAU" id="ZRj-e9-6AC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="6kc-vc-yfy">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="Y6W-OH-hqX" id="3Mc-0J-o5S"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="982.44274809160299" y="-27.464788732394368"/>
         </scene>

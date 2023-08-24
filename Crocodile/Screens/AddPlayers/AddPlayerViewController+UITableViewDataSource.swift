@@ -25,7 +25,7 @@ extension AddPlayersViewController: UITableViewDataSource {
         cell.delegate = self
         //Выключаем видимый эффект выделения ячейки
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        if indexPath.row == 0 { cell.playerNameTextField.becomeFirstResponder() }
+        //if indexPath.row == 0 { cell.playerNameTextField.becomeFirstResponder() }
         return cell
     }
 }

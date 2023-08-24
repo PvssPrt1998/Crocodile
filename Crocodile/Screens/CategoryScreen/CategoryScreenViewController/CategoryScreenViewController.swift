@@ -74,6 +74,7 @@ public class CategoryScreenViewController: UIViewController {
         mainButton.setTitle("Далее", for: .normal)
     }
     
+    //TODO: - Remove this from controller and all coreData logic
     private func performFecth() {
         do {
           try fetchedResultsController.performFetch()

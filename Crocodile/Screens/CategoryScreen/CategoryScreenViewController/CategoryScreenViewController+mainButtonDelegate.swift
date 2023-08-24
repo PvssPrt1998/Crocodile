@@ -15,4 +15,8 @@ extension CategoryScreenViewController: MainButtonDelegate {
         }
         delegate?.mainButtonDidPress(self, onDismissed: onDismissed)
     }
+    
+    func mainButtonTapping(_ button: MainButton) {
+        
+    }
 }

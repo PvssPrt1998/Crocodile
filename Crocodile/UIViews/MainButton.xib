@@ -21,6 +21,7 @@
             <buttonConfiguration key="configuration" style="plain" title="mainButton"/>
             <connections>
                 <action selector="mainButtonTapped:" destination="-1" eventType="touchUpInside" id="Mah-wQ-0xC"/>
+                <action selector="mainButtonTapping:" destination="-1" eventType="touchDown" id="bmH-0o-Fjv"/>
             </connections>
             <point key="canvasLocation" x="81.679389312977094" y="-9.5070422535211279"/>
         </button>

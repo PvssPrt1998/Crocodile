@@ -17,4 +17,8 @@ extension GameScreenViewController: MainButtonDelegate {
         }
         gameManager?.isGameInProgress.toggle()
     }
+    
+    func mainButtonTapping(_ button: MainButton) {
+        
+    }
 }

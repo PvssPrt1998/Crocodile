@@ -46,13 +46,13 @@ class PlayerNameTextField: UITextField {
     private func setupInnerShadowLayer() {
         innerShadow.masksToBounds = true
         innerShadow.shadowColor = UIColor.black.cgColor
-        innerShadow.shadowOffset = CGSize(width: 0, height: 0)
+        innerShadow.shadowOffset = CGSize(width: 3, height: 3)
         innerShadow.shadowOpacity = 1
         innerShadow.shadowRadius = 3
     }
     
     //Слой внутренней тени когда известны размеры
-    private func setupInnerShadowLayer(with cornerRadius: CGFloat, and borderWidth: CGFloat) {
+    private func setupInnerShadowLayer(with borderWidth: CGFloat, and cornerRadius: CGFloat) {
         var innerShadowLayer: CALayer? = nil
         
         //находим слой innerShadow среди добавленных слоев
@@ -63,16 +63,16 @@ class PlayerNameTextField: UITextField {
         })
         
         guard let innerShadowLayer = innerShadowLayer else { return }
-        
         innerShadowLayer.frame = self.bounds
-        innerShadowLayer.shadowPath = calculateShadowPath(with: cornerRadius, and: borderWidth)
+        
+        innerShadowLayer.shadowPath = calculateShadowPath(with: borderWidth, and: cornerRadius)
     }
     
-    private func calculateShadowPath(with cornerRadius: CGFloat, and borderWidth: CGFloat) -> CGPath {
+    private func calculateShadowPath(with borderWidth: CGFloat, and cornerRadius: CGFloat) -> CGPath {
         let dx: CGFloat = -borderWidth - 1
         let dy: CGFloat = -borderWidth - 1
-        let path = UIBezierPath(roundedRect: layer.bounds.insetBy(dx: dx, dy: dy), cornerRadius: cornerRadius - dy)
-        let cutout = UIBezierPath(roundedRect: layer.bounds, cornerRadius: cornerRadius).reversing()
+        let path = UIBezierPath(roundedRect: self.bounds.insetBy(dx: dx, dy: dy), cornerRadius: cornerRadius + dy)
+        let cutout = UIBezierPath(roundedRect: self.bounds, cornerRadius: cornerRadius + dy).reversing()
         
         path.append(cutout)
         return path.cgPath

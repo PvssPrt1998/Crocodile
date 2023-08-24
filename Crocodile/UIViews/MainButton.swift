@@ -9,6 +9,7 @@ import UIKit
 
 protocol MainButtonDelegate: AnyObject {
     func mainButtonTapped(_ button: MainButton)
+    func mainButtonTapping(_ button: MainButton)
 }
 
 @IBDesignable
@@ -33,6 +34,10 @@ class MainButton: UIButton {
     //MARK: - Methods
     @IBAction func mainButtonTapped(_ sender: UIButton) {
         delegate?.mainButtonTapped(self)
+    }
+    
+    @IBAction func mainButtonTapping(_ sender: UIButton) {
+        delegate?.mainButtonTapping(self)
     }
     
     override func layoutSubviews() {

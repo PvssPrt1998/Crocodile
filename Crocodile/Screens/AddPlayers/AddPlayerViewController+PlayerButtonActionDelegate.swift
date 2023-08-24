@@ -11,10 +11,10 @@ import UIKit
 extension AddPlayersViewController: PlayerButtonActionDelegate {
     
     //метод который вызывается при нажатии на кнопку в целл классе
-    public func playerButtonPressed(sender: UIButton) {
+    public func playerButtonPressed(sender: UITableViewCell) {
         //проверяем cell и indexPath на nil
         guard let gameManager = gameManager,
-              let cell = getCellByUIView(sender),
+              let cell = sender as? AddPlayerTableViewCell,
               let indexPath = getIndexPathBy(cell: cell)
         else { return }
         
@@ -40,7 +40,7 @@ extension AddPlayersViewController: PlayerButtonActionDelegate {
         guard let cell = addPlayersTableView.cellForRow(at: indexPath) else { return }
         cell.prepareForReuse()
         addPlayersTableView.beginUpdates()
-        addPlayersTableView.deleteRows(at: [indexPath], with: .automatic)
+        addPlayersTableView.deleteRows(at: [indexPath], with: .fade)
         addPlayersTableView.endUpdates()
         //Проверяем есть ли игроки и нужно ли отображать nextButton. Если нет, то скрыть
         mainButtonAvailabilityCheck()
@@ -51,7 +51,7 @@ extension AddPlayersViewController: PlayerButtonActionDelegate {
     private func insertRow() {
         let indexPath = IndexPath(row: 0, section: 0)
         addPlayersTableView.beginUpdates()
-        addPlayersTableView.insertRows(at: [indexPath], with: .automatic)
+        addPlayersTableView.insertRows(at: [indexPath], with: .fade)
         addPlayersTableView.endUpdates()
         guard let cell = addPlayersTableView.cellForRow(at: indexPath) as? AddPlayerTableViewCell else { return }
         cell.playerNameTextField.becomeFirstResponder()
@@ -62,7 +62,6 @@ extension AddPlayersViewController: PlayerButtonActionDelegate {
     //Если в первом текстфилде написано имя, но не добавлено, а мы удалили игрока с таким же именем, которое введено в текстфилде
     //галочка должна загореться
     private func firstCellAddAvailabilityCheck() {
-        print("firstCellActiveCondition")
         let indexPath = IndexPath(row: 0, section: 0)
         guard let cell = addPlayersTableView.cellForRow(at: indexPath) as? AddPlayerTableViewCell else { return }
         cell.playerButtonActiveCondition()

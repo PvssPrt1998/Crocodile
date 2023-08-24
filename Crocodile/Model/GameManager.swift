@@ -7,14 +7,21 @@
 
 import Foundation
 
+public protocol GameStateDelegate: AnyObject {
+    func prepareGameForInProgressState()
+    func prepareGameForWaitingState()
+}
+
 //Главный класс, содержащий все составляющие модели
 //Содержит PlayerManager
 //Cодержит СategoryManager
+
 //MARK: - GameManager
 public class GameManager {
     
     //MARK: - Properties
-    private var observers: Array<Observer> = []
+    
+    weak var delegate: GameStateDelegate?
     
     var playerManager: PlayerManager = PlayerManager()
     var wordManager: WordManager = WordManager()
@@ -23,10 +30,11 @@ public class GameManager {
         didSet {
             if isGameInProgress == true {
                 wordManager.setCurrentWord()
+                delegate?.prepareGameForInProgressState()
             } else {
                 playerManager.setCurrentPlayer()
+                delegate?.prepareGameForWaitingState()
             }
-            notifyObservers()
         }
     }
     
@@ -40,19 +48,5 @@ public class GameManager {
      func reset() {
         wordManager = WordManager()
         playerManager = PlayerManager()
-    }
-}
-
-extension GameManager: Subject {
-    func registerObserver(_ observer: Observer) {
-        observers.append(observer)
-    }
-    
-    func removeObserver(_ observer: Observer) {
-        observers.removeAll { $0 === observer }
-    }
-    
-    func notifyObservers() {
-        observers.forEach { $0.update(isGameInProgress: isGameInProgress) }
     }
 }

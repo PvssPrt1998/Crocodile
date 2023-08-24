@@ -13,6 +13,11 @@ public protocol GameScreenViewControllerDelegate: AnyObject {
     func GameViewControllerDidPressGuessed(_ viewController: GameScreenViewController, onDismissed: (()->Void)?)
 }
 
+//MARK: - TimerRunChildViewControllerDelegate
+public protocol TimerRunChildViewControllerDelegate: AnyObject {
+    func runTimer()
+}
+
 public final class GameScreenViewController: UIViewController {
     
     //MARK: - Properties
@@ -21,6 +26,8 @@ public final class GameScreenViewController: UIViewController {
     //Делегатом выступает координатор данного контроллера
     public weak var delegate: GameScreenViewControllerDelegate?
     
+    weak var timerDelegate: TimerRunChildViewControllerDelegate?
+    
     private lazy var onDismissed: ()->Void = {
         guard let navigationTitleButton = self.navigationItem.titleView as? UIButton  else { return }
         navigationTitleButton.setTitle("Рейтинг", for: .normal)
@@ -28,6 +35,7 @@ public final class GameScreenViewController: UIViewController {
     }
     
     //MARK: - Outlets
+    @IBOutlet weak var timerContainerView: UIView!
     @IBOutlet weak var gameContainerView: UIView!
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var mainButton: MainButton!
@@ -41,6 +49,18 @@ public final class GameScreenViewController: UIViewController {
         setupViewConfigs()
     }
     
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        gameContainerView.layer.cornerRadius = view.frame.width / 30
+    }
+    
+    //MARK: - Segue
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationViewController = segue.destination as? TimerContainerViewGameScreenViewController else { return }
+        destinationViewController.delegate = self
+        timerDelegate = destinationViewController
+    }
+    
     //MARK: - Configure views methods
     //задает нужный текст для лейблов и кнопок при загрузке
     private func setupViewConfigs() {
@@ -51,6 +71,7 @@ public final class GameScreenViewController: UIViewController {
     
     //готовит вьюшки для состояния ожидания готовности игрока
     private func prepareViewsForWaitingState() {
+        timerContainerView.isHidden = true
         guard let gameManager = gameManager else { return }
         let showingPlayerLabelText = gameManager.playerManager.currentPlayer!.name
         showingPlayerLabel.text = "Показывает игрок: \(showingPlayerLabelText)"
@@ -69,6 +90,8 @@ public final class GameScreenViewController: UIViewController {
     
     //готовит вьюшки для состояния "игра в процессе"
     private func prepareViewsForInProgressState() {
+        timerContainerView.isHidden = false
+        timerDelegate?.runTimer()
         wordLabel.text = gameManager?.wordManager.currentWord
         wordLabel.isHidden = false
         giveUpButton.isHidden = false
@@ -124,7 +147,7 @@ public final class GameScreenViewController: UIViewController {
     func setGameManager(data: AnyObject) {
         guard let data = data as? GameManager else { return }
         gameManager = data
-        gameManager?.registerObserver(self)
+        gameManager?.delegate = self
     }
 }
 
@@ -139,12 +162,19 @@ extension GameScreenViewController: StoryboardInstantiable {
 
 
 //MARK: - Observer
-extension GameScreenViewController: Observer {
-    func update(isGameInProgress: Bool) {
-        if isGameInProgress == true {
-            prepareViewsForInProgressState()
-        } else {
-            prepareViewsForWaitingState()
-        }
+extension GameScreenViewController: GameStateDelegate {
+    
+    public func prepareGameForInProgressState() {
+        prepareViewsForInProgressState()
+    }
+    
+    public func prepareGameForWaitingState() {
+        prepareViewsForWaitingState()
+    }
+}
+
+extension GameScreenViewController: TimeOutDelegate {
+    func timeOut() {
+        gameManager?.giveUp()
     }
 }

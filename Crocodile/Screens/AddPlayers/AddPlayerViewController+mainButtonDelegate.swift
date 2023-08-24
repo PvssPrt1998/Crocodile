@@ -10,5 +10,10 @@ import UIKit
 extension AddPlayersViewController: MainButtonDelegate {
     func mainButtonTapped(_ button: MainButton) {
         delegate?.addPlayersViewControllerDidPressNext(self, onDismissed: onDismissed)
+        makeMainButtonNormal()
+    }
+    
+    func mainButtonTapping(_ button: MainButton) {
+        makeMainButtonSmaller()
     }
 }

@@ -20,6 +20,7 @@ public class PlayerManager {
     //MARK: - Methods
     //устанавливает текущим игроком первого игрока из массива игроков
     public func setCurrentPlayer() {
+        guard players.first != nil else { return }
         let player = players.removeFirst()
         currentPlayer = player
         players.append(player)
@@ -59,7 +60,6 @@ public class PlayerManager {
     //Удаление по имени
     public func removePlayer(by name: String) {
         guard let index = players.firstIndex(where: { $0.name == name }) else { return }
-        print("removed")
         players.remove(at: index)
     }
     

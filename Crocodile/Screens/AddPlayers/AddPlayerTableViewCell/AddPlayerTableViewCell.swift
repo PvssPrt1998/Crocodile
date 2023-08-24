@@ -33,6 +33,7 @@ class AddPlayerTableViewCell: UITableViewCell, UITextFieldDelegate {
         super.awakeFromNib()
         playerNameTextField.setupLayers()
         playerNameTextField.delegate = self
+        playerButton.isEnabled = false
     }
     
     override func layoutIfNeeded() {
@@ -48,13 +49,8 @@ class AddPlayerTableViewCell: UITableViewCell, UITextFieldDelegate {
         playerButtonActiveCondition()
     }
     
-    //Нажата кнопка playerButton. Если поле при нажатии заполнено и картинка на кнопке - галочка (добавляем нового игрока), то
-    //Если поле заполнено и кнопка крестик, то мы удаляем игрока.
-    //Если поле пустое, то кнопка неактивна.
     @IBAction func playerButtonAction(_ sender: UIButton) {
-        delegate?.playerButtonPressed(sender: sender)
-        //перещелкиваем картинку и isPlayerAdded. Сначала щелкаем isPlayerAdded
-        isPlayerAdded.toggle()
+        performAction()
     }
     
     override func prepareForReuse() {
@@ -81,6 +77,14 @@ class AddPlayerTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     //MARK: - Private methods
     //
+    //Нажата кнопка playerButton. Если поле при нажатии заполнено и картинка на кнопке - галочка (добавляем нового игрока), то
+    //Если поле заполнено и кнопка крестик, то мы удаляем игрока.
+    //Если поле пустое, то кнопка неактивна.
+    private func performAction() {
+        delegate?.playerButtonPressed(sender: self)
+        //перещелкиваем картинку и isPlayerAdded. Сначала щелкаем isPlayerAdded
+        isPlayerAdded.toggle()
+    }
     
     //Меняет картинку галочка или крестик
     private func toggleImageOnPlayerButton() {
@@ -96,6 +100,7 @@ class AddPlayerTableViewCell: UITableViewCell, UITextFieldDelegate {
     private func makePlayerButtonInactive() {
         playerButton.alpha = 0.1
         playerButton.isEnabled = false
+        playerNameTextField.placeholder = "Имя игрока"
     }
     
     //Сделать кнопку активной (Поле игрока непустое). Прозрачность почти 0%. Кнопку отлично видно
@@ -114,7 +119,9 @@ class AddPlayerTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
+        if playerButton.isEnabled {
+            performAction()
+        }
         return true
     }
 }
