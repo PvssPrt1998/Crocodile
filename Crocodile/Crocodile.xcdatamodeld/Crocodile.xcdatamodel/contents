@@ -5,8 +5,13 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="category" inverseEntity="Word"/>
     </entity>
+    <entity name="DataVersion" representedClassName=".DataVersion" syncable="YES">
+        <attribute name="version" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Word" representedClassName="Word" syncable="YES">
         <attribute name="word" optional="YES" attributeType="String"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="words" inverseEntity="Category"/>
     </entity>
+    <fetchRequest name="CategoriesFetchRequest" entity="Category"/>
+    <fetchRequest name="DataVersionFetchRequest" entity="DataVersion"/>
 </model>

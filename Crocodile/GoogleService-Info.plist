@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>959582159923-jbukq5v5591t3t0ve374ft5qjv8frril.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.959582159923-jbukq5v5591t3t0ve374ft5qjv8frril</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBL9YnzrmP1R_hlMLcyNcrXgWLYMOgv6tI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>959582159923</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Lucifer.Crocodile</string>
+	<key>PROJECT_ID</key>
+	<string>crocodile-5096b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>crocodile-5096b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:959582159923:ios:4544031f56e040bb684f46</string>
+	<key>DATABASE_URL</key>
+	<string>https://crocodile-5096b-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>

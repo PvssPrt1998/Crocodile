@@ -55,6 +55,9 @@
 		99BB890A29FA739800C65EE1 /* ModalNavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB890929FA739800C65EE1 /* ModalNavigationRouter.swift */; };
 		99BB890C29FA7E2600C65EE1 /* AddPlayersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BB890B29FA7E2600C65EE1 /* AddPlayersCoordinator.swift */; };
 		99DC482F2A946E5A0009C597 /* TimerContainerViewGameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DC482E2A946E5A0009C597 /* TimerContainerViewGameScreenViewController.swift */; };
+		99DC48462A976E430009C597 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99DC48452A976E430009C597 /* GoogleService-Info.plist */; };
+		99DC48492A976EB60009C597 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 99DC48482A976EB60009C597 /* FirebaseDatabaseSwift */; };
+		99DC484B2A976EB60009C597 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 99DC484A2A976EB60009C597 /* FirebaseStorage */; };
 		99DFCB652A39772D00481714 /* GameScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCB642A39772D00481714 /* GameScreenCoordinator.swift */; };
 		99DFCB962A40974200481714 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCB952A40974200481714 /* PlayerManager.swift */; };
 		99DFCB9B2A43FD2B00481714 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCB9A2A43FD2B00481714 /* CoreDataStack.swift */; };
@@ -65,6 +68,10 @@
 		99DFCBB12A44459F00481714 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCBAD2A44459F00481714 /* Category+CoreDataClass.swift */; };
 		99DFCBB22A44459F00481714 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCBAE2A44459F00481714 /* Category+CoreDataProperties.swift */; };
 		99DFCBEB2A55355E00481714 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCBEA2A55355E00481714 /* ScoreTableViewCell.swift */; };
+		99E72DC32AC3E305002F678C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E72DC22AC3E305002F678C /* DataManager.swift */; };
+		99E72DC52AC3E3B2002F678C /* FirebaseDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E72DC42AC3E3B2002F678C /* FirebaseDownloader.swift */; };
+		99E72DD62AC40597002F678C /* DataVersion+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E72DD42AC40597002F678C /* DataVersion+CoreDataClass.swift */; };
+		99E72DD72AC40597002F678C /* DataVersion+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E72DD52AC40597002F678C /* DataVersion+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +125,7 @@
 		99BB890929FA739800C65EE1 /* ModalNavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationRouter.swift; sourceTree = "<group>"; };
 		99BB890B29FA7E2600C65EE1 /* AddPlayersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayersCoordinator.swift; sourceTree = "<group>"; };
 		99DC482E2A946E5A0009C597 /* TimerContainerViewGameScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerContainerViewGameScreenViewController.swift; sourceTree = "<group>"; };
+		99DC48452A976E430009C597 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		99DFCB642A39772D00481714 /* GameScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenCoordinator.swift; sourceTree = "<group>"; };
 		99DFCB952A40974200481714 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		99DFCB9A2A43FD2B00481714 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -128,6 +136,10 @@
 		99DFCBAD2A44459F00481714 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		99DFCBAE2A44459F00481714 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		99DFCBEA2A55355E00481714 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
+		99E72DC22AC3E305002F678C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		99E72DC42AC3E3B2002F678C /* FirebaseDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDownloader.swift; sourceTree = "<group>"; };
+		99E72DD42AC40597002F678C /* DataVersion+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataVersion+CoreDataClass.swift"; sourceTree = "<group>"; };
+		99E72DD52AC40597002F678C /* DataVersion+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataVersion+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +147,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99DC48492A976EB60009C597 /* FirebaseDatabaseSwift in Frameworks */,
+				99DC484B2A976EB60009C597 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +208,7 @@
 				9988F3DA29EE4A5B003D7FF3 /* Assets.xcassets */,
 				9988F3DC29EE4A5B003D7FF3 /* LaunchScreen.storyboard */,
 				9988F3DF29EE4A5B003D7FF3 /* Info.plist */,
+				99DC48452A976E430009C597 /* GoogleService-Info.plist */,
 				9988F3D729EE4A5A003D7FF3 /* Crocodile.xcdatamodeld */,
 			);
 			path = Crocodile;
@@ -207,6 +222,8 @@
 				99DFCB952A40974200481714 /* PlayerManager.swift */,
 				99A1219D2A87875F00DF803A /* WordManager.swift */,
 				99DFCBA52A44037200481714 /* DELETETHIS.swift */,
+				99E72DC22AC3E305002F678C /* DataManager.swift */,
+				99E72DC42AC3E3B2002F678C /* FirebaseDownloader.swift */,
 				99DFCB992A43FCD600481714 /* CoreData */,
 				99DFCBA42A43FF4500481714 /* ManagedObjects */,
 			);
@@ -367,6 +384,8 @@
 		99DFCBA42A43FF4500481714 /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				99E72DD52AC40597002F678C /* DataVersion+CoreDataProperties.swift */,
+				99E72DD42AC40597002F678C /* DataVersion+CoreDataClass.swift */,
 				99DFCBAE2A44459F00481714 /* Category+CoreDataProperties.swift */,
 				99DFCBAD2A44459F00481714 /* Category+CoreDataClass.swift */,
 				99DFCBAC2A44459F00481714 /* Word+CoreDataProperties.swift */,
@@ -391,6 +410,10 @@
 			dependencies = (
 			);
 			name = Crocodile;
+			packageProductDependencies = (
+				99DC48482A976EB60009C597 /* FirebaseDatabaseSwift */,
+				99DC484A2A976EB60009C597 /* FirebaseStorage */,
+			);
 			productName = Crocodile;
 			productReference = 9988F3CB29EE4A5A003D7FF3 /* Crocodile.app */;
 			productType = "com.apple.product-type.application";
@@ -419,6 +442,9 @@
 				Base,
 			);
 			mainGroup = 9988F3C229EE4A5A003D7FF3;
+			packageReferences = (
+				99DC48472A976EB60009C597 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 9988F3CC29EE4A5A003D7FF3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -435,6 +461,7 @@
 			files = (
 				9914422A2A84C224008DD377 /* MainButton.xib in Resources */,
 				9988F3DE29EE4A5B003D7FF3 /* LaunchScreen.storyboard in Resources */,
+				99DC48462A976E430009C597 /* GoogleService-Info.plist in Resources */,
 				99BB88FB29FA3B7000C65EE1 /* ScoreScreen.storyboard in Resources */,
 				9988F3FA29EE8A1F003D7FF3 /* AddPlayers.storyboard in Resources */,
 				9988F3DB29EE4A5B003D7FF3 /* Assets.xcassets in Resources */,
@@ -470,12 +497,14 @@
 				991442112A7CAF52008DD377 /* CategoryScreenViewController+CollectionViewDelegate.swift in Sources */,
 				991442132A7CAFEF008DD377 /* CategoryScreenViewController+CollectionViewDataSource.swift in Sources */,
 				99DFCBB12A44459F00481714 /* Category+CoreDataClass.swift in Sources */,
+				99E72DC52AC3E3B2002F678C /* FirebaseDownloader.swift in Sources */,
 				999AC3492A5B061F00F7D321 /* ViewController+Convenience.swift in Sources */,
 				99BB890229FA3D5B00C65EE1 /* StoryboardInstantiable.swift in Sources */,
 				99BB88FF29FA3C5500C65EE1 /* GameScreenViewController.swift in Sources */,
 				99A121A52A8A689B00DF803A /* PlayerNameTextField.swift in Sources */,
 				99DFCBB02A44459F00481714 /* Word+CoreDataProperties.swift in Sources */,
 				99BB890A29FA739800C65EE1 /* ModalNavigationRouter.swift in Sources */,
+				99E72DD72AC40597002F678C /* DataVersion+CoreDataProperties.swift in Sources */,
 				999AC33A2A5538E000F7D321 /* ScoreScreenCoordinator.swift in Sources */,
 				9988F3D929EE4A5A003D7FF3 /* Crocodile.xcdatamodeld in Sources */,
 				9988F3E729EE4A7C003D7FF3 /* Player.swift in Sources */,
@@ -494,11 +523,13 @@
 				9988F3ED29EE6705003D7FF3 /* Coordinator.swift in Sources */,
 				9988F3FF29EE8E1E003D7FF3 /* CategoryCollectionViewCell.swift in Sources */,
 				99A1219E2A87875F00DF803A /* WordManager.swift in Sources */,
+				99E72DC32AC3E305002F678C /* DataManager.swift in Sources */,
 				991442152A7CB205008DD377 /* CategoryViewController+CollectionViewDelegateFlowLayout.swift in Sources */,
 				99DFCB652A39772D00481714 /* GameScreenCoordinator.swift in Sources */,
 				99A121942A84FFAF00DF803A /* AddPlayerViewController+mainButtonDelegate.swift in Sources */,
 				99DFCBB22A44459F00481714 /* Category+CoreDataProperties.swift in Sources */,
 				99BB88F429EEB75100C65EE1 /* AddPlayersViewController.swift in Sources */,
+				99E72DD62AC40597002F678C /* DataVersion+CoreDataClass.swift in Sources */,
 				99DFCBAA2A442E1200481714 /* CoreDataManager.swift in Sources */,
 				99BB88FD29FA3C1F00C65EE1 /* ScoreScreenViewController.swift in Sources */,
 			);
@@ -724,6 +755,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		99DC48472A976EB60009C597 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		99DC48482A976EB60009C597 /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 99DC48472A976EB60009C597 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		99DC484A2A976EB60009C597 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 99DC48472A976EB60009C597 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		9988F3D729EE4A5A003D7FF3 /* Crocodile.xcdatamodeld */ = {

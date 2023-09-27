@@ -25,6 +25,7 @@ public class GameManager {
     
     var playerManager: PlayerManager = PlayerManager()
     var wordManager: WordManager = WordManager()
+    var dataManager: DataManager = DataManager()
     
     var isGameInProgress: Bool = false {
         didSet {
@@ -49,4 +50,6 @@ public class GameManager {
         wordManager = WordManager()
         playerManager = PlayerManager()
     }
+    
+    
 }
