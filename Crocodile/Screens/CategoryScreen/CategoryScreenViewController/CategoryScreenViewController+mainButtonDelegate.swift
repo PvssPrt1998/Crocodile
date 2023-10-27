@@ -9,6 +9,7 @@ import UIKit
 
 extension CategoryScreenViewController: MainButtonDelegate {
     func mainButtonTapped(_ button: MainButton) {
+        //метод формирует сет слов содержащихся в выделенных категориях.
         setupSetFromSelectedCategories()
         defer {
             resetAllElementsCollectionView()

@@ -17,18 +17,11 @@ extension CategoryScreenViewController: UICollectionViewDelegate {
         guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return }
         //если ячейка не выделена, выделяем и наоборот
         cell.checkmarkToggleHiddenFlag()
-        fetchedResultsController.object(at: indexPath).isSelected = !cell.checkmark.isHidden
+        gameManager.getCategory(by: indexPath.row)?.isSelected = !cell.checkmark.isHidden
         
-        if isAnyCategorySelected() {
+        if gameManager.isAnyCategorySelected() {
             mainButton.makeVisible()
         } else { mainButton.makeInvisible() }
-    }
-    
-    //isAnyCategorySelected Есть ли выбранные категории
-    private func isAnyCategorySelected() -> Bool {
-        //проверяем содержит ли результконтроллер хоть одину выбранную категорию
-        guard let result = fetchedResultsController.fetchedObjects?.contains(where: { $0.isSelected }) else { return false }
-        return result
     }
     
     //Исчезновение кнопки когда начинаем скроллить

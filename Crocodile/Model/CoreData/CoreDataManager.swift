@@ -11,32 +11,49 @@ import CoreData
 //TODO: - RemoveThisLineLater
 import UIKit
 
-//название наверное лучше сменить
-//содержит методы закачки в память устройства
-//содержит методы извлечения из памяти устройства
-//можно разбить на два класса загрузка в память и выгрузка из памяти
 class CoreDataManager {
     
+    //MARK: - Properties
     enum EntityNames: String {
         case Category
         case Version
     }
-    
+
     private let modelName: String = "Crocodile"
     
     //CoreDataStack
     lazy var coreDataStack = CoreDataStack(modelName: modelName)
-    //fetchRequests
-    var categoriesFetchRequest: NSFetchRequest<Category>!
-    var dataVersionFetchRequest: NSFetchRequest<DataVersion>!
     
+    var categoriesOrderedSet: CategoriesOrderedSet!
+    
+    //MARK: - Methods
+    //public methods
+    
+    //метод вытаскивает сет из одной категории и пихает ее в сет другой категории
+    //нужно для того чтобы сеты выделенных категорий не сохранять лишний раз в отдельный сет
+    //Потом если игра начинается заново мы просто сет со всеми категориями делаем nil
+    //И снова делаем феч реквест
+    //НИ В КОЕМ СЛУЧАЕ НЕЛЬЗЯ ТУТ В ЭТОМ МЕТОДЕ ПИСАТЬ managedContext.save() или в памяти телефона
+    //некоторые категории будут без слов
+    func unionSetsOfSelectedCategories() {
+        guard let categoriesOrderedSet = categoriesOrderedSet,
+              let categories = categoriesOrderedSet.categories
+        else { fatalError("Categories doesn't exist") }
+        
+        for element in categories {
+            guard let element = element as? Category else { fatalError("Cannot cast Element of Set to Category Type") }
+            if element.isSelected {
+                
+            }
+        }
+    }
     
     //get version from device memory and return it
     func getVersion()-> String {
         var version: String = ""
         do {
             //получаем все сущности version которые могут быть. Так как у нас должна быть только одна, то берем первую
-            guard let dataVersion = try coreDataStack.managedContext.fetch(dataVersionFetchRequest).first,
+            guard let dataVersion = try coreDataStack.managedContext.fetch(DataVersion.fetchRequest()).first,
                   let dataVersion = dataVersion.version
             else { return "" }
             version = dataVersion
@@ -45,21 +62,61 @@ class CoreDataManager {
         }
         return version
     }
-
-    //TODO: - придумать что-нибудь чтобы целый массив не перекидывать, может быть linked list вместо массива. и обработку ошибок запилить чтобы не возвращало
-    func getCategoriesArray()-> Array<Category> {
-        var categoriesArray: Array<Category> = []
-        do { categoriesArray =
-            try coreDataStack.managedContext.fetch(categoriesFetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
+    
+    //count of Category entities
+    func categoriesCount()-> Int {
+        loadSetOfCategoriesIfNeeded()
+        guard let categoriesOrderedSet = categoriesOrderedSet,
+              let categories = categoriesOrderedSet.categories
+        else { return 0 }
+        return categories.count
+    }
+    
+    //получаем категорию по индексу
+    func getCategory(by index: Int)-> Category? {
+        loadSetOfCategoriesIfNeeded()
+        guard let categories = categoriesOrderedSet?.categories,
+              index >= 0 && index < categories.count,
+              let category = categories[index] as? Category
+            else { return nil }
+        
+        return category
+    }
+    
+    //есть ли выбранные категории (is any selected)
+    func isAnyCategorySelected()-> Bool {
+        guard let categoriesOrderedSet = categoriesOrderedSet,
+              let categories = categoriesOrderedSet.categories
+        else { fatalError("Categories doesn't exist") }
+        
+        for element in categories {
+            guard let element = element as? Category else { fatalError("Cannot cast Element of Set to Category Type") }
+            if element.isSelected {
+                return true
+            }
         }
-        return categoriesArray
+        
+        return false
+    }
+    
+    //PrivateMethods
+    private func loadSetOfCategoriesIfNeeded() {
+        if categoriesOrderedSet == nil {
+            do {
+                let results = try coreDataStack.managedContext.fetch(CategoriesOrderedSet.fetchRequest())
+                if results.count > 0 {
+                    categoriesOrderedSet = results.first
+                }
+            } catch let error as NSError {
+                print("Could not fetch \(error), \(error.userInfo)")
+            }
+        }
     }
     
     //TODO: - this method should be moving to DataManager
+    //TODO: - This methods should me removed later
     func importDataIfNeeded() {
-        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+        let fetchRequest: NSFetchRequest<CategoriesOrderedSet> = CategoriesOrderedSet.fetchRequest()
         let count = try? coreDataStack.managedContext.count(for: fetchRequest)
         
         guard let categoriesCount = count, categoriesCount == 0 else { return }
@@ -69,38 +126,40 @@ class CoreDataManager {
     func importData() {
         let version = DataVersion(context: coreDataStack.managedContext)
         version.version = getDateString()
-        coreDataStack.saveContext()
         
+        let categoriesOrderedSet = CategoriesOrderedSet(context: coreDataStack.managedContext)
+
         let category = Category(context: coreDataStack.managedContext)
-        
-        //картинки будут потом через тип дата закидываться, но пока так чтобы затестить работу
         let image = UIImage(named: "Memes")
-        let image1 = UIImage(named: "over18")
-        
-        //добавляем мемы категорию
         category.title = "Memes"
-        guard let image = image, let image1 = image1 else { return }
-        guard let image = image.pngData(), let image1 = image1.pngData() else { return }
-        category.image = image
-        coreDataStack.saveContext()
-        //добавляем set слов
+        guard let image = image, let imageData = image.pngData() else { return }
+        category.image = imageData
         DELETETHIS.memesWords().forEach { memesWord in
             let word = Word(context: coreDataStack.managedContext)
+            word.word = memesWord
             word.category = category
-            word.word = memesWord
         }
-        //добавляем 18+ категорию
+        
+        //картинки будут потом через тип дата закидываться, но пока так чтобы затестить работу
         let category1 = Category(context: coreDataStack.managedContext)
-        category1.title = "Over18"
-        category1.image = image1
-        //добавляем set слов
-        DELETETHIS.over18words().forEach { memesWord in
+        let image1 = UIImage(named: "over18")
+        category1.title = "over18"
+        guard let image1 = image1, let image1Data = image1.pngData() else { return }
+        category1.image = image1Data
+        DELETETHIS.over18words().forEach { over18word in
             let word = Word(context: coreDataStack.managedContext)
+            word.word = over18word
             word.category = category1
-            word.word = memesWord
+        }
+        
+        if let categories = categoriesOrderedSet.categories?.mutableCopy() as? NSMutableOrderedSet {
+            categories.add(category)
+            categories.add(category1)
+            categoriesOrderedSet.categories = categories
         }
         
         coreDataStack.saveContext()
+        print("dataImported")
     }
     
     

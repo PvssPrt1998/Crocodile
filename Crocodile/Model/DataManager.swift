@@ -11,19 +11,10 @@ import Foundation
 //Если старая, подгрузки данных не будет
 //имеет методы предоставления данных контроллеру по запросу
 class DataManager {
-    
-    var categoriesArray: Array<Category> = []
-    
     let coreDataManager = CoreDataManager()
-    
-    func fillCategoriesArrayFromDeviceMemory() {
-        categoriesArray = coreDataManager.getCategoriesArray()
-    }
     
     //проверяет отличается ли версия в облаке от версии в памяти телефона
     func checkUpdates() {
         
     }
-    
-    
 }

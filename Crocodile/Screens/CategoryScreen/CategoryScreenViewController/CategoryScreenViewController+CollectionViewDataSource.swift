@@ -9,17 +9,10 @@ import UIKit
 
 //MARK: - collectionViewDataSourceExtension
 extension CategoryScreenViewController: UICollectionViewDataSource {
-    //Количество секций
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        guard let sections = fetchedResultsController.sections else { return 0 }
-        
-        return sections.count
-    }
     
     //Количество ячеек в секции
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let sectionInfo = fetchedResultsController.sections?[section] else { return 0 }
-        return sectionInfo.numberOfObjects
+        return gameManager.categoriesCount()
     }
     
     //CellForItemAt Конфигурируем ячейки
@@ -34,7 +27,7 @@ extension CategoryScreenViewController: UICollectionViewDataSource {
     //configure cell
     private func configure(_ cell: UICollectionViewCell, for indexPath: IndexPath) {
         guard let cell = cell as? CategoryCollectionViewCell else { return }
-        let category = fetchedResultsController.object(at: indexPath)
+        guard let category = gameManager.getCategory(by: indexPath.row) else { return }
         cell.categoryLabel.text = category.title
         guard let imageData = category.image, let image = UIImage(data: imageData) else { return }
         cell.categoryImageView.image = image

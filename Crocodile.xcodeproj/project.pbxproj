@@ -12,6 +12,9 @@
 		991442152A7CB205008DD377 /* CategoryViewController+CollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991442142A7CB205008DD377 /* CategoryViewController+CollectionViewDelegateFlowLayout.swift */; };
 		9914422A2A84C224008DD377 /* MainButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991442292A84C224008DD377 /* MainButton.xib */; };
 		9914422C2A84C278008DD377 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9914422B2A84C278008DD377 /* MainButton.swift */; };
+		9962BF262AEB933700BDACD1 /* CategoriesOrderedSet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9962BF242AEB933700BDACD1 /* CategoriesOrderedSet+CoreDataClass.swift */; };
+		9962BF272AEB933700BDACD1 /* CategoriesOrderedSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9962BF252AEB933700BDACD1 /* CategoriesOrderedSet+CoreDataProperties.swift */; };
+		9962BF292AEBB1A800BDACD1 /* GameManager + ConvenientMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9962BF282AEBB1A800BDACD1 /* GameManager + ConvenientMethods.swift */; };
 		9988F3CF29EE4A5A003D7FF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988F3CE29EE4A5A003D7FF3 /* AppDelegate.swift */; };
 		9988F3D129EE4A5A003D7FF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988F3D029EE4A5A003D7FF3 /* SceneDelegate.swift */; };
 		9988F3D329EE4A5A003D7FF3 /* CategoryScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988F3D229EE4A5A003D7FF3 /* CategoryScreenViewController.swift */; };
@@ -80,6 +83,9 @@
 		991442142A7CB205008DD377 /* CategoryViewController+CollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+CollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		991442292A84C224008DD377 /* MainButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainButton.xib; sourceTree = "<group>"; };
 		9914422B2A84C278008DD377 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
+		9962BF242AEB933700BDACD1 /* CategoriesOrderedSet+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesOrderedSet+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9962BF252AEB933700BDACD1 /* CategoriesOrderedSet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesOrderedSet+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9962BF282AEBB1A800BDACD1 /* GameManager + ConvenientMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameManager + ConvenientMethods.swift"; sourceTree = "<group>"; };
 		9988F3CB29EE4A5A003D7FF3 /* Crocodile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crocodile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9988F3CE29EE4A5A003D7FF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9988F3D029EE4A5A003D7FF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -219,6 +225,7 @@
 			children = (
 				9988F3E629EE4A7C003D7FF3 /* Player.swift */,
 				9988F3FB29EE8BDA003D7FF3 /* GameManager.swift */,
+				9962BF282AEBB1A800BDACD1 /* GameManager + ConvenientMethods.swift */,
 				99DFCB952A40974200481714 /* PlayerManager.swift */,
 				99A1219D2A87875F00DF803A /* WordManager.swift */,
 				99DFCBA52A44037200481714 /* DELETETHIS.swift */,
@@ -384,6 +391,8 @@
 		99DFCBA42A43FF4500481714 /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				9962BF252AEB933700BDACD1 /* CategoriesOrderedSet+CoreDataProperties.swift */,
+				9962BF242AEB933700BDACD1 /* CategoriesOrderedSet+CoreDataClass.swift */,
 				99E72DD52AC40597002F678C /* DataVersion+CoreDataProperties.swift */,
 				99E72DD42AC40597002F678C /* DataVersion+CoreDataClass.swift */,
 				99DFCBAE2A44459F00481714 /* Category+CoreDataProperties.swift */,
@@ -480,6 +489,7 @@
 			files = (
 				99BB88F629EEBF7E00C65EE1 /* AddPlayerTableViewCell.swift in Sources */,
 				999AC3512A5BC92A00F7D321 /* CustomModalDismissalHandler.swift in Sources */,
+				9962BF262AEB933700BDACD1 /* CategoriesOrderedSet+CoreDataClass.swift in Sources */,
 				99A121962A8500E200DF803A /* AddPlayerViewController+UITableViewDataSource.swift in Sources */,
 				99BB890829FA68B400C65EE1 /* NavigationRouter.swift in Sources */,
 				99DFCBEB2A55355E00481714 /* ScoreTableViewCell.swift in Sources */,
@@ -509,8 +519,10 @@
 				9988F3D929EE4A5A003D7FF3 /* Crocodile.xcdatamodeld in Sources */,
 				9988F3E729EE4A7C003D7FF3 /* Player.swift in Sources */,
 				999AC3422A5872A800F7D321 /* IncreasePlayerScoreScreen.swift in Sources */,
+				9962BF292AEBB1A800BDACD1 /* GameManager + ConvenientMethods.swift in Sources */,
 				99A1219C2A87812400DF803A /* GameScreenViewController+MainButtonDelegate.swift in Sources */,
 				99A121982A85012000DF803A /* AddPlayersViewController+UITableViewDelegate.swift in Sources */,
+				9962BF272AEB933700BDACD1 /* CategoriesOrderedSet+CoreDataProperties.swift in Sources */,
 				9988F3EB29EE66EF003D7FF3 /* Router.swift in Sources */,
 				99DFCB9B2A43FD2B00481714 /* CoreDataStack.swift in Sources */,
 				999AC3532A5EB77300F7D321 /* PlayersTableViewCell.swift in Sources */,

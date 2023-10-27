@@ -50,6 +50,4 @@ public class GameManager {
         wordManager = WordManager()
         playerManager = PlayerManager()
     }
-    
-    
 }

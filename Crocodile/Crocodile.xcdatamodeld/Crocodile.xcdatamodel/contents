@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CategoriesOrderedSet" representedClassName="CategoriesOrderedSet" syncable="YES">
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Category" inverseName="categoriesOrderedSet" inverseEntity="Category"/>
+    </entity>
     <entity name="Category" representedClassName="Category" syncable="YES">
         <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="categoriesOrderedSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoriesOrderedSet" inverseName="categories" inverseEntity="CategoriesOrderedSet"/>
         <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="category" inverseEntity="Word"/>
     </entity>
     <entity name="DataVersion" representedClassName=".DataVersion" syncable="YES">
@@ -12,6 +16,5 @@
         <attribute name="word" optional="YES" attributeType="String"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="words" inverseEntity="Category"/>
     </entity>
-    <fetchRequest name="CategoriesFetchRequest" entity="Category"/>
-    <fetchRequest name="DataVersionFetchRequest" entity="DataVersion"/>
+    <fetchRequest name="CategoriesOrderedSetFetchRequest" entity="CategoriesOrderedSet"/>
 </model>
